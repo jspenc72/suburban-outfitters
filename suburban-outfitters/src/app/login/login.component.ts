@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  searchValue: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.searchValue = '';
   }
 
 }

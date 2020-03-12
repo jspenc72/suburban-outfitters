@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule }   from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Angular Material Components
-// import {MatBadgeModule} from '@angular/material/badge';
+import {MatBadgeModule} from '@angular/material/badge';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -45,7 +45,6 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { HomeComponent } from './home/home.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { CartComponent } from './cart/cart.component';
 
@@ -58,7 +57,6 @@ import { CartComponent } from './cart/cart.component';
     CustomerDashboardComponent,
     AdminDashboardComponent,
     PasswordResetComponent,
-    HomeComponent,
     SearchPipe,
     CartComponent
   ],
@@ -70,6 +68,7 @@ import { CartComponent } from './cart/cart.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    MatBadgeModule,
     MatCardModule,
     MatCheckboxModule,
     MatCheckboxModule,
@@ -100,7 +99,7 @@ import { CartComponent } from './cart/cart.component';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule       
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
