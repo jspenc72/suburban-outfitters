@@ -304,28 +304,5 @@
     <div class="spacer"></div>
     <button mat-stroked-button routerLink="/login" routerLinkActive="active">Login</button>
   </mat-toolbar-row>
-
-  <mat-toolbar-row>
-    
-    <div class="spacer"></div>
-    
-    <mat-form-field class="example-form-field">
-      <mat-label>Product Search</mat-label>
-      <input matInput type="text" >
-      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    
-    <div class="spacer"></div>
-  </mat-toolbar-row>
-
-  <mat-toolbar-row>
-    <div class="spacer"></div>
-    <mat-chip-list>
-      <mat-chip *ngFor="let category of categories; let i = index">{{category.title}}</mat-chip>
-    </mat-chip-list>
-    <div class="spacer"></div>
-  </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>

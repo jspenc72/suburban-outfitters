@@ -10,10 +10,6 @@ export class AppComponent {
   value = 'Clear me';
   categories: any
   constructor() { 
-    this.categories = [
-      { title: "Womens"}, 
-      { title: "Accessories"}, 
-      { title: "Home"},
-      { title: "Kids & Baby"}]
+
   }
 }

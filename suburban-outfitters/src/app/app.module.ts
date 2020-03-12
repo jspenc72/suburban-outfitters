@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 // Angular Material Components
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
@@ -43,6 +44,7 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { HomeComponent } from './home/home.component';
+import { SearchPipe } from './pipes/search/search.pipe';
 
 @NgModule({
   declarations: [
@@ -53,9 +55,11 @@ import { HomeComponent } from './home/home.component';
     CustomerDashboardComponent,
     AdminDashboardComponent,
     PasswordResetComponent,
-    HomeComponent
+    HomeComponent,
+    SearchPipe
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

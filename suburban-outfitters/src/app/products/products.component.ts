@@ -8,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class ProductsComponent implements OnInit {
   items: any
   featuredItems: any
+  query: string
+  categories: any
   constructor() { 
+    this.categories = [
+      { title: "Womens"}, 
+      { title: "Accessories"}, 
+      { title: "Home"},
+      { title: "Kids & Baby"}]
+    this.query = ""
     this.featuredItems = [
       { title: "card1", type: "", value: 100, image: "https://picsum.photos/200?random=1", description: "Product 1", points: 10}, 
       { title: "card2", type: "", value: 100, image: "https://picsum.photos/200?random=2", description: "Product 2", points: 10}, 
