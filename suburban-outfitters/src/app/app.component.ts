@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'suburban-outfitters';
-  value = 'Clear me';
+  searchValue: string;
 
-  constructor() { 
-
+  constructor() {
+    this.searchValue = '';
   }
 }

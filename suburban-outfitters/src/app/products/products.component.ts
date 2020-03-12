@@ -12,8 +12,6 @@ export class ProductsComponent implements OnInit {
   query: string;
   categories: any;
 
-
-
   constructor(private router: Router) {
 
     this.categories = [
