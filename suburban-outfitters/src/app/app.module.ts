@@ -47,6 +47,10 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { CartComponent } from './cart/cart.component';
+import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers/manage-customers.component';
+import { ManageProductsComponent } from './admin-dashboard/manage-products/manage-products/manage-products.component';
+import { ManageSuppliersComponent } from './admin-dashboard/manage-suppliers/manage-suppliers/manage-suppliers.component';
+import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory/manage-inventory.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { CartComponent } from './cart/cart.component';
     AdminDashboardComponent,
     PasswordResetComponent,
     SearchPipe,
-    CartComponent
+    CartComponent,
+    ManageCustomersComponent,
+    ManageProductsComponent,
+    ManageSuppliersComponent,
+    ManageInventoryComponent
   ],
   imports: [
     CommonModule,
