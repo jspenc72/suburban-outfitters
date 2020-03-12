@@ -1,15 +1,27 @@
-  <mat-horizontal-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+  <mat-horizontal-stepper [linear]="true" #stepper  color="primary">
+    <mat-step  [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Review Cart</ng-template>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
       </form>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let item of cartItems;" (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item.description}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-card >Simple card
+
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <button mat-button matStepperNext color="primary" >Proceed to Checkout</button>
+
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
@@ -21,7 +33,7 @@
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext color="primary" >Next</button>
         </div>
       </form>
     </mat-step>
@@ -40,7 +52,7 @@
         </form>
       </mat-step>    
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel>Complete Purchase</ng-template>
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
