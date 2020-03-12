@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { CommonModule }   from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Angular Material Components
 // import {MatBadgeModule} from '@angular/material/badge';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -46,6 +47,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { HomeComponent } from './home/home.component';
 import { SearchPipe } from './pipes/search/search.pipe';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -57,10 +59,13 @@ import { SearchPipe } from './pipes/search/search.pipe';
     AdminDashboardComponent,
     PasswordResetComponent,
     HomeComponent,
-    SearchPipe
+    SearchPipe,
+    CartComponent
   ],
   imports: [
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

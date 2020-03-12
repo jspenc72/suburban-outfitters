@@ -6,10 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail', component: ProductDetailComponent },
   { path: 'login', component: LoginComponent },
