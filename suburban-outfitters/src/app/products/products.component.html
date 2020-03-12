@@ -1,11 +1,11 @@
 <h1>Products</h1>
 <div class="container"
-     fxLayout
+     fxLayout="row wrap"
      fxLayout.xs="column"
      fxLayoutAlign="center"
-     fxLayoutGap="10px"
+     fxLayoutGap="16px grid"
      fxLayoutGap.xs="0">
-  <div class="item" fxFlex="33%" *ngFor="let item of featuredItems; let i = index">
+  <div class="item" fxFlex="30%" *ngFor="let item of featuredItems; let i = index">
     <mat-card class="example-card" >
       <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" >
       <mat-card-content>
@@ -23,16 +23,18 @@
         </button> 
       </mat-card-actions> 
     </mat-card>
+    
   </div>
+  
 </div>
-<mat-divider></mat-divider>
+<br>
 <div class="container"
-     fxLayout
+     fxLayout="row wrap"
      fxLayout.xs="column"
      fxLayoutAlign="center"
-     fxLayoutGap="10px"
+     fxLayoutGap="16px grid"
      fxLayoutGap.xs="0">
-  <div class="item" fxFlex="33%" *ngFor="let item of items; let i = index">
+  <div class="item" fxFlex="18%" *ngFor="let item of items; let i = index">
     <mat-card class="example-card" >
       <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" >
       <mat-card-content>
