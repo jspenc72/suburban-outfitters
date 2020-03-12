@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,10 @@ export class ProductsComponent implements OnInit {
   featuredItems: any
   query: string
   categories: any
-  constructor() { 
+  value: string
+  constructor(private router: Router) { 
+    this.value = 'Clear me';
+
     this.categories = [
       { title: "Womens"}, 
       { title: "Accessories"}, 
@@ -32,6 +36,12 @@ export class ProductsComponent implements OnInit {
       { value: 100, image: "https://picsum.photos/200?random=8", description: "Product 8", points: 10}, 
       { value: 100, image: "https://picsum.photos/200?random=9", description: "Product 9", points: 10},
       { value: 100, image: "https://picsum.photos/200?random=10", description: "Product 10", points: 10}]
+  }
+
+  displayProductDetail(item): void {
+    console.log("displayProductDetail")
+    console.log(item)
+    this.router.navigateByUrl('/product-detail', { state: { item: item  } });
   }
 
   ngOnInit(): void {

@@ -33,7 +33,7 @@
      fxLayoutGap.xs="0">
   <div class="item" fxFlex="30%" *ngFor="let item of featuredItems | search:'description':query; let i = index">
     <mat-card class="example-card" >
-      <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" >
+      <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
       <mat-card-content>
         <p>
           {{item.description}}
@@ -63,7 +63,7 @@
      
   <div class="item" fxFlex="18%" *ngFor="let item of items | search:'description':query">
     <mat-card class="example-card" >
-      <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" >
+      <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
       <mat-card-content>
         <p>
           {{item.description}}
