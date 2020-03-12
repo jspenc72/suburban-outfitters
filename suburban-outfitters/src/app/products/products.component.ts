@@ -12,6 +12,9 @@ export class ProductsComponent implements OnInit {
   query: string
   categories: any
   value: string
+
+
+  
   constructor(private router: Router) { 
     this.value = 'Clear me';
 

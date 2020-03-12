@@ -21,7 +21,7 @@ export class ProductDetailComponent implements OnInit {
     this.state$ = this.location.getState();
 
     if (!this.state$.item){
-        this.router.navigateByUrl('/card-list');
+        this.router.navigateByUrl('/products');
     }else{
       this.item = this.state$.item; 
     }
