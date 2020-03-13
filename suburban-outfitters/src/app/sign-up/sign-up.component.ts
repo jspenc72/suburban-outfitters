@@ -9,6 +9,9 @@ export class SignUpComponent implements OnInit {
 
   username: string;
   password: string;
+  confirm_password: string;
+  email: string;
+  
 
   constructor() { }
 

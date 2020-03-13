@@ -9,10 +9,13 @@
               <input matInput placeholder="Username" [(ngModel)]="username" name="username" required> 
             </mat-form-field>
             <mat-form-field appearance="outline">
+              <input matInput placeholder="email" [(ngModel)]="email" name="email" required> 
+            </mat-form-field>            
+            <mat-form-field appearance="outline">
               <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
             </mat-form-field>
             <mat-form-field appearance="outline">
-              <input matInput placeholder="Confirm Password" [(ngModel)]="password" type="password" name="password" required>
+              <input matInput placeholder="Confirm Password" [(ngModel)]="confirm_password" type="password" name="confirm_password" required>
             </mat-form-field>
             <br />
             <button mat-raised-button color="primary" routerLink="/products" routerLinkActive="active">Register New Account</button>

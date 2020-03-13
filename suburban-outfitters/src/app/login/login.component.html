@@ -5,7 +5,7 @@
       <form>
         <div fxLayout="column" fxLayoutAlign="center center">
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+            <input matInput placeholder="Username or Email" [(ngModel)]="username" name="username" required>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
@@ -14,8 +14,10 @@
           <button mat-raised-button color="primary" routerLink="/admin-dashboard" routerLinkActive="active">Login</button>
           <br />
           <br />
-            <h3 class="text-center">Don't have an account yet? Sign up now!</h3>
-          <button mat-raised-button color="primary" routerLink="/sign-up" routerLinkActive="active">Sign Up</button>
+          <button mat-raised-button color="primary" routerLink="/password-reset" routerLinkActive="active">Forgot Password</button>
+            <h3 class="text-center">Don't have an account?</h3>
+          <button mat-raised-button color="primary" routerLink="/sign-up" routerLinkActive="active">Sign Up!</button>
+
         </div>
       </form>
     </mat-card-content>

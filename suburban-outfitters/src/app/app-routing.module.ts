@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail', component: ProductDetailComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'customer-dashboard', component: CustomerDashboardComponent },
