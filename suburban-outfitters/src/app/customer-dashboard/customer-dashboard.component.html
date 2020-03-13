@@ -1,1 +1,34 @@
-<p>customer-dashboard works!</p>
+<header>
+    <br>
+    <h1>
+        Customer Dashboard
+    </h1>
+    
+</header>
+<div class="row">
+    <div class="column" fxLayout="column" fxLayoutAlign="center center">
+        <h2>
+            My Orders
+        </h2>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/admin-dashboard" routerLinkActive="active">View All Orders</button>
+    </div>
+    <div class="column" fxLayout="column" fxLayoutAlign="center center">
+        <h2>
+            My Payment Methods
+        </h2>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Add Another Payment Method</button>
+    </div>
+    <div class="column" fxLayout="column" fxLayoutAlign="center center">
+        <h2>
+            My Profile
+        </h2>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Shipping Address</button>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Email Address</button>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Password</button>
+    </div>
+  </div>
