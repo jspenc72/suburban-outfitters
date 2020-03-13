@@ -39,6 +39,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
@@ -56,6 +57,7 @@ import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/man
   declarations: [
     AppComponent,
     LoginComponent,
+    SignUpComponent,
     ProductsComponent,
     ProductDetailComponent,
     CustomerDashboardComponent,
