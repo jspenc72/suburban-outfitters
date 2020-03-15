@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store, Select } from '@ngxs/store';
+import { CartState } from './store/cart.state';
+import { ICartItem } from './models/cart-item.model';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +11,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'suburban-outfitters';
-  searchValue: string;
 
-  constructor() {
-    this.searchValue = '';
-  }
+  @Select(CartState.itemCount) cartItemCount$: Observable<number>;
+
+  constructor(private store: Store) { }
 }

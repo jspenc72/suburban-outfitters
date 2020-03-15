@@ -6,31 +6,22 @@
      fxLayoutGap="16px grid"
      fxLayoutGap.xs="0">
      <div class="item" fxFlex="40%" >
-        <mat-card class="example-card" >
+        <mat-card>
           <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" >
-          <mat-card-content>
-            <p>
-              {{item.description}}
-            </p>
-            <p>
-              ${{item.value}}
-            </p>      
-          </mat-card-content>
-          <mat-card-actions>
-            <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
-                <mat-icon>favorite</mat-icon>
-            </button> 
-          </mat-card-actions> 
         </mat-card>
       </div>
       <div class="item" fxFlex="20%" >
-          <h2>Name: {{item.description}}</h2>
-          <h2>Price: ${{item.value}}</h2>
+          <h2>Name: {{item.name}}</h2>
+          <p>{{item.description}}</p>
+          <h2>Price: ${{item.price}}</h2>
           <br>
           <mat-chip-list>
             <mat-chip  color="primary" selected>In Stock!</mat-chip>
           </mat-chip-list>          
           <br>
-          <button mat-raised-button color="accent" routerLink="/cart" routerLinkActive="active">Add to Cart</button>
+          <button mat-raised-button color="accent" (click)="addItemToCart(item)">Add to Cart</button>
+          <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
       </div>
 </div>

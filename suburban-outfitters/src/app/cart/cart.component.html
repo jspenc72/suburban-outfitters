@@ -4,19 +4,20 @@
         <ng-template matStepLabel>Review Cart</ng-template>
       </form>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let item of cartItems;" (opened)="panelOpenState = true"
+        <mat-expansion-panel *ngFor="let item of cartItems$ | async;" (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{item.description}}
+              {{item.name}}
             </mat-panel-title>
             <mat-panel-description>
-              Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              <span>Quantity: {{item.quantity}}</span>
+              <span style="padding-left: 16px;">Price: {{item.quantity * item.price | currency}}</span>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <mat-card >Simple card
+          <!-- <mat-card >Simple card
 
-          </mat-card>
+          </mat-card> -->
         </mat-expansion-panel>
       </mat-accordion>
 

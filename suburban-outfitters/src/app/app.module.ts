@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AppState } from './store/app.state';
 // Angular Material Components
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -52,6 +55,7 @@ import { ManageCustomersComponent } from './admin-dashboard/manage-customers/man
 import { ManageProductsComponent } from './admin-dashboard/manage-products/manage-products/manage-products.component';
 import { ManageSuppliersComponent } from './admin-dashboard/manage-suppliers/manage-suppliers/manage-suppliers.component';
 import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory/manage-inventory.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -78,6 +82,10 @@ import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/man
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    NgxsModule.forRoot(AppState),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: environment.production
+    }),  // Should be the last module to import for ngxs
     MatBadgeModule,
     MatCardModule,
     MatCheckboxModule,
