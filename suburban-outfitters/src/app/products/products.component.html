@@ -13,7 +13,7 @@
   <mat-toolbar-row>
     <div class="spacer"></div>
     <mat-chip-list>
-      <mat-chip *ngFor="let category of categories; let i = index">{{category}}</mat-chip>
+      <mat-chip *ngFor="let category of categories; let i = index" (click)="filterByCategory(category)">{{category}}</mat-chip>
     </mat-chip-list>
     <div class="spacer"></div>
   </mat-toolbar-row>
@@ -22,7 +22,7 @@
 
 <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="16px grid"
   fxLayoutGap.xs="0">
-  <div class="item" fxFlex="30%" *ngFor="let item of featuredItems | search:'name': searchValue; let i = index">
+  <div class="item" fxFlex="30%" *ngFor="let item of featuredItems | search:'name,category': searchValue; let i = index">
     <mat-card class="example-card">
       <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
       <mat-card-content>
@@ -48,7 +48,7 @@
 <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="16px grid"
   fxLayoutGap.xs="0">
 
-  <div class="item" fxFlex="18%" *ngFor="let item of items | search:'name': searchValue">
+  <div class="item" fxFlex="18%" *ngFor="let item of items | search:'name,category': searchValue">
     <mat-card class="example-card">
       <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
       <mat-card-content>
