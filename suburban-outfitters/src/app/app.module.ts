@@ -59,6 +59,9 @@ import { environment } from 'src/environments/environment';
 import { MyOrdersComponent } from './customer-dashboard/my-orders/my-orders.component';
 import { OrderDetailComponent } from './customer-dashboard/my-orders/order-detail/order-detail.component';
 import { ReturnItemComponent } from './customer-dashboard/my-orders/order-detail/return-item/return-item.component';
+import { ChangeEmailDialogComponent } from './customer-dashboard/change-email-dialog/change-email-dialog.component';
+import { ChangeAddressDialogComponent } from './customer-dashboard/change-address-dialog/change-address-dialog.component';
+import { ChangePaymentDialogComponent } from './customer-dashboard/change-payment-dialog/change-payment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,10 @@ import { ReturnItemComponent } from './customer-dashboard/my-orders/order-detail
     ManageInventoryComponent,
     MyOrdersComponent,
     OrderDetailComponent,
-    ReturnItemComponent
+    ReturnItemComponent,
+    ChangeEmailDialogComponent,
+    ChangeAddressDialogComponent,
+    ChangePaymentDialogComponent
   ],
   imports: [
     CommonModule,
