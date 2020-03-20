@@ -4,6 +4,9 @@ import { Select, Store } from '@ngxs/store';
 import { CartState } from '../store/cart.state';
 import { ICartItem } from '../models/cart-item.model';
 import { Observable } from 'rxjs/internal/Observable';
+import { removeItem } from '@ngxs/store/operators';
+import { RemoveItemAction } from '../store/cart.actions';
+import { IProduct } from '../models/product.model';
 
 @Component({
   selector: 'app-cart',
@@ -39,6 +42,10 @@ export class CartComponent implements OnInit {
       lastNameCtrl: ['', Validators.required],
       addressCtrl: ['', Validators.required]
     });
+  }
+
+  onRemoveItemFromCart(cartItem: ICartItem) {
+    this.store.dispatch(new RemoveItemAction(cartItem));
   }
 
 }

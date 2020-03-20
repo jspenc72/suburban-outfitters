@@ -1,4 +1,4 @@
-  <mat-horizontal-stepper [linear]="false" #stepper  color="primary">
+  <mat-horizontal-stepper class="checkout-stepper-background" linear="false" #stepper>
     <mat-step  [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Review Cart</ng-template>
@@ -15,17 +15,15 @@
               <span style="padding-left: 16px;">Price: {{item.quantity * item.price | currency}}</span>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <!-- <mat-card >Simple card
-
-          </mat-card> -->
+          <button mat-raised-button color="warn" class="checkout-button">Remove Item</button>
         </mat-expansion-panel>
       </mat-accordion>
 
-      <button mat-button matStepperNext color="primary" >Proceed to Checkout</button>
+      <button mat-raised-button matStepperNext color="primary" class="checkout-button">Proceed to Checkout</button>
 
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup" [style.background-color]="'lightgray  '" >
+      <form [formGroup]="secondFormGroup" [style.background-color]="'lightgray'" >
         <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px grid" fxLayoutGap.xs="200px">
           <ng-template matStepLabel>Shipping Info</ng-template>
           <mat-form-field class="item" fxFlex="35%">

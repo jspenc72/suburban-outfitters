@@ -74,4 +74,35 @@ export class CartState {
       verticalPosition: 'bottom'
     });
   }
+
+  @Action(cartActions.RemoveItemAction)
+  async RemoveItemAction(
+    ctx: StateContext<CartStateModel>,
+    { payload }: cartActions.RemoveItemAction
+  ) {
+    const state = ctx.getState();
+    const existingCartItem = state.items.find(i => i.id === payload.id);
+
+    const subtractValue = existingCartItem.quantity - payload.quantity < 0 ? 0 : payload.quantity;
+
+    if (!existingCartItem) {
+      ctx.setState(
+        patch({
+          items: append([payload])
+        })
+      );
+    } else {
+      ctx.setState(
+        patch({
+          items: updateItem(item => item.id === payload.id, patch({ quantity: (existingCartItem.quantity - subtractValue) }))
+        })
+      );
+    }
+
+    // TODO: calculate total
+    this.snackbar.open('Added to Cart', null, {
+      duration: 3000,
+      verticalPosition: 'bottom'
+    });
+  }
 }

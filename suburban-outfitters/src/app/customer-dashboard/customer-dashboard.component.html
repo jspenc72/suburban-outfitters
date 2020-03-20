@@ -1,35 +1,36 @@
-<header>
-    <br>
-    <h1>
-        Customer Dashboard
-    </h1>
-    
-</header>
+<br>
+<h1>
+    Customer Dashboard
+</h1>
 <div class="row">
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
         <h2>
-            My Orders
+            My Profile
         </h2>
+        Name: {{customer.name}}
+        Address: {{customer.address}}
         <br>
-        <button mat-raised-button color="primary" routerLink="/customer-dashboard/my-orders" routerLinkActive="active">View All Orders</button>
+        <button mat-raised-button color="primary" (click)="onChangeShippingAddress()">Change Shipping Address</button>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Email
+            Address</button>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Password</button>
     </div>
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
         <h2>
             My Payment Methods
         </h2>
         <br>
-        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Add Another Payment Method</button>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Add Another Payment
+            Method</button>
     </div>
+</div>
+<div class="row">
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
         <h2>
-            My Profile
+            My Orders
         </h2>
-        <br>
-        <button mat-raised-button color="primary" routerLink="/change-address-dialog" routerLinkActive="active">Change Shipping Address</button>
-        <br>
-        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Email Address</button>
-        <br>
-        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Password</button>
+        <app-my-orders></app-my-orders>
     </div>
-  </div>
-  <router-outlet></router-outlet>
+</div>
