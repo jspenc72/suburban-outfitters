@@ -22,9 +22,9 @@ export class ProductsComponent implements OnInit {
       { id: 2, name: 'Product 2', image: 'https://picsum.photos/200?random=2', description: 'Product 2 Description', price: 15, size: 'M', gender: 'W', category: 'clothing' },
       { id: 3, name: 'Product 3', image: 'https://picsum.photos/200?random=3', description: 'Product 3 Description', price: 20, size: 'M', gender: 'W', category: 'clothing' }];
     this.items = [
-      { id: 1, name: 'Product 1', image: 'https://picsum.photos/200?random=1', description: 'Product 1 Description', price: 10, size: 'M', gender: 'W', category: 'clothing' },
-      { id: 2, name: 'Product 2', image: 'https://picsum.photos/200?random=2', description: 'Product 2 Description', price: 15, size: 'M', gender: 'W', category: 'clothing' },
-      { id: 3, name: 'Product 3', image: 'https://picsum.photos/200?random=3', description: 'Product 3 Description', price: 20, size: 'M', gender: 'W', category: 'clothing' },
+      { id: 1, name: 'Product 1', image: 'https://picsum.photos/200?random=11', description: 'Product 1 Description', price: 10, size: 'M', gender: 'W', category: 'clothing' },
+      { id: 2, name: 'Product 2', image: 'https://picsum.photos/200?random=12', description: 'Product 2 Description', price: 15, size: 'M', gender: 'W', category: 'clothing' },
+      { id: 3, name: 'Product 3', image: 'https://picsum.photos/200?random=13', description: 'Product 3 Description', price: 20, size: 'M', gender: 'W', category: 'clothing' },
       { id: 4, name: 'Product 4', image: 'https://picsum.photos/200?random=4', description: 'Product 4 Description', price: 25, size: 'M', gender: 'W', category: 'clothing' },
       { id: 5, name: 'Product 5', image: 'https://picsum.photos/200?random=5', description: 'Product 5 Description', price: 30, size: 'M', gender: 'W', category: 'clothing' },
       { id: 6, name: 'Product 6', image: 'https://picsum.photos/200?random=6', description: 'Product 6 Description', price: 35, size: 'M', gender: 'W', category: 'clothing' },

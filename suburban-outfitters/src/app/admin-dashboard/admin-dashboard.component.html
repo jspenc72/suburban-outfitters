@@ -2,12 +2,10 @@
   fxLayoutGap.xs="0">
   <div class="item" fxFlex="60%" >
     <nav mat-tab-nav-bar [backgroundColor]="'accent'">
-      <a mat-tab-link routerLink="/admin-dashboard/manage-customers" routerLinkActive="active">Manage Customers</a>
-      <a mat-tab-link routerLink="/admin-dashboard/manage-inventory" routerLinkActive="active">Manage Inventory</a>
-      <a mat-tab-link routerLink="/admin-dashboard/manage-products" routerLinkActive="active">Manage Products</a>
-      <a mat-tab-link routerLink="/admin-dashboard/manage-suppliers" routerLinkActive="active">Manage Suppliers</a>
-      <a mat-tab-link disabled>Disabled Link</a>
-    </nav>
+      <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+        {{link.label}}
+      </a>
+      </nav>    
   </div>
   <div class="item" fxFlex="60%" >
     <router-outlet></router-outlet>
