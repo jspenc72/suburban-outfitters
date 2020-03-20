@@ -62,6 +62,14 @@ import { ReturnItemComponent } from './customer-dashboard/my-orders/order-detail
 import { ChangeEmailDialogComponent } from './customer-dashboard/change-email-dialog/change-email-dialog.component';
 import { ChangeAddressDialogComponent } from './customer-dashboard/change-address-dialog/change-address-dialog.component';
 import { ChangePaymentDialogComponent } from './customer-dashboard/change-payment-dialog/change-payment-dialog.component';
+import { EditCustomerComponent } from './admin-dashboard/manage-customers/edit-customer/edit-customer.component';
+import { CreateCustomerComponent } from './admin-dashboard/manage-customers/create-customer/create-customer.component';
+import { EditInventoryItemComponent } from './admin-dashboard/manage-inventory/edit-inventory-item/edit-inventory-item.component';
+import { CreateInventoryItemComponent } from './admin-dashboard/manage-inventory/create-inventory-item/create-inventory-item.component';
+import { CreateProductComponent } from './admin-dashboard/manage-products/create-product/create-product.component';
+import { EditProductComponent } from './admin-dashboard/manage-products/edit-product/edit-product.component';
+import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
+import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +92,15 @@ import { ChangePaymentDialogComponent } from './customer-dashboard/change-paymen
     ReturnItemComponent,
     ChangeEmailDialogComponent,
     ChangeAddressDialogComponent,
-    ChangePaymentDialogComponent
+    ChangePaymentDialogComponent,
+    EditCustomerComponent,
+    CreateCustomerComponent,
+    EditInventoryItemComponent,
+    CreateInventoryItemComponent,
+    CreateProductComponent,
+    EditProductComponent,
+    CreateSupplierComponent,
+    EditSupplierComponent
   ],
   imports: [
     CommonModule,

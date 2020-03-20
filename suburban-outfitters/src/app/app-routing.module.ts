@@ -14,6 +14,14 @@ import { ManageProductsComponent } from './admin-dashboard/manage-products/manag
 import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory.component';
 import { MyOrdersComponent } from './customer-dashboard/my-orders/my-orders.component';
 import { OrderDetailComponent } from './customer-dashboard/my-orders/order-detail/order-detail.component';
+import { CreateCustomerComponent } from './admin-dashboard/manage-customers/create-customer/create-customer.component';
+import { EditCustomerComponent } from './admin-dashboard/manage-customers/edit-customer/edit-customer.component';
+import { CreateInventoryItemComponent } from './admin-dashboard/manage-inventory/create-inventory-item/create-inventory-item.component';
+import { EditInventoryItemComponent } from './admin-dashboard/manage-inventory/edit-inventory-item/edit-inventory-item.component';
+import { CreateProductComponent } from './admin-dashboard/manage-products/create-product/create-product.component';
+import { EditProductComponent } from './admin-dashboard/manage-products/edit-product/edit-product.component';
+import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
+import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -27,7 +35,62 @@ const routes: Routes = [
   { path: 'manage-inventory', component: ManageInventoryComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent,
+    children: [
+      {
+        path:  'manage-customers',
+        component:  ManageCustomersComponent,
+        children: [
+          {
+            path:  'create-customer',
+            component:  CreateCustomerComponent
+          },
+          {
+            path:  'edit-customer',
+            component:  EditCustomerComponent
+          }
+        ]
+      }, {
+        path:  'manage-inventory',
+        component:  ManageInventoryComponent,
+        children: [
+          {
+            path:  'create-inventory-item',
+            component:  CreateInventoryItemComponent
+          },
+          {
+            path:  'edit-inventory-item',
+            component:  EditInventoryItemComponent
+          }
+        ]
+      }, {
+        path:  'manage-products',
+        component:  ManageProductsComponent,
+        children: [
+          {
+            path:  'create-product',
+            component:  CreateProductComponent
+          },
+          {
+            path:  'edit-product',
+            component:  EditProductComponent
+          }
+        ]
+      }, {
+        path:  'manage-suppliers',
+        component:  ManageSuppliersComponent,
+        children: [
+          {
+            path:  'create-supplier',
+            component:  CreateSupplierComponent
+          },
+          {
+            path:  'edit-supplier',
+            component:  EditSupplierComponent
+          }
+        ]
+      }
+  ]},
   { path: 'customer-dashboard', component: CustomerDashboardComponent,
     children: [
       {
