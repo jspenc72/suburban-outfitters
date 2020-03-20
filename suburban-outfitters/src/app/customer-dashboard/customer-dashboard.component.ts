@@ -11,7 +11,8 @@ export class CustomerDashboardComponent implements OnInit {
 
   customer = {
     name: 'John Smith',
-    address: '12345 TEST AVE, SLC, UT 813456'
+    address: '12345 TEST AVE, SLC, UT 813456',
+    email: 'johnsmith@utah.edu'
   };
 
   constructor(

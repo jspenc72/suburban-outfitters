@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-change-email-dialog',
   templateUrl: './change-email-dialog.component.html',
   styleUrls: ['./change-email-dialog.component.scss']
 })
-export class ChangeEmailDialogComponent implements OnInit {
+export class ChangeEmailDialogComponent {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ChangeEmailDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit(): void {
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
+
 }
+
+

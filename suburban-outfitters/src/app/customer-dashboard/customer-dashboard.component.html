@@ -8,11 +8,16 @@
             My Profile
         </h2>
         Name: {{customer.name}}
+        <br>
         Address: {{customer.address}}
+        <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeShippingAddress()">Change Shipping Address</button>
         <br>
-        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Email
+        Email Address: {{customer.email}}
+        <br>
+        <br>
+        <button mat-raised-button color="primary" (click)="onChangeShippingAddress()">Change Email
             Address</button>
         <br>
         <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Password</button>
@@ -22,8 +27,10 @@
             My Payment Methods
         </h2>
         <br>
-        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Add Another Payment
-            Method</button>
+        Last 4 of Credit Card: 1234
+        <br>
+        <br>
+        <button mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Change Credit Card on File</button>
     </div>
 </div>
 <div class="row">
