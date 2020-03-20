@@ -27,7 +27,22 @@ const routes: Routes = [
   { path: 'manage-inventory', component: ManageInventoryComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent,
+    children: [
+      {
+        path:  'manage-customers',
+        component:  ManageCustomersComponent
+      },{
+        path:  'manage-inventory',
+        component:  ManageInventoryComponent
+      },{
+        path:  'manage-products',
+        component:  ManageProductsComponent
+      },{
+        path:  'manage-suppliers',
+        component:  ManageSuppliersComponent
+      }
+  ]},
   { path: 'customer-dashboard', component: CustomerDashboardComponent,
     children: [
       {
