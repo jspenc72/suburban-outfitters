@@ -12,6 +12,8 @@ import { ManageSuppliersComponent } from './admin-dashboard/manage-suppliers/man
 import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers.component';
 import { ManageProductsComponent } from './admin-dashboard/manage-products/manage-products.component';
 import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory.component';
+import { MyOrdersComponent } from './customer-dashboard/my-orders/my-orders.component';
+import { OrderDetailComponent } from './customer-dashboard/my-orders/order-detail/order-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -26,7 +28,19 @@ const routes: Routes = [
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'customer-dashboard', component: CustomerDashboardComponent },
+  { path: 'customer-dashboard', component: CustomerDashboardComponent,
+    children: [
+      {
+        path:  'my-orders',
+        component:  MyOrdersComponent,
+        children: [
+            {
+              path:  'order-detail',
+              component:  OrderDetailComponent
+            }
+        ]
+      }
+  ]},
   { path: '**', component: ProductsComponent }
 ];
 
