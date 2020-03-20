@@ -59,6 +59,14 @@ import { environment } from 'src/environments/environment';
 import { MyOrdersComponent } from './customer-dashboard/my-orders/my-orders.component';
 import { OrderDetailComponent } from './customer-dashboard/my-orders/order-detail/order-detail.component';
 import { ReturnItemComponent } from './customer-dashboard/my-orders/order-detail/return-item/return-item.component';
+import { EditCustomerComponent } from './admin-dashboard/manage-customers/edit-customer/edit-customer.component';
+import { CreateCustomerComponent } from './admin-dashboard/manage-customers/create-customer/create-customer.component';
+import { EditInventoryItemComponent } from './admin-dashboard/manage-inventory/edit-inventory-item/edit-inventory-item.component';
+import { CreateInventoryItemComponent } from './admin-dashboard/manage-inventory/create-inventory-item/create-inventory-item.component';
+import { CreateProductComponent } from './admin-dashboard/manage-products/create-product/create-product.component';
+import { EditProductComponent } from './admin-dashboard/manage-products/edit-product/edit-product.component';
+import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
+import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +86,15 @@ import { ReturnItemComponent } from './customer-dashboard/my-orders/order-detail
     ManageInventoryComponent,
     MyOrdersComponent,
     OrderDetailComponent,
-    ReturnItemComponent
+    ReturnItemComponent,
+    EditCustomerComponent,
+    CreateCustomerComponent,
+    EditInventoryItemComponent,
+    CreateInventoryItemComponent,
+    CreateProductComponent,
+    EditProductComponent,
+    CreateSupplierComponent,
+    EditSupplierComponent
   ],
   imports: [
     CommonModule,
