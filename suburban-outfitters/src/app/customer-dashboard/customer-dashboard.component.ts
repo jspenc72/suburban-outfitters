@@ -15,6 +15,23 @@ export class CustomerDashboardComponent implements OnInit {
     email: 'johnsmith@utah.edu'
   };
 
+  orders = [{
+    orderNumber: 1,
+    price: 45.00,
+    status: 'Shipped'
+  },
+  {
+    orderNumber: 2,
+    price: 15.00,
+    status: 'Processing'
+  },
+  {
+    orderNumber: 3,
+    price: 23.00,
+    status: 'Delivered'
+  }
+  ];
+
   constructor(
     public dialog: MatDialog
   ) { }
@@ -22,7 +39,7 @@ export class CustomerDashboardComponent implements OnInit {
   ngOnInit(): void { }
 
   onChangeShippingAddress() {
-    const dialogRef =  this.dialog.open(ChangeAddressDialogComponent, {
+    const dialogRef = this.dialog.open(ChangeAddressDialogComponent, {
       data: { address: this.customer.address }
     });
 
