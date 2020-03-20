@@ -8,6 +8,10 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
+import { ManageSuppliersComponent } from './admin-dashboard/manage-suppliers/manage-suppliers.component'
+import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers.component';
+import { ManageProductsComponent } from './admin-dashboard/manage-products/manage-products.component';
+import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -15,6 +19,10 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'product-detail', component: ProductDetailComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'manage-suppliers', component: ManageSuppliersComponent },
+  { path: 'manage-customers', component: ManageCustomersComponent },
+  { path: 'manage-products', component: ManageProductsComponent },
+  { path: 'manage-inventory', component: ManageInventoryComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent },

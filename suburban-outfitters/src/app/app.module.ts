@@ -51,11 +51,14 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { CartComponent } from './cart/cart.component';
-import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers/manage-customers.component';
-import { ManageProductsComponent } from './admin-dashboard/manage-products/manage-products/manage-products.component';
-import { ManageSuppliersComponent } from './admin-dashboard/manage-suppliers/manage-suppliers/manage-suppliers.component';
-import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory/manage-inventory.component';
+import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers.component';
+import { ManageProductsComponent } from './admin-dashboard/manage-products/manage-products.component';
+import { ManageSuppliersComponent } from './admin-dashboard/manage-suppliers/manage-suppliers.component';
+import { ManageInventoryComponent } from './admin-dashboard/manage-inventory/manage-inventory.component';
 import { environment } from 'src/environments/environment';
+import { MyOrdersComponent } from './customer-dashboard/my-orders/my-orders.component';
+import { OrderDetailComponent } from './customer-dashboard/my-orders/order-detail/order-detail.component';
+import { ReturnItemComponent } from './customer-dashboard/my-orders/order-detail/return-item/return-item.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { environment } from 'src/environments/environment';
     ManageCustomersComponent,
     ManageProductsComponent,
     ManageSuppliersComponent,
-    ManageInventoryComponent
+    ManageInventoryComponent,
+    MyOrdersComponent,
+    OrderDetailComponent,
+    ReturnItemComponent
   ],
   imports: [
     CommonModule,
