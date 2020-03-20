@@ -25,25 +25,33 @@
 
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Shipping Info</ng-template>
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext color="primary" >Next</button>
+      <form [formGroup]="secondFormGroup" [style.background-color]="'lightgray  '" >
+        <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px grid" fxLayoutGap.xs="200px">
+          <ng-template matStepLabel>Shipping Info</ng-template>
+          <mat-form-field class="item" fxFlex="35%">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstNameCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>
+          <mat-form-field class="item" fxFlex="35%">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastNameCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>            
+          <mat-form-field class="item" fxFlex="60%">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="addressCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+          </mat-form-field>
+
+          <button mat-button class="item" fxFlex="50%" matStepperPrevious>Back</button>
+          <button mat-button class="item" fxFlex="50%" matStepperNext color="primary" >Next</button>
         </div>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
           <ng-template matStepLabel>Payment Info</ng-template>
           <mat-form-field>
             <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+            <input matInput formControlName="firstNameCtrl" placeholder="Ex. 1 Main St, New York, NY"
                    required>
           </mat-form-field>
           <div>

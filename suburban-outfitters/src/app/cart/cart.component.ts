@@ -12,22 +12,32 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class CartComponent implements OnInit {
   @Select(CartState.items) cartItems$: Observable<ICartItem[]>;
-
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   panelOpenState = false;
+
   constructor(
     private store: Store,
     private _formBuilder: FormBuilder
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      firstNameCtrl: ['', Validators.required],
+      lastNameCtrl: ['', Validators.required],
+      addressCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      firstNameCtrl: ['', Validators.required],
+      lastNameCtrl: ['', Validators.required],
+      addressCtrl: ['', Validators.required]
     });
   }
 
