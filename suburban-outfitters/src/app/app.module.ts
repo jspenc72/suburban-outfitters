@@ -70,6 +70,7 @@ import { CreateProductComponent } from './admin-dashboard/manage-products/create
 import { EditProductComponent } from './admin-dashboard/manage-products/edit-product/edit-product.component';
 import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
+import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dialog/return-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-s
     CreateProductComponent,
     EditProductComponent,
     CreateSupplierComponent,
-    EditSupplierComponent
+    EditSupplierComponent,
+    ReturnItemDialogComponent
   ],
   imports: [
     CommonModule,

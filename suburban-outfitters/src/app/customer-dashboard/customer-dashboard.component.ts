@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeAddressDialogComponent } from './change-address-dialog/change-address-dialog.component';
+import { ChangeEmailDialogComponent } from './change-email-dialog/change-email-dialog.component';
+import { ChangePaymentDialogComponent } from './change-payment-dialog/change-payment-dialog.component';
+import { ReturnItemDialogComponent } from './return-item-dialog/return-item-dialog.component';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -12,21 +15,22 @@ export class CustomerDashboardComponent implements OnInit {
   customer = {
     name: 'John Smith',
     address: '12345 TEST AVE, SLC, UT 813456',
-    email: 'johnsmith@utah.edu'
+    email: 'johnsmith@utah.edu',
+    creditcard: '5252'
   };
 
   orders = [{
-    orderNumber: 1,
+    orderNumber: 123456789,
     price: 45.00,
     status: 'Shipped'
   },
   {
-    orderNumber: 2,
+    orderNumber: 123456888,
     price: 15.00,
     status: 'Processing'
   },
   {
-    orderNumber: 3,
+    orderNumber: 123457777,
     price: 23.00,
     status: 'Delivered'
   }
@@ -51,4 +55,42 @@ export class CustomerDashboardComponent implements OnInit {
     });
   }
 
+  onChangeEmailAddress() {
+    const dialogRef = this.dialog.open(ChangeEmailDialogComponent, {
+      data: { email: this.customer.email }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO: Add database update for address
+      if (result && result !== '') {
+        this.customer.email = result;
+      }
+    });
+  }
+
+  onChangePayment() {
+    const dialogRef = this.dialog.open(ChangePaymentDialogComponent, {
+      data: { creditcard: this.customer.creditcard }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO: Add database update for address
+      if (result && result !== '') {
+        this.customer.creditcard = result;
+      }
+    });
+  }
+
+  onReturnItem() {
+    const dialogRef = this.dialog.open(ReturnItemDialogComponent, {
+      //data: { creditcard: this.customer.creditcard }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO: Add database update for order returns
+      if (result && result !== '') {
+        // this.customer.creditcard = result;
+      }
+    });
+  }
 }
