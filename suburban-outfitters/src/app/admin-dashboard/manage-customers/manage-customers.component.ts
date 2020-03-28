@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -28,9 +29,21 @@ export class ManageCustomersComponent implements OnInit {
   @Input() customers: any;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  displayEditCustomer(customer: any): void {
+    console.log(customer);
+    this.router.navigateByUrl('/edit-customer', { state: { item: customer  } });
+  }
+
+  displayCreateCustomer(): void {
+    this.router.navigateByUrl('/create-customer');
+  }
+
+  deleteCustomer(customer: any): void {
+    console.log(customer);
+  }
 }

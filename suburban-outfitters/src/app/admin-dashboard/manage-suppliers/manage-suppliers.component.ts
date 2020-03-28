@@ -1,4 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
+import { RouterModule, Routes, Router, RouterState } from '@angular/router';
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -28,9 +30,12 @@ export class ManageSuppliersComponent implements OnInit {
   @Input() suppliers: any;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  displayCreateSupplier(): void {
   }
 
 }
