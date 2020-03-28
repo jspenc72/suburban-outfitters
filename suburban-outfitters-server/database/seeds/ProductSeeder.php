@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
                 'name' => $faker->sentence(5),
                 'supplier_id' => $faker->randomDigit(),
                 'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100),
-                'category' => $faker->randomElement(['womens', 'mens', 'children']),
+                'category' => $faker->randomElement(['womens', 'mens', 'kids', 'accessories']),
                 'size' => $faker->randomElement(['sm', 'md', 'lg']),
                 'image_url' => $faker->imageUrl(640, 480, 'technics'),
                 'gender' => $faker->randomElement(['mens', 'womens']),
