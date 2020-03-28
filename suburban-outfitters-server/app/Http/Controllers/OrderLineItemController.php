@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\OrderLineItem;
 
 class OrderLineItemController extends Controller
 {
@@ -13,7 +14,7 @@ class OrderLineItemController extends Controller
      */
     public function index()
     {
-        //
+        return OrderLineItem::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class OrderLineItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $orderlineitem = OrderLineItem::create($request->all());
+        return response()->json($orderlineitem, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class OrderLineItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(OrderLineItem $orderlineitem)
     {
-        //
+        return $orderlineitem;
     }
 
     /**
@@ -66,9 +68,11 @@ class OrderLineItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OrderLineItem $orderlineitem)
     {
         //
+        $orderlineitem->update($request->all());
+        return response()->json($orderlineitem, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class OrderLineItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrderLineItem $orderlineitem)
     {
-        //
+        $orderlineitem->delete();
+        return response()->json(null, 204);
     }
 }

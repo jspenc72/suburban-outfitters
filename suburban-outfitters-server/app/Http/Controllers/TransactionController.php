@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Transaction;
 
 class TransactionController extends Controller
 {
@@ -13,7 +14,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        return Transaction::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = Transaction::create($request->all());
+        return response()->json($transaction, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transaction $transaction)
     {
-        //
+        return $transaction;
     }
 
     /**
@@ -66,9 +68,11 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Transaction $transaction)
     {
         //
+        $transaction->update($request->all());
+        return response()->json($transaction, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return response()->json(null, 204);
     }
 }

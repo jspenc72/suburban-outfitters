@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Inventory;
 
 class InventoryController extends Controller
 {
@@ -13,7 +14,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        return Inventory::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inventory = Inventory::create($request->all());
+        return response()->json($inventory, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Inventory $inventory)
     {
-        //
+        return $inventory;
     }
 
     /**
@@ -66,9 +68,11 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Inventory $inventory)
     {
         //
+        $inventory->update($request->all());
+        return response()->json($inventory, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Inventory $inventory)
     {
-        //
+        $inventory->delete();
+        return response()->json(null, 204);
     }
 }

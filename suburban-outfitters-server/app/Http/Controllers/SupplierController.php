@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Supplier;
 
 class SupplierController extends Controller
 {
@@ -13,7 +14,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        return Supplier::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = Supplier::create($request->all());
+        return response()->json($supplier, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Supplier $supplier)
     {
-        //
+        return $supplier;
     }
 
     /**
@@ -66,9 +68,11 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Supplier $supplier)
     {
         //
+        $supplier->update($request->all());
+        return response()->json($supplier, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return response()->json(null, 204);
     }
 }

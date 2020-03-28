@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\CreditCard;
 
 class CreditCardController extends Controller
 {
@@ -13,7 +14,7 @@ class CreditCardController extends Controller
      */
     public function index()
     {
-        //
+        return CreditCard::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class CreditCardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $creditcard = CreditCard::create($request->all());
+        return response()->json($creditcard, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class CreditCardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CreditCard $creditcard)
     {
-        //
+        return $creditcard;
     }
 
     /**
@@ -66,9 +68,11 @@ class CreditCardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CreditCard $creditcard)
     {
         //
+        $creditcard->update($request->all());
+        return response()->json($creditcard, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class CreditCardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CreditCard $creditcard)
     {
-        //
+        $creditcard->delete();
+        return response()->json(null, 204);
     }
 }

@@ -20,19 +20,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resources([
     'user' => 'UserController',
-    'credit-card' => 'TransactionController',
-    'customer' => 'TransactionController',
-    'inventory' => 'TransactionController',
-    'order-line-item' => 'TransactionController',
-    'order-status' => 'TransactionController',
-    'product' => 'TransactionController',
-    'supplier' => 'TransactionController'
+    'credit-card' => 'CreditCardController',
+    'customer' => 'CustomerController',
+    'inventory' => 'InventoryController',
+    'order-line-item' => 'OrderLineItemController',
+    'order-status' => 'OrderStatusController',
+    'order' => 'OrderController',
+    'product' => 'ProductController',
+    'supplier' => 'SupplierController'
 ]);
 
 // Route::resource('supplier', 'TransactionController');
 
-Route::get('transactions', 'TransactionController@index');
-Route::get('transactions/{transaction}', 'TransactionController@show');
-Route::post('transactions', 'TransactionController@store');
-Route::put('transactions/{transaction}', 'TransactionController@update');
-Route::delete('transactions/{transaction}', 'TransactionController@destroy');
+// Route::get('transaction', 'TransactionController@index');
+// Route::get('transactions/{transaction}', 'TransactionController@show');
+// Route::post('transactions', 'TransactionController@store');
+// Route::put('transactions/{transaction}', 'TransactionController@update');
+// Route::delete('transactions/{transaction}', 'TransactionController@destroy');

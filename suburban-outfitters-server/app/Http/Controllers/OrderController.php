@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Order;
 
-class ProductController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Order::all();
     }
 
     /**
@@ -35,8 +35,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        return response()->json($product, 201);
+        $order = Order::create($request->all());
+        return response()->json($order, 201);
     }
 
     /**
@@ -45,9 +45,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Order $order)
     {
-        return $product;
+        return $order;
     }
 
     /**
@@ -68,11 +68,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Order $order)
     {
         //
-        $product->update($request->all());
-        return response()->json($product, 200);
+        $order->update($request->all());
+        return response()->json($order, 200);
     }
 
     /**
@@ -81,9 +81,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Order $order)
     {
-        $product->delete();
+        $order->delete();
         return response()->json(null, 204);
     }
 }

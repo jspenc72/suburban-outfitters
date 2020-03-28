@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Customer;
 
 class CustomerController extends Controller
 {
@@ -13,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return Customer::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = Customer::create($request->all());
+        return response()->json($customer, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        //
+        return $customer;
     }
 
     /**
@@ -66,9 +68,11 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
         //
+        $customer->update($request->all());
+        return response()->json($customer, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return response()->json(null, 204);
     }
 }

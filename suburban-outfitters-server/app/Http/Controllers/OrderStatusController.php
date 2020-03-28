@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\OrderStatus;
 
 class OrderStatusController extends Controller
 {
@@ -13,7 +14,7 @@ class OrderStatusController extends Controller
      */
     public function index()
     {
-        //
+        return OrderStatus::all();
     }
 
     /**
@@ -34,7 +35,8 @@ class OrderStatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $orderstatus = OrderStatus::create($request->all());
+        return response()->json($orderstatus, 201);
     }
 
     /**
@@ -43,9 +45,9 @@ class OrderStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(OrderStatus $orderstatus)
     {
-        //
+        return $orderstatus;
     }
 
     /**
@@ -66,9 +68,11 @@ class OrderStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, OrderStatus $orderstatus)
     {
         //
+        $orderstatus->update($request->all());
+        return response()->json($orderstatus, 200);
     }
 
     /**
@@ -77,8 +81,9 @@ class OrderStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(OrderStatus $orderstatus)
     {
-        //
+        $orderstatus->delete();
+        return response()->json(null, 204);
     }
 }
