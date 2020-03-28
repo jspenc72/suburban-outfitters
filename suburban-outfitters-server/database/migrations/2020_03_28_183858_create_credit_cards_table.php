@@ -17,7 +17,7 @@ class CreateCreditCardsTable extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->integer('card_number');
+            $table->bigInteger('card_number');
             $table->string('expiration');
             $table->integer('customer_id');
             $table->timestamps();
