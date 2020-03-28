@@ -22,12 +22,12 @@ Route::resources([
     // 'users' => 'UserController',
     'credit-card' => 'CreditCardController',
     'customers' => 'CustomerController',
-    'inventory' => 'InventoryController',
-    'order-line-item' => 'OrderLineItemController',
-    'order-status' => 'OrderStatusController',
     'orders' => 'OrderController',
     'products' => 'ProductController',
-    'suppliers' => 'SupplierController'
+    'suppliers' => 'SupplierController',
+    'inventory' => 'InventoryController',
+    'order-line-item' => 'OrderLineItemController',
+    'order-status' => 'OrderStatusController',    
 ]);
 
 // Route::resource('supplier', 'TransactionController');
