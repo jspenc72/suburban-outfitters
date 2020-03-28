@@ -15,6 +15,10 @@ class CreateOrderLineItemsTable extends Migration
     {
         Schema::create('order_line_items', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id');
+            $table->integer('product_id');
+            $table->integer('inventory_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->integer('credit_card_id');
+            $table->double('amount', 8, 2);
             $table->timestamps();
         });
     }
