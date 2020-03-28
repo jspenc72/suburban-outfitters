@@ -19,15 +19,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resources([
-    'user' => 'UserController',
+    // 'users' => 'UserController',
     'credit-card' => 'CreditCardController',
-    'customer' => 'CustomerController',
+    'customers' => 'CustomerController',
     'inventory' => 'InventoryController',
     'order-line-item' => 'OrderLineItemController',
     'order-status' => 'OrderStatusController',
-    'order' => 'OrderController',
-    'product' => 'ProductController',
-    'supplier' => 'SupplierController'
+    'orders' => 'OrderController',
+    'products' => 'ProductController',
+    'suppliers' => 'SupplierController'
 ]);
 
 // Route::resource('supplier', 'TransactionController');
