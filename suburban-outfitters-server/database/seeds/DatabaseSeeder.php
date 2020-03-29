@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             OrderLineItemSeeder::class,
             OrderSeeder::class,
             OrderStatusSeeder::class,
-            ProductSeeder::class,
             SupplierSeeder::class,
             TransactionSeeder::class            
         ]);        
