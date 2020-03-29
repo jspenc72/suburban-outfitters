@@ -15,25 +15,24 @@ import { IProduct } from '../models/product.model';
 })
 export class CartComponent implements OnInit {
   @Select(CartState.items) cartItems$: Observable<ICartItem[]>;
-  isLinear = false;
+  @Select(CartState.total) total$: Observable<number>;
   shippingForm: FormGroup;
   paymentForm: FormGroup;
-  panelOpenState = false;
 
   constructor(
     private store: Store,
-    private _formBuilder: FormBuilder
+    private formBuilder: FormBuilder
   ) {
 
   }
 
   ngOnInit() {
-    this.shippingForm = this._formBuilder.group({
+    this.shippingForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       address: ['', Validators.required]
     });
-    this.paymentForm = this._formBuilder.group({
+    this.paymentForm = this.formBuilder.group({
       cardNumber: ['', Validators.required]
     });
   }

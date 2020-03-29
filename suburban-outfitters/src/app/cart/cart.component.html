@@ -1,11 +1,10 @@
-<mat-horizontal-stepper class="checkout-stepper-background" linear="false" #stepper>
+<mat-horizontal-stepper class="checkout-stepper-background" linear="true" #stepper>
   <mat-step>
     <ng-template matStepLabel>Review Cart</ng-template>
     <div fxLayout="column wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="20px grid"
       fxLayoutGap.xs="200px">
       <mat-accordion fxFlex="75%">
-        <mat-expansion-panel *ngFor="let item of cartItems$ | async;" (opened)="panelOpenState = true"
-          (closed)="panelOpenState = false">
+        <mat-expansion-panel *ngFor="let item of cartItems$ | async;">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{item.name}}
@@ -45,7 +44,7 @@
 
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext color="primary">Next</button>
+          <button mat-raised-button matStepperNext color="primary" [disabled]="!shippingForm.valid">Next</button>
         </div>
       </div>
     </form>
@@ -61,7 +60,7 @@
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext color="primary">Next</button>
+          <button mat-raised-button matStepperNext color="primary" [disabled]="!paymentForm.valid">Next</button>
         </div>
       </div>
     </form>
@@ -79,20 +78,23 @@
         <tr *ngFor="let item of cartItems$ | async;">
           <th>{{item.name}}</th>
           <th>{{item.quantity}}</th>
-          <th>{{item.price}}</th>
+          <th>{{item.price | currency}}</th>
         </tr>
         <tr>
           <th></th>
-          <th>TOTAL</th>
-          <th>----TOTAL PRICE ----</th>
+          <th></th>
+          <th>TOTAL {{total$ | async | currency}}</th>
         </tr>
         </table>
       <h2>Shipping Information</h2>
-      <span>{{shippingForm.get("firstName").value}}</span>
-
+      <p>Customer Name: {{shippingForm.get("firstName").value}} {{shippingForm.get("lastName").value}}</p>
+      <p>Shipping Address: {{shippingForm.get("address").value}}</p>
       <h2>Payment Information</h2>
+      <p>Credit Card: {{paymentForm.get("cardNumber").value}}</p>
+      <p>Card Holder Name: {{shippingForm.get("firstName").value}} {{shippingForm.get("lastName").value}}</p>
+      <p>Billing Address: {{shippingForm.get("address").value}}</p>
     </div>
-    <div>
+    <div class="text-center">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-raised-button color="primary">Complete Order</button>
     </div>

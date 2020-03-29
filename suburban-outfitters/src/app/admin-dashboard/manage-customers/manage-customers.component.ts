@@ -42,7 +42,7 @@ export class ManageCustomersComponent implements OnInit {
   getCustomers(): void {
     this.customerService.getAll().subscribe((data: any)=>{
       this.dataSource = data;
-    })    
+    })
   }
 
   displayEdit(customer: any): void {
