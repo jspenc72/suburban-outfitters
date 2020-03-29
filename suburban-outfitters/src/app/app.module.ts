@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AppState } from './store/app.state';
 // Angular Material Components
@@ -147,7 +148,8 @@ import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dial
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
