@@ -17,7 +17,7 @@ export class EditCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.editFormGroup = this._formBuilder.group({
-      title: ['', Validators.required],
+      name: ['', Validators.required],
       address: ['', Validators.required],
       phone: ['', Validators.required]
     });
@@ -30,7 +30,7 @@ export class EditCustomerComponent implements OnInit {
     if(this.route.snapshot.paramMap.get('id')){
       this.customerService.getBy(parseInt(id)).subscribe((data: any)=>{
         this.editFormGroup = this._formBuilder.group({
-          title: [data.title, Validators.required],
+          name: [data.name, Validators.required],
           address: [data.address, Validators.required],
           phone: [data.phone, Validators.required],
           id: [data.id, Validators.required],

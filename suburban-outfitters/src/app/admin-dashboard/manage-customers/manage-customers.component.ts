@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 import { Location } from '@angular/common';
-import { CustomerService } from '../../services/customer.service';
 import { MatTable } from '@angular/material/table';
+import { CustomerService } from '../../services/customer.service';
 
 export interface PeriodicElement {
   id: number;
@@ -58,7 +58,7 @@ export class ManageCustomersComponent implements OnInit {
   delete(customer: any): void {
     console.log(customer);
     this.customerService.delete(customer).subscribe((data: any)=>{
-      this.router.navigateByUrl('/admin-dashboard/manage-customers');
+      this.getCustomers()
     })
   }
 }

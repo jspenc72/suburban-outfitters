@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { SupplierService } from "../../../services/supplier.service";
 import { ISupplier } from "../../../models/supplier.model";
 
@@ -22,6 +23,7 @@ export class EditSupplierComponent implements OnInit {
       phone: ['', Validators.required],
       cardImageUrl: ['', Validators.required]
     });
+    this.load();
   }
 
   load(): void {
