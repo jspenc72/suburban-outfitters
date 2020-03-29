@@ -13,11 +13,9 @@ export class CreateCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.newFormGroup = this._formBuilder.group({
-      cardName: ['', Validators.required],
-      cardType: ['', Validators.required],
-      cardValue: ['', Validators.required],
-      points: ['', Validators.required],
-      cardImageUrl: ['', Validators.required]
+      title: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required]
     });
   }
 

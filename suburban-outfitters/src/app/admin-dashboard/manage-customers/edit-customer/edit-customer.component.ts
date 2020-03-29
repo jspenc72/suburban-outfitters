@@ -14,11 +14,9 @@ export class EditCustomerComponent implements OnInit {
 
   ngOnInit(): void {
     this.editFormGroup = this._formBuilder.group({
-      cardName: ['', Validators.required],
-      cardType: ['', Validators.required],
-      cardValue: ['', Validators.required],
-      points: ['', Validators.required],
-      cardImageUrl: ['', Validators.required]
+      title: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required]
     });
   }
 
