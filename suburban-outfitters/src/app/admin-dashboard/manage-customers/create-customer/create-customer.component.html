@@ -1,4 +1,6 @@
-<p>create-customer works!</p>
+<mat-toolbar>
+  <span>Create Customer</span>
+</mat-toolbar>
 <mat-card>
   <form class="example-form" [formGroup]="newFormGroup" >
     <mat-form-field class="example-full-width">
@@ -17,5 +19,5 @@
     </mat-form-field>
   </form>
 
-  <button mat-button (click)="create()">Create New Customer</button>
+  <button mat-raised-button color="primary" (click)="create()">Create New Customer</button>
 </mat-card>

@@ -1,4 +1,6 @@
-<p>edit-product works!</p>
+<mat-toolbar>
+  <span>Edit Product</span>
+</mat-toolbar>
 <mat-card>
 <form class="example-form" [formGroup]="editFormGroup" >
     <mat-form-field class="example-full-width">
@@ -17,5 +19,5 @@
     </mat-form-field>
 </form>
 
-<button mat-button (click)="submit()">Submit Changes</button>
+<button mat-raised-button color="primary" (click)="submit()">Submit Changes</button>
 </mat-card>
