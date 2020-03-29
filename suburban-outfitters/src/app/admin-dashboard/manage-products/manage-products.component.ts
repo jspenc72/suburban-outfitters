@@ -35,10 +35,11 @@ export class ManageProductsComponent implements OnInit {
   ngOnInit(): void {
   }
   displayCreateProduct(): void {
+    this.router.navigateByUrl('/admin-dashboard/create-product');
+
   }
-  displayEdit(product: any): void {
-    console.log(product);
-    this.router.navigateByUrl('/admin-dashboard/edit-product', { state: { item: product  } });
+  displayEdit(item: any): void {
+    this.router.navigateByUrl('/admin-dashboard/edit-product/'+item.id);
   }
   delete(product: any): void {
     console.log(product);

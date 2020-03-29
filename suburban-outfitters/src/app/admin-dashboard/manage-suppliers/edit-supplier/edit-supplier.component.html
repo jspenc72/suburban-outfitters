@@ -1,11 +1,12 @@
 <p>edit-supplier works!</p>
+<mat-card>
 <form class="example-form" [formGroup]="editFormGroup" >
     <mat-form-field class="example-full-width">
       <mat-label>Card Name</mat-label>
       <input matInput formControlName="cardName" placeholder="Ex. Chong Oh" required>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="example-full-width">   
       <mat-label>Card Value</mat-label>
       <textarea matInput formControlName="cardValue" placeholder="Ex. 10"></textarea>
     </mat-form-field>
@@ -17,3 +18,4 @@
 </form>
 
 <button mat-button (click)="submit()">Submit Changes</button>
+</mat-card>

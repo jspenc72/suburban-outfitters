@@ -33,6 +33,5 @@
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" routerLink="/admin-dashboard/manage-products/edit-product" routerLinkActive="active"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"  routerLinkActive="active"></tr>
   </table>
-  <router-outlet></router-outlet>
