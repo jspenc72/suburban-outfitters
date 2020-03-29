@@ -15,6 +15,7 @@ import { IProduct } from '../models/product.model';
 })
 export class CartComponent implements OnInit {
   @Select(CartState.items) cartItems$: Observable<ICartItem[]>;
+  @Select(CartState.itemCount) cartItemCount$: Observable<number>;
   @Select(CartState.total) total$: Observable<number>;
   shippingForm: FormGroup;
   paymentForm: FormGroup;

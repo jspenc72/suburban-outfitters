@@ -10,6 +10,22 @@ export class RemoveItemAction {
   constructor(public payload: ICartItem) { }
 }
 
+export class GetCustomerInfoAction {
+  static readonly type = '[CartState] Get Customer Info';
+  constructor(public payload: any) { }
+}
+
+export class GetCustomerInfoActionSuccess {
+  static readonly type = '[CartState] Get Customer Info Success';
+  constructor(public payload: any) { }
+}
+
+export class GetCustomerInfoActionFail {
+  static readonly type = '[CartState] Get Customer Info Fail';
+  constructor(public payload: any) { }
+}
+
+
 export class SubmitOrderAction {
   static readonly type = '[CartState] Submit Order';
   constructor(public payload: any) { }

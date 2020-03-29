@@ -3,6 +3,7 @@
     <ng-template matStepLabel>Review Cart</ng-template>
     <div fxLayout="column wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="20px grid"
       fxLayoutGap.xs="200px">
+      <h2 *ngIf="(cartItemCount$ | async) === 0">Cart is Empty</h2>
       <mat-accordion fxFlex="75%">
         <mat-expansion-panel *ngFor="let item of cartItems$ | async;">
           <mat-expansion-panel-header>
@@ -15,17 +16,17 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="text-center">
-            <button mat-raised-button color="warn" class="btn-padding-top">Remove Item</button>
+            <button mat-raised-button color="warn" class="btn-padding-top" (click)="onRemoveItemFromCart(item)">Remove Item</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
       <div>
-        <button mat-raised-button matStepperNext color="primary" class="btn-padding-top">Checkout</button>
+        <button mat-raised-button matStepperNext color="primary" class="btn-padding-top" [disabled]="(cartItemCount$ | async) === 0">Checkout</button>
       </div>
     </div>
   </mat-step>
   <mat-step [stepControl]="shippingForm">
-    <form [formGroup]="shippingForm">
+    <form [formGroup]="shippingForm" ngxsForm="cartState.shippingForm">
       <div fxLayout="column wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="20px grid"
         fxLayoutGap.xs="200px">
         <ng-template matStepLabel>Shipping Info</ng-template>
@@ -39,7 +40,7 @@
         </mat-form-field>
         <mat-form-field fxFlex="50%">
           <mat-label>Address</mat-label>
-          <input matInput formControlName="address" placeholder="Ex. 1 Main St, New York, NY" required>
+          <input matInput formControlName="address" placeholder="Address" required>
         </mat-form-field>
 
         <div>
@@ -50,7 +51,7 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="paymentForm">
-    <form [formGroup]="paymentForm">
+    <form [formGroup]="paymentForm" ngxsForm="cartState.paymentForm">
       <div fxLayout="column wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="20px grid"
         fxLayoutGap.xs="200px">
         <ng-template matStepLabel>Payment Info</ng-template>

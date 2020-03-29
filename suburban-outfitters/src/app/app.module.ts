@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxsModule } from '@ngxs/store';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AppState } from './store/app.state';
 // Angular Material Components
@@ -114,6 +115,7 @@ import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dial
     BrowserAnimationsModule,
     FlexLayoutModule,
     NgxsModule.forRoot(AppState),
+    NgxsFormPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
       disabled: environment.production
     }),  // Should be the last module to import for ngxs

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
@@ -12,12 +12,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class CustomerService {
-  private ENDPOINT = "/customers";
-  private REST_API_SERVER = "http://localhost:8000/api";
+  private ENDPOINT = '/customers';
+  private REST_API_SERVER = 'http://localhost:8000/api';
   constructor(private http: HttpClient, private store: Store) { }
 
-  public GetCustomer(userId: number): Observable<any> {
-    return this.http.get<any>(`localhost:8000/api/customers/${userId}`);
+  public GetCustomer(customerId: number): Observable<any> {
+    return this.http.get<any>(`localhost:8000/api/customers/${customerId}`);
   }
 
   public CreateCustomer(user: any): Observable<any> {
@@ -53,14 +53,14 @@ export class CustomerService {
   }
 
   public update(item: ICustomer): Observable<ICustomer> {
-    return this.http.put<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+item.id, item, httpOptions).pipe(
+    return this.http.put<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+'/'+item.id, item, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
   public delete(item: ICustomer): Observable<ICustomer> {
-    return this.http.delete<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+item.id, httpOptions).pipe(
+    return this.http.delete<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+'/'+item.id, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`deleted card ${c}`)),
       catchError(this.handleError)
     );
@@ -79,7 +79,7 @@ export class CustomerService {
 
   public getBy(id: number): Observable<ICustomer> {
     
-    return this.http.get<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+id, httpOptions).pipe(
+    return this.http.get<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+'/'+id, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`got card ${c}`)),
       catchError(this.handleError)
     );
