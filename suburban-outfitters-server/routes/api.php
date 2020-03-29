@@ -25,12 +25,18 @@ Route::resources([
     'orders' => 'OrderController',
     'products' => 'ProductController',
     'suppliers' => 'SupplierController',
-    'inventory' => 'InventoryController',
+    'inventory' => 'InventoryController',   
     'order-line-item' => 'OrderLineItemController',
     'order-status' => 'OrderStatusController',    
 ]);
 
 // Route::resource('supplier', 'TransactionController');
+
+// Route::get('customers', 'CustomerController@index');
+// Route::get('customers/{customers}', 'CustomerController@show');
+// Route::post('customers', 'CustomerController@store');
+// Route::put('customers/{customers}', 'CustomerController@update');
+// Route::delete('customers/{customers}', 'CustomerController@destroy');
 
 // Route::get('transaction', 'TransactionController@index');
 // Route::get('transactions/{transaction}', 'TransactionController@show');

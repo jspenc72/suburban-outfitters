@@ -42,7 +42,7 @@ export class CartState {
 
   @Selector()
   static total(state: CartStateModel): number {
-    return state.total;
+    return state.items.reduce((a, b) => a + ((b.price * b.quantity) || 0), 0);
   }
 
   constructor(
