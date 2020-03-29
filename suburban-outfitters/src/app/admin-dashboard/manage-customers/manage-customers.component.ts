@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
+import { MatTable } from '@angular/material/table';
 
 export interface PeriodicElement {
   id: number;
@@ -16,6 +17,8 @@ export interface PeriodicElement {
   styleUrls: ['./manage-customers.component.scss']
 })
 export class ManageCustomersComponent implements OnInit {
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+
   @Input() customers: any;
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource: PeriodicElement[] = [
