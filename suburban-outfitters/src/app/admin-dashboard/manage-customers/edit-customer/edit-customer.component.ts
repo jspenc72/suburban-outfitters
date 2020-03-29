@@ -29,7 +29,6 @@ export class EditCustomerComponent implements OnInit {
     var id = this.route.snapshot.paramMap.get('id')
     if(this.route.snapshot.paramMap.get('id')){
       this.customerService.getBy(parseInt(id)).subscribe((data: any)=>{
-        console.log(data)
         this.editFormGroup = this._formBuilder.group({
           title: [data.title, Validators.required],
           address: [data.address, Validators.required],
