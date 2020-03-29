@@ -38,7 +38,7 @@ export class ManageProductsComponent implements OnInit {
   }
   displayEdit(product: any): void {
     console.log(product);
-    this.router.navigateByUrl('/edit-product', { state: { item: product  } });
+    this.router.navigateByUrl('/admin-dashboard/edit-product', { state: { item: product  } });
   }
   delete(product: any): void {
     console.log(product);
