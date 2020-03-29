@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SupplierService } from "../../../services/supplier.service";
+import { ISupplier } from "../../../models/supplier.model";
 
 @Component({
   selector: 'app-create-supplier',
@@ -10,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateSupplierComponent implements OnInit {
   newFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder, private router: Router) { }
+  constructor(private supplierService: SupplierService, private _formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.newFormGroup = this._formBuilder.group({
@@ -25,9 +27,9 @@ export class CreateSupplierComponent implements OnInit {
   create(): void {
     console.log("create");
     console.log(this.newFormGroup.value);
-    // const card: GiftCard = this.newFormGroup.value
-    // this.giftCardService.addGiftCard(card).subscribe((data: any)=>{
-    //   this.router.navigateByUrl('/card-list', { state: { item: data  } });
-    // })
+    const supplier: ISupplier = this.newFormGroup.value
+    this.supplierService.add(supplier).subscribe((data: any)=>{
+      this.router.navigateByUrl('/admin-dashboard/manage-suppliers');
+    })
   }
 }

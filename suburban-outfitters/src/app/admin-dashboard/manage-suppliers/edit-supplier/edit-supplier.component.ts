@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, Routes, Router, RouterState } from '@angular/router';
+import { RouterModule, Routes, Router, RouterState, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SupplierService } from "../../../services/supplier.service";
+import { ISupplier } from "../../../models/supplier.model";
 
 @Component({
   selector: 'app-edit-supplier',
@@ -9,8 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EditSupplierComponent implements OnInit {
   editFormGroup: FormGroup;
-
-  constructor(private _formBuilder: FormBuilder, private router: Router) { }
+  state$: any
+  constructor(private supplierService: SupplierService, public route: ActivatedRoute, private _formBuilder: FormBuilder, private location: Location, private router: Router) { }
 
   ngOnInit(): void {
     this.editFormGroup = this._formBuilder.group({
@@ -22,13 +24,30 @@ export class EditSupplierComponent implements OnInit {
     });
   }
 
+  load(): void {
+    var id = this.route.snapshot.paramMap.get('id')
+    if(this.route.snapshot.paramMap.get('id')){
+      this.supplierService.getBy(parseInt(id)).subscribe((data: any)=>{
+        this.editFormGroup = this._formBuilder.group({
+          name: [data.name, Validators.required],
+          email: [data.email, Validators.required],
+          address: [data.address, Validators.required],
+          phone: [data.phone, Validators.required],
+          id: [data.id, Validators.required]
+        });
+      })  
+    }else{
+
+    }
+  }
+
   submit(): void {
-    console.log("create");
+    console.log("submit");
     console.log(this.editFormGroup.value);
-    // const card: GiftCard = this.newFormGroup.value
-    // this.giftCardService.addGiftCard(card).subscribe((data: any)=>{
-    //   this.router.navigateByUrl('/card-list', { state: { item: data  } });
-    // })
+    const item: ISupplier = this.editFormGroup.value
+    this.supplierService.update(item).subscribe((data: any)=>{
+      this.router.navigateByUrl('/admin-dashboard/manage-suppliers');
+    })
   }
 
 }

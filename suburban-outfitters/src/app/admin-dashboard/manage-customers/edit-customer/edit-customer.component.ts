@@ -43,7 +43,7 @@ export class EditCustomerComponent implements OnInit {
   }
 
   submit(): void {
-    console.log("create");
+    console.log("submit");
     console.log(this.editFormGroup.value);
     const item: ICustomer = this.editFormGroup.value
     this.customerService.update(item).subscribe((data: any)=>{
