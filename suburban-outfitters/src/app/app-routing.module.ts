@@ -39,56 +39,51 @@ const routes: Routes = [
     children: [
       {
         path:  'manage-customers',
-        component:  ManageCustomersComponent,
-        children: [
-          {
-            path:  'create-customer',
-            component:  CreateCustomerComponent
-          },
-          {
-            path:  'edit-customer',
-            component:  EditCustomerComponent
-          }
-        ]
-      }, {
+        component:  ManageCustomersComponent
+      },
+      {
+        path:  'create-customer',
+        component:  CreateCustomerComponent
+      },
+      {
+        path:  'edit-customer',
+        component:  EditCustomerComponent
+      },
+      {
         path:  'manage-inventory',
         component:  ManageInventoryComponent,
-        children: [
-          {
-            path:  'create-inventory-item',
-            component:  CreateInventoryItemComponent
-          },
-          {
-            path:  'edit-inventory-item',
-            component:  EditInventoryItemComponent
-          }
-        ]
-      }, {
+      }, 
+      {
+        path:  'create-inventory-item',
+        component:  CreateInventoryItemComponent
+      },
+      {
+        path:  'edit-inventory-item',
+        component:  EditInventoryItemComponent
+      },      
+      {
         path:  'manage-products',
         component:  ManageProductsComponent,
-        children: [
-          {
-            path:  'create-product',
-            component:  CreateProductComponent
-          },
-          {
-            path:  'edit-product',
-            component:  EditProductComponent
-          }
-        ]
-      }, {
+      }, 
+      {
+        path:  'create-product',
+        component:  CreateProductComponent
+      },
+      {
+        path:  'edit-product',
+        component:  EditProductComponent
+      },
+      {
         path:  'manage-suppliers',
         component:  ManageSuppliersComponent,
-        children: [
-          {
-            path:  'create-supplier',
-            component:  CreateSupplierComponent
-          },
-          {
-            path:  'edit-supplier',
-            component:  EditSupplierComponent
-          }
-        ]
+      },
+      {
+        path:  'create-supplier',
+        component:  CreateSupplierComponent
+      },
+      {
+        path:  'edit-supplier',
+        component:  EditSupplierComponent
       }
   ]},
   { path: 'customer-dashboard', component: CustomerDashboardComponent,
