@@ -48,6 +48,10 @@ php artisan migrate:refresh --seed
 3. Run the developement server
 
 ```bash
+composer install
+```
+
+```bash
 php artisan serve
 ```
 
