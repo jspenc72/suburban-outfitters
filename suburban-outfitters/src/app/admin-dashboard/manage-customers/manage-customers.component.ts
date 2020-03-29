@@ -41,11 +41,7 @@ export class ManageCustomersComponent implements OnInit {
 
   getCustomers(): void {
     this.customerService.getAll().subscribe((data: any)=>{
-      console.log(data);
-      data.forEach(item => {
-        this.dataSource.push(item)
-        console.log(item)
-      });
+      this.dataSource = data;
     })    
   }
 
@@ -60,5 +56,8 @@ export class ManageCustomersComponent implements OnInit {
 
   delete(customer: any): void {
     console.log(customer);
+    this.customerService.delete(customer).subscribe((data: any)=>{
+      this.router.navigateByUrl('/admin-dashboard/manage-customers');
+    })
   }
 }

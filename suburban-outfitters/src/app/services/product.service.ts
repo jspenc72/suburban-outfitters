@@ -39,22 +39,22 @@ export class ProductService {
     return throwError(errorMessage);
   }
 
-  public add(giftcard: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(this.REST_API_SERVER+this.ENDPOINT, giftcard, httpOptions).pipe(
+  public add(item: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>(this.REST_API_SERVER+this.ENDPOINT, item, httpOptions).pipe(
       tap((c: IProduct) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
-  public update(giftcard: IProduct): Observable<IProduct> {
-    return this.http.put<IProduct>(this.REST_API_SERVER+this.ENDPOINT+"/"+giftcard.id, giftcard, httpOptions).pipe(
+  public update(item: IProduct): Observable<IProduct> {
+    return this.http.put<IProduct>(this.REST_API_SERVER+this.ENDPOINT+"/"+item.id, item, httpOptions).pipe(
       tap((c: IProduct) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
-  public delete(giftcard: IProduct): Observable<IProduct> {
-    return this.http.delete<IProduct>(this.REST_API_SERVER+this.ENDPOINT+"/"+giftcard.id, httpOptions).pipe(
+  public delete(item: IProduct): Observable<IProduct> {
+    return this.http.delete<IProduct>(this.REST_API_SERVER+this.ENDPOINT+"/"+item.id, httpOptions).pipe(
       tap((c: IProduct) => console.log(`deleted card ${c}`)),
       catchError(this.handleError)
     );
