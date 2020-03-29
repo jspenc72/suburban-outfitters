@@ -78,6 +78,7 @@ export class CustomerService {
   }
 
   public getBy(id: number): Observable<ICustomer> {
+    
     return this.http.get<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+id, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`got card ${c}`)),
       catchError(this.handleError)

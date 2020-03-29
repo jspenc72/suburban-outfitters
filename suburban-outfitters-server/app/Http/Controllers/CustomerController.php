@@ -35,7 +35,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        error_log('Some message here.');
+        
         $customer = Customer::create($request->all());
         return response()->json($customer, 201);
     }
@@ -84,6 +84,8 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+        error_log('Some message here.');
+        error_log($customer);
         $customer->delete();
         return response()->json(null, 204);
     }
