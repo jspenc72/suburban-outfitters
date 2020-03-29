@@ -14,10 +14,10 @@ export class CreateInventoryItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.newFormGroup = this._formBuilder.group({
-      cardName: ['', Validators.required],
+      InventoryID: ['', Validators.required],
       cardType: ['', Validators.required],
-      cardValue: ['', Validators.required],
-      points: ['', Validators.required],
+      ProductID: ['', Validators.required],
+      Quantity: ['', Validators.required],
       cardImageUrl: ['', Validators.required]
     });
   }

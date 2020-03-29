@@ -14,10 +14,12 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.editFormGroup = this._formBuilder.group({
-      cardName: ['', Validators.required],
-      cardType: ['', Validators.required],
-      cardValue: ['', Validators.required],
-      points: ['', Validators.required],
+      productName: ['', Validators.required],
+      price: ['', Validators.required],
+      size: ['', Validators.required],
+      imageUrl: ['', Validators.required],
+      gender: ['', Validators.required],
+      type: ['', Validators.required],
       cardImageUrl: ['', Validators.required]
     });
   }

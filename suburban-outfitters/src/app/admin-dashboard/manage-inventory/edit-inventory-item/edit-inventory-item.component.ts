@@ -13,10 +13,10 @@ export class EditInventoryItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.editFormGroup = this._formBuilder.group({
-      cardName: ['', Validators.required],
-      cardType: ['', Validators.required],
+      InventoryID: ['', Validators.required],
+      ProductID: ['', Validators.required],
       cardValue: ['', Validators.required],
-      points: ['', Validators.required],
+      Quantity: ['', Validators.required],
       cardImageUrl: ['', Validators.required]
     });
   }

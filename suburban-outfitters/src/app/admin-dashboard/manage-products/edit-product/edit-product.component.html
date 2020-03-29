@@ -3,20 +3,35 @@
 </mat-toolbar>
 <mat-card>
 <form class="example-form" [formGroup]="editFormGroup" >
-    <mat-form-field class="example-full-width">
-      <mat-label>Card Name</mat-label>
-      <input matInput formControlName="cardName" placeholder="Ex. Chong Oh" required>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Product Name</mat-label>
+    <input matInput formControlName="productName" placeholder="Ex. Chong Oh" required>
+  </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Card Value</mat-label>
-      <textarea matInput formControlName="cardValue" placeholder="Ex. 10"></textarea>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Price</mat-label>
+    <input matInput formControlName="price" placeholder="Ex. Chong Oh" required>
+  </mat-form-field>
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Card Points</mat-label>
-      <textarea matInput formControlName="points" placeholder="Ex. 100"></textarea>
-    </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Size</mat-label>
+    <input matInput formControlName="size" placeholder="Ex. Chong Oh" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>image Url</mat-label>
+    <input matInput formControlName="imageUrl" placeholder="Ex. Chong Oh" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Gender</mat-label>
+    <input matInput formControlName="gender" placeholder="Ex. Chong Oh" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Type</mat-label>
+    <input matInput formControlName="type" placeholder="Ex. Chong Oh" required>
+  </mat-form-field>
 </form>
 
 <button mat-raised-button color="primary" (click)="submit()">Submit Changes</button>

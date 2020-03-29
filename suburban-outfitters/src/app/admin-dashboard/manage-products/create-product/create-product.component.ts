@@ -15,9 +15,11 @@ export class CreateProductComponent implements OnInit {
   ngOnInit(): void {
     this.newFormGroup = this._formBuilder.group({
       productName: ['', Validators.required],
-      cardType: ['', Validators.required],
-      cardValue: ['', Validators.required],
-      points: ['', Validators.required],
+      price: ['', Validators.required],
+      size: ['', Validators.required],
+      imageUrl: ['', Validators.required],
+      gender: ['', Validators.required],
+      type: ['', Validators.required],
       cardImageUrl: ['', Validators.required]
     });
   }

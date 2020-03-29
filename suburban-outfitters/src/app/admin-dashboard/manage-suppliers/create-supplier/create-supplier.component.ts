@@ -14,10 +14,10 @@ export class CreateSupplierComponent implements OnInit {
 
   ngOnInit(): void {
     this.newFormGroup = this._formBuilder.group({
-      cardName: ['', Validators.required],
-      cardType: ['', Validators.required],
-      cardValue: ['', Validators.required],
-      points: ['', Validators.required],
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       cardImageUrl: ['', Validators.required]
     });
   }

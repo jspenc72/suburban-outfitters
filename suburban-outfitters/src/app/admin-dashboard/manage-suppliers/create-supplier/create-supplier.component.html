@@ -4,18 +4,23 @@
 <mat-card>
 <form class="example-form" [formGroup]="newFormGroup" >
     <mat-form-field class="example-full-width">
-      <mat-label>Card Name</mat-label>
-      <input matInput formControlName="cardName" placeholder="Ex. Chong Oh" required>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Ex. Chong Oh" required>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-label>Card Value</mat-label>
-      <textarea matInput formControlName="cardValue" placeholder="Ex. 10"></textarea>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Ex. Chong Oh" required>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-label>Card Points</mat-label>
-      <textarea matInput formControlName="points" placeholder="Ex. 100"></textarea>
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" placeholder="Ex. Chong Oh" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" placeholder="Ex. Chong Oh" required>
     </mat-form-field>
 </form>
 
