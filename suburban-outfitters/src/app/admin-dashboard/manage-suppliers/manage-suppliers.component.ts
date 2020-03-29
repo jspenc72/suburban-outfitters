@@ -36,9 +36,10 @@ export class ManageSuppliersComponent implements OnInit {
   }
 
   displayCreateSupplier(): void {
+    this.router.navigateByUrl('/admin-dashboard/create-supplier');
   }
-  displayEdit(supplier: any): void {
-    this.router.navigateByUrl('/admin-dashboard/edit-supplier', { state: { item: supplier  } });
+  displayEdit(item: any): void {
+    this.router.navigateByUrl('/admin-dashboard/edit-supplier/'+item.id);
   }
   delete(supplier: any): void {
     console.log(supplier);

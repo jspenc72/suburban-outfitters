@@ -1,1 +1,23 @@
-<p>edit-product works!</p>
+<mat-toolbar>
+  <span>Edit Product</span>
+</mat-toolbar>
+<mat-card>
+<form class="example-form" [formGroup]="editFormGroup" >
+    <mat-form-field class="example-full-width">
+      <mat-label>Card Name</mat-label>
+      <input matInput formControlName="cardName" placeholder="Ex. Chong Oh" required>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Card Value</mat-label>
+      <textarea matInput formControlName="cardValue" placeholder="Ex. 10"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Card Points</mat-label>
+      <textarea matInput formControlName="points" placeholder="Ex. 100"></textarea>
+    </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" (click)="submit()">Submit Changes</button>
+</mat-card>

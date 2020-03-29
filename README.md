@@ -42,7 +42,15 @@ docker run suburban-outfitters -p 4200:4200
 2. Run database migrations and see to create populate database with test data
 
 ```bash
-php artisan migrate:refresh --seed
+php artisan migrate:refresh
+php artisan migrate:refresh --seed #Seed db and migrate in a single step
+```
+
+```bash
+composer dump-autoload
+php artisan cache:clear
+php artisan optimize
+php artisan db:seed
 ```
 
 3. Run the developement server

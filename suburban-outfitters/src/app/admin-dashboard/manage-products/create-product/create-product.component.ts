@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Routes, Router, RouterState } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-product',
@@ -6,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit {
+  newFormGroup: FormGroup;
 
-  constructor() { }
+  constructor(private _formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.newFormGroup = this._formBuilder.group({
+      cardName: ['', Validators.required],
+      cardType: ['', Validators.required],
+      cardValue: ['', Validators.required],
+      points: ['', Validators.required],
+      cardImageUrl: ['', Validators.required]
+    });
+  }
+
+  create(): void {
+    console.log("create");
+    console.log(this.newFormGroup.value);
+    // const card: GiftCard = this.newFormGroup.value
+    // this.giftCardService.addGiftCard(card).subscribe((data: any)=>{
+    //   this.router.navigateByUrl('/card-list', { state: { item: data  } });
+    // })
   }
 
 }

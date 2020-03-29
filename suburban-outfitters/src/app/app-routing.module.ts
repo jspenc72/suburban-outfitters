@@ -54,11 +54,11 @@ const routes: Routes = [
         component:  ManageInventoryComponent,
       }, 
       {
-        path:  'create-inventory-item',
+        path:  'create-inventory',
         component:  CreateInventoryItemComponent
       },
       {
-        path:  'edit-inventory-item/:id',
+        path:  'edit-inventory/:id',
         component:  EditInventoryItemComponent
       },      
       {
