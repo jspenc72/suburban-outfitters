@@ -41,10 +41,10 @@ export class ProductsComponent implements OnInit {
   }
 
   filterByCategory(category): void {
-    if(this.searchValue.includes(category)) {
-      this.searchValue = this.searchValue.replace(category, "");
-    }else {
-      this.searchValue += category
+    if (this.searchValue.includes(category)) {
+      this.searchValue = this.searchValue.replace(category, '');
+    } else {
+      this.searchValue = category;
     }
   }
 
