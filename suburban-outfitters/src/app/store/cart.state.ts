@@ -1,9 +1,12 @@
 import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
-import { patch, append, removeItem, insertItem, updateItem } from '@ngxs/store/operators';
+import { patch, append, updateItem } from '@ngxs/store/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ICartItem } from '../models/cart-item.model';
 import * as cartActions from './cart.actions';
 import { Injectable } from '@angular/core';
+import { CheckoutService } from '../services/checkout.service';
+import { tap } from 'rxjs/internal/operators/tap';
+import { catchError } from 'rxjs/internal/operators/catchError';
 
 export interface CartStateModel {
   loading: boolean;
@@ -44,7 +47,8 @@ export class CartState {
 
   constructor(
     private store: Store,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private checkoutService: CheckoutService
   ) { }
 
   @Action(cartActions.AddItemAction)
@@ -101,6 +105,45 @@ export class CartState {
 
     // TODO: calculate total
     this.snackbar.open('Added to Cart', null, {
+      duration: 3000,
+      verticalPosition: 'bottom'
+    });
+  }
+
+  @Action(cartActions.SubmitOrderAction)
+  async SubmitOrderAction(
+    { patchState, dispatch }: StateContext<CartStateModel>,
+    { payload }: cartActions.SubmitOrderAction
+  ) {
+    patchState({ loading: true });
+    this.checkoutService.submitOrder(payload)
+      .pipe(
+        tap((response: number) => {
+          dispatch(new cartActions.SubmitOrderActionSuccess(response));
+        }),
+        catchError(error => dispatch(new cartActions.SubmitOrderActionFail(error)))
+      );
+  }
+
+  @Action(cartActions.SubmitOrderActionSuccess)
+  async SubmitOrderActionSuccess(
+    { patchState }: StateContext<CartStateModel>,
+    { payload }: cartActions.SubmitOrderActionSuccess
+  ) {
+    patchState({ loading: false });
+    this.snackbar.open(`Order Complete: #${payload}`, null, {
+      duration: 3000,
+      verticalPosition: 'bottom'
+    });
+  }
+
+  @Action(cartActions.SubmitOrderActionFail)
+  async SubmitOrderActionFail(
+    { patchState }: StateContext<CartStateModel>,
+    { payload }: cartActions.SubmitOrderActionFail
+  ) {;
+    patchState({ loading: false });
+    this.snackbar.open(`Error Completing Order: ${payload}`, null, {
       duration: 3000,
       verticalPosition: 'bottom'
     });
