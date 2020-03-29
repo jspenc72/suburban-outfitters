@@ -46,7 +46,7 @@ const routes: Routes = [
         component:  CreateCustomerComponent
       },
       {
-        path:  'edit-customer',
+        path:  'edit-customer/:id',
         component:  EditCustomerComponent
       },
       {
@@ -58,7 +58,7 @@ const routes: Routes = [
         component:  CreateInventoryItemComponent
       },
       {
-        path:  'edit-inventory-item',
+        path:  'edit-inventory-item/:id',
         component:  EditInventoryItemComponent
       },      
       {
@@ -70,7 +70,7 @@ const routes: Routes = [
         component:  CreateProductComponent
       },
       {
-        path:  'edit-product',
+        path:  'edit-product/:id',
         component:  EditProductComponent
       },
       {
@@ -82,7 +82,7 @@ const routes: Routes = [
         component:  CreateSupplierComponent
       },
       {
-        path:  'edit-supplier',
+        path:  'edit-supplier/:id',
         component:  EditSupplierComponent
       }
   ]},
@@ -91,12 +91,10 @@ const routes: Routes = [
       {
         path:  'my-orders',
         component:  MyOrdersComponent,
-        children: [
-            {
-              path:  'order-detail',
-              component:  OrderDetailComponent
-            }
-        ]
+      },
+      {
+        path:  'order-detail/:id',
+        component:  OrderDetailComponent
       }
   ]},
   { path: '**', component: ProductsComponent }
