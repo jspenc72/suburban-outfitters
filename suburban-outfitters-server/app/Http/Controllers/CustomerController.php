@@ -35,6 +35,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        error_log('Some message here.');
         $customer = Customer::create($request->all());
         return response()->json($customer, 201);
     }
