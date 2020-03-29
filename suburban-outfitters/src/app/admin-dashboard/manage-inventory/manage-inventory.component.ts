@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export interface PeriodicElement {
   name: string;
