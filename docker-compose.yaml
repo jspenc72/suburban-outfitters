@@ -2,8 +2,42 @@ version: "3.7"
 services:
   mysql:
     image: mysql:5.7.29
+    restart: unless-stopped
+    tty: true
     ports:
         - "3306:3306"
-        - "33060:33060"
     environment:
         MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_DATABASE: suburbanoutfitters
+    volumes:
+      - ./dbdata/:/var/lib/mysql/
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./suburban-outfitters-server/:/var/www
+      - ./suburban-outfitters-server/nginx/conf.d/:/etc/nginx/conf.d/
+  #PHP Service
+  app:
+    build:
+      context: ./suburban-outfitters-server
+      dockerfile: Dockerfiles
+    image: digitalocean.com/php
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "9000:9000"
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./suburban-outfitters-server/:/var/www
+      - ./suburban-outfitters-server/php/local.ini:/usr/local/etc/php/conf.d/local.ini
