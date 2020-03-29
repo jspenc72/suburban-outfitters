@@ -36,11 +36,11 @@ export class ManageInventoryComponent implements OnInit {
   }
 
   displayCreateInventory(): void {
-    this.router.navigateByUrl('/create-inventory');
+    this.router.navigateByUrl('/admin-dashboard/create-inventory');
   }
   displayEdit(customer: any): void {
     console.log(customer);
-    this.router.navigateByUrl('/edit-customer', { state: { item: customer  } });
+    this.router.navigateByUrl('/admin-dashboard/edit-inventory', { state: { item: customer  } });
   }
   delete(customer: any): void {
     console.log(customer);
