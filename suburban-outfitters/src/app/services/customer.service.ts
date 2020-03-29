@@ -45,22 +45,22 @@ export class CustomerService {
     return throwError(errorMessage);
   }
 
-  public add(giftcard: ICustomer): Observable<ICustomer> {
-    return this.http.post<ICustomer>(this.REST_API_SERVER+this.ENDPOINT, giftcard, httpOptions).pipe(
+  public add(item: ICustomer): Observable<ICustomer> {
+    return this.http.post<ICustomer>(this.REST_API_SERVER+this.ENDPOINT, item, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
-  public update(giftcard: ICustomer): Observable<ICustomer> {
-    return this.http.put<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+giftcard.id, giftcard, httpOptions).pipe(
+  public update(item: ICustomer): Observable<ICustomer> {
+    return this.http.put<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+item.id, item, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
-  public delete(giftcard: ICustomer): Observable<ICustomer> {
-    return this.http.delete<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+giftcard.id, httpOptions).pipe(
+  public delete(item: ICustomer): Observable<ICustomer> {
+    return this.http.delete<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+"/"+item.id, httpOptions).pipe(
       tap((c: ICustomer) => console.log(`deleted card ${c}`)),
       catchError(this.handleError)
     );
