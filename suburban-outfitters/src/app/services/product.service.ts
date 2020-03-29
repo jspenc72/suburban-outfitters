@@ -72,7 +72,6 @@ export class ProductService {
   }
 
   public getBy(id: number): Observable<IProduct> {
-    this.http.get<IProduct>(`localhost:8000/products/${id}`);
     return this.http.get<IProduct>(this.REST_API_SERVER+this.ENDPOINT+"/"+id, httpOptions).pipe(
       tap((c: IProduct) => console.log(`got card ${c}`)),
       catchError(this.handleError)
