@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resources([
     // 'users' => 'UserController',
     'credit-card' => 'CreditCardController',
-    // 'customers' => 'CustomerController',
+    'customers' => 'CustomerController',
     'orders' => 'OrderController',
     'products' => 'ProductController',
     'suppliers' => 'SupplierController',
@@ -32,11 +32,11 @@ Route::resources([
 
 // Route::resource('supplier', 'TransactionController');
 
-Route::get('customers', 'CustomerController@index');
-Route::get('customers/{customers}', 'CustomerController@show');
-Route::post('customers', 'CustomerController@store');
-Route::put('customers/{customers}', 'CustomerController@update');
-Route::delete('customers/{customers}', 'CustomerController@destroy');
+// Route::get('customers', 'CustomerController@index');
+// Route::get('customers/{customers}', 'CustomerController@show');
+// Route::post('customers', 'CustomerController@store');
+// Route::put('customers/{customers}', 'CustomerController@update');
+// Route::delete('customers/{customers}', 'CustomerController@destroy');
 
 // Route::get('transaction', 'TransactionController@index');
 // Route::get('transactions/{transaction}', 'TransactionController@show');

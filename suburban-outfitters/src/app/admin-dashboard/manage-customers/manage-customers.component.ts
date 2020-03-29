@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState } from '@angular/router';
+import { Location } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
 import { MatTable } from '@angular/material/table';
 
@@ -33,7 +34,7 @@ export class ManageCustomersComponent implements OnInit {
     {id: 9, position: 9, title: 'Customer Name', phone: "1-801-456-789", address: 'C1'},
     {id: 10, position: 10, title: 'Customer Name', phone: "1-801-456-789", address: 'C1'},
   ];
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(private customerService: CustomerService, private location: Location, private router: Router) { }
 
   ngOnInit(): void {
     this.getCustomers()
