@@ -84,6 +84,7 @@ php artisan serve
 
 # Dependencies
 
-https://cli.angular.io
-https://laravel.com
-mysql
+- docker
+- https://cli.angular.io
+- https://laravel.com
+- mysql
