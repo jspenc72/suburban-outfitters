@@ -1,6 +1,8 @@
 # suburban-outfitters
 
+
 # Running the Application
+The client web app, php server side api and mysql database are all packaged as a set of docker containers. Docker is the only dependency required to view this submission.
 
 1. Clone this repo
 
@@ -84,7 +86,7 @@ php artisan serve
 
 # Dependencies
 
-- docker
+- https://www.docker.com
 - https://cli.angular.io
 - https://laravel.com
-- mysql
+- mysql workbench
