@@ -1,5 +1,24 @@
 # suburban-outfitters
 
+# Running the Application
+
+1. Clone this repo
+
+```bash
+git clone https://github.com/jspenc72/suburban-outfitters.git
+```
+2. cd to root of git repository
+
+```bash
+cd suburban-outfitters
+```
+
+3. start db, api and front end application using docker
+
+```bash
+docker-compose up
+```
+
 # Angular Client Development
 
 Install dependencies
