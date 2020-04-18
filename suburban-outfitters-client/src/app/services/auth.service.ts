@@ -41,7 +41,7 @@ export class AuthService {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}\n ${error.error ? error.error.message : error}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
@@ -63,17 +63,20 @@ export class AuthService {
   }
 
   public sendRegisterRequest(form: any){
-    console.log(form)
     return this.httpClient.post<any>(this.REST_API_SERVER+this.REGISTER_ENDPOINT, form, this.httpOptions).pipe(
       tap((res: any) => {
-        console.log(res);
-        this.isLoggedIn = true;
-        this.cookieService.set('user_token', res.data.token)
-        this.currentUser = res.data;
-        this.httpOptions = {
-          headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer '+res.data.token})
-        };
-        this.getUserProfile();
+        if(!res.error){
+          this.isLoggedIn = true;
+          this.cookieService.set('user_token', res.data.token)
+          this.currentUser = res.data;
+          this.httpOptions = {
+            headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer '+res.data.token})
+          };
+          this.getUserProfile();
+        }else{
+          console.error(res);
+        }
+
       }),
       catchError(this.handleError)
     );
