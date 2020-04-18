@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100),
                 'category' => $faker->randomElement(['womens', 'mens', 'kids', 'accessories']),
                 'size' => $faker->randomElement(['sm', 'md', 'lg']),
-                'image_url' => $faker->imageUrl(640, 480, 'technics'),
+                'image_url' => 'https://picsum.photos/200?random='.$x,
                 'gender' => $faker->randomElement(['mens', 'womens']),
                 'type' => $faker->randomElement(['sm', 'md', 'lg']),             
             ]);            

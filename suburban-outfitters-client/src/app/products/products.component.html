@@ -24,7 +24,7 @@
   fxLayoutGap.xs="0">
   <div class="item" fxFlex="30%" *ngFor="let item of featuredItems | search:'name,category': searchValue; let i = index">
     <mat-card class="example-card">
-      <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
+      <img mat-card-image [src]="item.image_url" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
       <mat-card-content>
         <p>
           {{item.name}}
@@ -50,7 +50,7 @@
 
   <div class="item" fxFlex="18%" *ngFor="let item of items | search:'name,category': searchValue">
     <mat-card class="example-card">
-      <img mat-card-image [src]="item.image" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
+      <img mat-card-image [src]="item.image_url" alt="Product Image" routerData="item" (click)="displayProductDetail(item)">
       <mat-card-content>
         <p>
           {{item.name}}
