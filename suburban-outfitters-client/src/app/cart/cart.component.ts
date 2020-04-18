@@ -5,7 +5,7 @@ import { CartState } from '../store/cart.state';
 import { ICartItem } from '../models/cart-item.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { removeItem } from '@ngxs/store/operators';
-import { RemoveItemAction } from '../store/cart.actions';
+import { RemoveItemAction, SubmitOrderAction } from '../store/cart.actions';
 import { IProduct } from '../models/product.model';
 
 @Component({
@@ -40,6 +40,10 @@ export class CartComponent implements OnInit {
 
   onRemoveItemFromCart(cartItem: ICartItem) {
     this.store.dispatch(new RemoveItemAction(cartItem));
+  }
+
+  onSubmitOrder() {
+    this.store.dispatch(new SubmitOrderAction());
   }
 
 }
