@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { ICartItem } from '../models/cart-item.model';
 import { tap } from 'rxjs/internal/operators/tap';
 import { catchError } from 'rxjs/internal/operators/catchError';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,23 @@ export class CheckoutService {
 
   constructor(private http: HttpClient, private store: Store) { }
 
-  // public add(items: ICartItem[]): Observable<string> {
-  //   return this.http.post<IProduct>(`${this.REST_API_SERVER}${this.ENDPOINT}`, items).pipe(
-  //     tap((c: IProduct) => console.log(`order submitted ${c}`)),
-  //     catchError(this.handleError)
-  //   );
-  // }
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}\n ${error.error ? error.error.message : error}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+
+  public addOrder(items: ICartItem[]): Observable<string> {
+    return this.http.post<boolean>(`${this.REST_API_SERVER}${this.ENDPOINT}`, items).pipe(
+      tap((c: any) => console.log(`order submitted ${c}`)),
+      catchError(this.handleError)
+    );
+  }
 }
