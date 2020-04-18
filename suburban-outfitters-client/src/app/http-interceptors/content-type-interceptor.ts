@@ -10,7 +10,9 @@ export class ContentTypeInterceptor implements HttpInterceptor {
     // Clone the request and replace the original headers with
     // cloned headers, updated with application/json content type
     const newReq = req.clone({
-      headers: req.headers.set('Content-Type', 'application/json')
+      headers: req.headers
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
     });
 
     // send cloned request with header to the next handler.

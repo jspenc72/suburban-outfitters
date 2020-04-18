@@ -75,6 +75,7 @@ import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/crea
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dialog/return-item-dialog.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   declarations: [
@@ -155,7 +156,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     MatPaginatorModule,
     HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
