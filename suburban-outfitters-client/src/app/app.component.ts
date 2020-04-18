@@ -3,6 +3,9 @@ import { Store, Select } from '@ngxs/store';
 import { CartState } from './store/cart.state';
 import { ICartItem } from './models/cart-item.model';
 import { Observable } from 'rxjs/internal/Observable';
+import { AuthService } from './services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,5 +17,23 @@ export class AppComponent {
 
   @Select(CartState.itemCount) cartItemCount$: Observable<number>;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private cookieService: CookieService, private router: Router, public authService: AuthService) {
+    this.authService.currentUserSubject.subscribe((data) => {
+      console.log("authService.currentUser >>>>> ", data);
+    });
+
+    if(!this.authService.currentUser && cookieService.check('user_token')){
+      this.authService.setToken(cookieService.get('user_token'))
+      this.authService.getUserProfile().subscribe((data: any) => {
+        console.log("did load profile with cookie", data);
+      })   
+    }
+
+  }
+
+  logout() {
+    console.log("logout")
+    this.router.navigateByUrl('/login');
+    this.authService.sendLogoutRequest();
+  }
 }

@@ -75,6 +75,7 @@ import { EditProductComponent } from './admin-dashboard/manage-products/edit-pro
 import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dialog/return-item-dialog.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dial
     EditProductComponent,
     CreateSupplierComponent,
     EditSupplierComponent,
-    ReturnItemDialogComponent
+    ReturnItemDialogComponent,
+    UnauthorizedComponent
   ],
   imports: [
     CommonModule,

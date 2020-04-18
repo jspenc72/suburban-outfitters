@@ -14,10 +14,10 @@
           <button mat-raised-button color="primary" (click)="clickedLogin()">Login</button>
           <br />
           <br />
-          <button routerLink="/password-reset" routerLinkActive="active">Forgot Password</button>
-            <h3 class="text-center">Don't have an account?</h3>
-          <button routerLink="/sign-up" routerLinkActive="active">Sign Up!</button>
-
+          <h3 class="text-center">Don't have an account?</h3>
+          <button mat-raised-button color="accent" routerLink="/sign-up" routerLinkActive="active">Sign Up!</button>
+          <br>
+          <button mat-raised-button color="warn" routerLink="/password-reset" routerLinkActive="active">Forgot Password</button>
         </div>
       </form>
     </mat-card-content>

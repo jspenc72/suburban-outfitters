@@ -22,20 +22,22 @@ import { CreateProductComponent } from './admin-dashboard/manage-products/create
 import { EditProductComponent } from './admin-dashboard/manage-products/edit-product/edit-product.component';
 import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import  { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'cart', component: CartComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'product-detail', component: ProductDetailComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'manage-suppliers', component: ManageSuppliersComponent },
-  { path: 'manage-customers', component: ManageCustomersComponent },
-  { path: 'manage-products', component: ManageProductsComponent },
-  { path: 'manage-inventory', component: ManageInventoryComponent },
-  { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'password-reset', component: PasswordResetComponent, canActivate: [AuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+  { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
+  { path: 'product-detail', component: ProductDetailComponent, canActivate: [AuthGuard] },
+  { path: 'manage-suppliers', component: ManageSuppliersComponent, canActivate: [AuthGuard] },
+  { path: 'manage-customers', component: ManageCustomersComponent, canActivate: [AuthGuard] },
+  { path: 'manage-products', component: ManageProductsComponent, canActivate: [AuthGuard] },
+  { path: 'manage-inventory', component: ManageInventoryComponent, canActivate: [AuthGuard] },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
     children: [
       {
@@ -87,7 +89,7 @@ const routes: Routes = [
         component:  EditSupplierComponent
       }
   ]},
-  { path: 'customer-dashboard', component: CustomerDashboardComponent,
+  { path: 'customer-dashboard', component: CustomerDashboardComponent, canActivate: [AuthGuard],
     children: [
       {
         path:  'my-orders',

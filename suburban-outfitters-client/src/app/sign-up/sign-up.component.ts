@@ -24,11 +24,11 @@ export class SignUpComponent implements OnInit {
   }
   ngOnInit(): void {
     this.registerFormGroup = this._formBuilder.group({
-      email: ['jspenc72@gmail.com', Validators.required],
-      firstName: ['Jesse', Validators.required],
-      lastName: ['Spencer', Validators.required],
-      password: ['password', Validators.required],
-      c_password: ['password', Validators.required]
+      email: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      password: ['', Validators.required],
+      c_password: ['', Validators.required]
     });    
   }
   clickedSignUp(): void {

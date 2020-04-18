@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
     this.authService.sendLoginRequest(this.loginFormGroup.value).subscribe((data: any) => {
       console.log("data", data);
       if(data.status=='success'){
-        this.router.navigateByUrl('/home');
+        this.authService.getUserProfile().subscribe((data: any) => {
+          this.router.navigateByUrl('/home');
+        })
       }else{
         console.log("not authenticated.");
       }
