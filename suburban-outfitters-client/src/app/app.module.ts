@@ -76,6 +76,7 @@ import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-s
 import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dialog/return-item-dialog.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { httpInterceptorProviders } from './http-interceptors';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 @NgModule({
   declarations: [
@@ -154,7 +155,8 @@ import { httpInterceptorProviders } from './http-interceptors';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    ShareButtonsModule
   ],
   providers: [CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent]

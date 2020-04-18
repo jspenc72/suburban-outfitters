@@ -39,7 +39,7 @@ export class ProductDetailComponent implements OnInit {
     const cartItem: ICartItem = {
       id: item.id,
       name: item.name,
-      image: item.image,
+      image: item.image_url,
       description: item.description,
       size: item.size,
       gender: item.gender,
