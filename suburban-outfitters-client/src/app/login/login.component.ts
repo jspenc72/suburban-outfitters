@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginFormGroup = this._formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['jspenc72@gmail.com', Validators.required],
+      password: ['password', Validators.required]
     });    
   }
   clickedSignUp(): void {
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.authService.sendLoginRequest(this.loginFormGroup.value).subscribe((data: any) => {
       console.log("data", data);
       if(data.status=='success'){
-        this.router.navigateByUrl('/card-list');
+        this.router.navigateByUrl('/home');
       }else{
         console.log("not authenticated.");
       }

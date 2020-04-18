@@ -22,6 +22,7 @@ import { CreateProductComponent } from './admin-dashboard/manage-products/create
 import { EditProductComponent } from './admin-dashboard/manage-products/edit-product/edit-product.component';
 import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
+import  { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -35,7 +36,7 @@ const routes: Routes = [
   { path: 'manage-inventory', component: ManageInventoryComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent,
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
     children: [
       {
         path:  'manage-customers',
