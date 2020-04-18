@@ -7,20 +7,21 @@
         <h2>
             My Profile
         </h2>
-        Name: {{authService.currentUser.firstName}} {{authService.currentUser.lastName}}
+        <p>Name: {{authService.currentUser.firstName}} {{authService.currentUser.lastName}}</p>
         <br>
-        Address: {{customer.address}}
+        <p>Address: {{customer.address}}</p>
         <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeShippingAddress()">Change Shipping Address</button>
         <br>
-        Email Address: {{customer.email}}
+        <p>Email Address: {{customer.email}}</p>
         <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeEmailAddress()">Change Email
             Address</button>
         <br>
-        <button mat-raised-button color="primary" routerLink="/password-reset" routerLinkActive="active">Change Password</button>
+        <button mat-raised-button color="primary" routerLink="/password-reset" routerLinkActive="active">Change
+            Password</button>
         <br>
         <button mat-raised-button color="warn" (click)="clickedDeleteMyAccount()">Delete Account</button>
     </div>
@@ -29,7 +30,7 @@
             My Payment Methods
         </h2>
         <br>
-        Last 4 of Credit Card: {{customer.creditcard}}
+        <p>Last 4 of Credit Card: {{customer.creditcard}}</p>
         <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangePayment()">Change Credit Card on File</button>
