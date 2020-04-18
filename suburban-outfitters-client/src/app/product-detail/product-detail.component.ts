@@ -37,7 +37,8 @@ export class ProductDetailComponent implements OnInit {
 
   addItemToCart(item: IProduct): void {
     const cartItem: ICartItem = {
-      id: item.id,
+      product_id: item.id,
+      inventory_id: 1,
       name: item.name,
       image: item.image_url,
       description: item.description,

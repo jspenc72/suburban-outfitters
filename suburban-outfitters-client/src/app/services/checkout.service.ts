@@ -6,6 +6,8 @@ import { ICartItem } from '../models/cart-item.model';
 import { tap } from 'rxjs/internal/operators/tap';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { IOrder } from '../models/order.model';
+import { IOrderLineItem } from '../models/order-line-item';
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +18,11 @@ export class CheckoutService {
 
   constructor(private http: HttpClient, private store: Store) { }
 
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = 'Unknown error!';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side errors
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}\n ${error.error ? error.error.message : error}`;
-    }
-    window.alert(errorMessage);
-    return throwError(errorMessage);
+  public AddOrder(order: IOrder): Observable<IOrder> {
+    return this.http.post<IOrder>(`${this.REST_API_SERVER}${this.ENDPOINT}`, order);
   }
 
-  public addOrder(items: ICartItem[]): Observable<string> {
-    return this.http.post<boolean>(`${this.REST_API_SERVER}${this.ENDPOINT}`, items).pipe(
-      tap((c: any) => console.log(`order submitted ${c}`)),
-      catchError(this.handleError)
-    );
+  public AddOrderLineItems(lineItems: IOrderLineItem[]): Observable<IOrderLineItem[]> {
+    return this.http.post<IOrderLineItem[]>(`${this.REST_API_SERVER}${this.ENDPOINT}`, lineItems);
   }
 }

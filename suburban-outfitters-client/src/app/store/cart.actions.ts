@@ -28,7 +28,6 @@ export class GetCustomerInfoActionFail {
 
 export class SubmitOrderAction {
   static readonly type = '[CartState] Submit Order';
-  constructor(public payload: any) { }
 }
 
 export class SubmitOrderActionSuccess {
@@ -39,4 +38,9 @@ export class SubmitOrderActionSuccess {
 export class SubmitOrderActionFail {
   static readonly type = '[CartState] Submit Order Fail';
   constructor(public payload: any) { }
+}
+
+export class AddOrderLineItemsAction {
+  static readonly type = '[CartState] Add Order Line Items';
+  constructor(public payload: number) { }
 }
