@@ -5,9 +5,6 @@ import { retry, catchError, tap, map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { ICustomer } from '../models/customer.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
 @Injectable({
   providedIn: 'root'
 })
@@ -46,40 +43,38 @@ export class CustomerService {
   }
 
   public add(item: ICustomer): Observable<ICustomer> {
-    return this.http.post<ICustomer>(this.REST_API_SERVER+this.ENDPOINT, item, httpOptions).pipe(
+    return this.http.post<ICustomer>(this.REST_API_SERVER + this.ENDPOINT, item).pipe(
       tap((c: ICustomer) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
   public update(item: ICustomer): Observable<ICustomer> {
-    return this.http.put<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+'/'+item.id, item, httpOptions).pipe(
+    return this.http.put<ICustomer>(this.REST_API_SERVER + this.ENDPOINT + '/' + item.id, item).pipe(
       tap((c: ICustomer) => console.log(`added card ${c}`)),
       catchError(this.handleError)
     );
   }
 
   public delete(item: ICustomer): Observable<ICustomer> {
-    return this.http.delete<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+'/'+item.id, httpOptions).pipe(
+    return this.http.delete<ICustomer>(this.REST_API_SERVER + this.ENDPOINT + '/' + item.id).pipe(
       tap((c: ICustomer) => console.log(`deleted card ${c}`)),
       catchError(this.handleError)
     );
   }
 
   public getAll(): Observable<ICustomer[]> {
-    return this.http.get<ICustomer[]>(`${this.REST_API_SERVER+this.ENDPOINT}`)
+    return this.http.get<ICustomer[]>(`${this.REST_API_SERVER + this.ENDPOINT}`)
       .pipe(
         tap(cards => {
-          
-          console.log('fetched cases')
+          console.log('fetched cases');
         }),
         catchError(this.handleError)
       );
   }
 
   public getBy(id: number): Observable<ICustomer> {
-    
-    return this.http.get<ICustomer>(this.REST_API_SERVER+this.ENDPOINT+'/'+id, httpOptions).pipe(
+    return this.http.get<ICustomer>(this.REST_API_SERVER + this.ENDPOINT + '/' + id).pipe(
       tap((c: ICustomer) => console.log(`got card ${c}`)),
       catchError(this.handleError)
     );

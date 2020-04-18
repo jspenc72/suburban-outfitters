@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
   { path: 'manage-customers', component: ManageCustomersComponent },
   { path: 'manage-products', component: ManageProductsComponent },
   { path: 'manage-inventory', component: ManageInventoryComponent },
-  { path: 'password-reset', component: PasswordResetComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'admin-dashboard', component: AdminDashboardComponent,
     children: [

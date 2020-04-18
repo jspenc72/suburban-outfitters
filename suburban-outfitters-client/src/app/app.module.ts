@@ -52,7 +52,6 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { CartComponent } from './cart/cart.component';
 import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers.component';
@@ -85,7 +84,6 @@ import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dial
     ProductDetailComponent,
     CustomerDashboardComponent,
     AdminDashboardComponent,
-    PasswordResetComponent,
     SearchPipe,
     CartComponent,
     ManageCustomersComponent,
