@@ -34,11 +34,14 @@ export class SignUpComponent implements OnInit {
   clickedSignUp(): void {
     console.log("clickedSignUp!");
     console.log(this.registerFormGroup.value);
+    this.registerFormGroup.value.name = this.registerFormGroup.value.firstName+' '+this.registerFormGroup.value.lastName;
     this.registerFormGroup.value.username = this.registerFormGroup.value.email
     this.authService.sendRegisterRequest(this.registerFormGroup.value).subscribe((data: any) => {
       console.log("data", data);
-      this.router.navigateByUrl('/card-list');
-    })   
+      if(!data.error){
+        this.router.navigateByUrl('/card-list');
+      }
+    }, err => console.log(err),)
   }
   
   clickedLogin(): void {

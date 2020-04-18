@@ -21,17 +21,8 @@ export class AuthService {
   public httpOptions: any;
   public currentUserSubject = new Subject<any>();
 
-  constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) { 
+  constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) {
     this.REST_API_SERVER = configService.REST_API_SERVER;
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer '})
-    };
-  }
-
-  setToken(token: any): void{
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + token})
-    };
   }
 
   handleError(error: HttpErrorResponse) {
@@ -41,18 +32,19 @@ export class AuthService {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // Server-side errors
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}\n ${error.error ? error.error.message : error}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
 
-  public sendGetRequest(){
+  public sendGetRequest() {
     return this.httpClient.get(this.ENDPOINT).pipe(retry(3), catchError(this.handleError));
   }
 
   public getUserProfile() {
-    return this.httpClient.get<any>(this.REST_API_SERVER + this.PROFILE_ENDPOINT, this.httpOptions).pipe(
+    console.log('getUserProfile');
+    return this.httpClient.get<any>(this.REST_API_SERVER + this.PROFILE_ENDPOINT).pipe(
       tap((res: any) => {
         console.log(res);
         this.currentUser = res;
@@ -63,47 +55,43 @@ export class AuthService {
   }
 
   public sendRegisterRequest(form: any) {
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.REGISTER_ENDPOINT, form).pipe(
+      tap((res: any) => {
+        if (res.status === 'success') {
+          this.setAuth(res);
+        } else {
+          console.error(res);
+        }
+
+      }),
+      catchError(this.handleError)
+    );
+  }
+  private setAuth(res): void {
+    this.cookieService.set('user_token', res.data.token);
+  }
+  public sendLoginRequest(form: any) {
     console.log(form);
-    return this.httpClient.post<any>(this.REST_API_SERVER + this.REGISTER_ENDPOINT, form, this.httpOptions).pipe(
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGIN_ENDPOINT, form).pipe(
       tap((res: any) => {
-        console.log(res);
-        this.isLoggedIn = true;
-        this.cookieService.set('user_token', res.data.token);
-        this.currentUser = res.data;
-        this.httpOptions = {
-          headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + res.data.token})
-        };
-        this.getUserProfile();
+        if (res.status === 'success') {
+          this.setAuth(res);
+        } else {
+          console.error(res);
+        }
       }),
       catchError(this.handleError)
     );
   }
 
-  public sendLoginRequest(form: any){
-    console.log(form)
-    return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGIN_ENDPOINT, form, this.httpOptions).pipe(
-      tap((res: any) => {
-        console.log(res);
-        this.isLoggedIn = true;
-        this.cookieService.set('user_token', res.data.token);
-        this.currentUser = res.data;
-        this.httpOptions = {
-          headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + res.data.token})
-        };
-
-        this.getUserProfile();
-      }),
-      catchError(this.handleError)
-    );
-  }
-  public sendLogoutRequest(){
-    this.isLoggedIn = false;
+  public sendLogoutRequest() {
     this.cookieService.delete('user_token');
     console.log('did log out');
-    this.httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json'});
     this.currentUserSubject.next({ id: '' });
+    this.currentUserSubject.next(null);
     this.currentUser = { id: '' };
-    return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGOUT_ENDPOINT, this.httpOptions).pipe(
+
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGOUT_ENDPOINT, null).pipe(
       tap((res: any) => {
         console.log(res);
         this.isLoggedIn = false;

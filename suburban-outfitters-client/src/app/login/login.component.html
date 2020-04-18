@@ -2,16 +2,16 @@
   <mat-card class="login-card">
     <mat-card-content>
       <h1 class="text-center">Login</h1>
-      <form>
+      <form [formGroup]="loginFormGroup" >
         <div fxLayout="column" fxLayoutAlign="center center">
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Username or Email" [(ngModel)]="username" name="username" required>
+            <input matInput placeholder="Username or Email" formControlName="email"  name="username" required>
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+            <input matInput placeholder="Password" formControlName="password"  type="password" name="password" required>
           </mat-form-field>
           <br />
-          <button mat-raised-button color="primary" routerLink="/admin-dashboard" routerLinkActive="active">Login</button>
+          <button mat-raised-button color="primary" (click)="clickedLogin()">Login</button>
           <br />
           <br />
           <h3 class="text-center">Don't have an account?</h3>
