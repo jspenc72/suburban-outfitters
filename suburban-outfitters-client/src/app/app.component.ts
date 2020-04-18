@@ -27,7 +27,6 @@ export class AppComponent {
         console.log("did load profile with cookie", data);
       })
     }
-
   }
 
   logout() {
