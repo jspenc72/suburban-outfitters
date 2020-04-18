@@ -4,6 +4,7 @@ import { ChangeAddressDialogComponent } from './change-address-dialog/change-add
 import { ChangeEmailDialogComponent } from './change-email-dialog/change-email-dialog.component';
 import { ChangePaymentDialogComponent } from './change-payment-dialog/change-payment-dialog.component';
 import { ReturnItemDialogComponent } from './return-item-dialog/return-item-dialog.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -37,8 +38,13 @@ export class CustomerDashboardComponent implements OnInit {
   ];
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService
   ) { }
+
+  clickedDeleteMyAccount() {
+      console.log("clickedDeleteMyAccount");
+  }
 
   ngOnInit(): void { }
 

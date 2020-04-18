@@ -12,6 +12,10 @@ class AuthController extends Controller
    * 
    * @return \Illuminate\Http\Response 
    */ 
+  public function profile(Request $request){
+    
+  }
+
   public function login(Request $request){ 
     if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
       $user = Auth::user(); 

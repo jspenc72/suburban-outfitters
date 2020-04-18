@@ -7,7 +7,7 @@
         <h2>
             My Profile
         </h2>
-        Name: {{customer.name}}
+        Name: {{authService.currentUser.firstName}} {{authService.currentUser.lastName}}
         <br>
         Address: {{customer.address}}
         <br>
@@ -22,7 +22,7 @@
         <br>
         <button mat-raised-button color="primary" routerLink="/password-reset" routerLinkActive="active">Change Password</button>
         <br>
-        <button mat-raised-button color="warn" routerLink="" routerLinkActive="active">Delete Account</button>
+        <button mat-raised-button color="warn" (click)="clickedDeleteMyAccount()">Delete Account</button>
     </div>
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
         <h2>
