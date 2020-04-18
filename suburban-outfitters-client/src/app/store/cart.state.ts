@@ -187,7 +187,7 @@ export class CartState {
           ctx.dispatch(new cartActions.AddOrderLineItemsAction(response));
         }),
         catchError(error => ctx.dispatch(new cartActions.SubmitOrderActionFail(error)))
-      );
+      ).subscribe()
   }
 
   @Action(cartActions.AddOrderLineItemsAction)

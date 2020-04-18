@@ -14,15 +14,17 @@ import { IOrderLineItem } from '../models/order-line-item';
 })
 export class CheckoutService {
   private ENDPOINT = '/orders';
+  private LI_ENDPOINT = '/order-line-item';
   private REST_API_SERVER = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient, private store: Store) { }
 
   public AddOrder(order: IOrder): Observable<IOrder> {
+    console.log("AddOrder", order)
     return this.http.post<IOrder>(`${this.REST_API_SERVER}${this.ENDPOINT}`, order);
   }
 
   public AddOrderLineItems(lineItems: IOrderLineItem[]): Observable<IOrderLineItem[]> {
-    return this.http.post<IOrderLineItem[]>(`${this.REST_API_SERVER}${this.ENDPOINT}`, lineItems);
+    return this.http.post<IOrderLineItem[]>(`${this.REST_API_SERVER}${this.LI_ENDPOINT}`, lineItems);
   }
 }

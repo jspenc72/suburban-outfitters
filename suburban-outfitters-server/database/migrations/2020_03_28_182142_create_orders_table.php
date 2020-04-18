@@ -17,11 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('customer_id');
             $table->integer('order_status_id');
-            $table->dateTime('order_date');
-            $table->dateTime('departure_date');
-            $table->dateTime('delivery_date');
-            $table->dateTime('purchase_date');
-            $table->dateTime('return_date');
+            $table->string('order_date')->nullable();
+            $table->string('departure_date')->nullable();
+            $table->string('delivery_date')->nullable();
+            $table->string('purchase_date')->nullable();
+            $table->string('return_date')->nullable();
             $table->timestamps();
         });
     }

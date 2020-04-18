@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         })
       }else{
         console.log("not authenticated.");
+        window.alert("The passwords entered do not match.");
       }
     })   
   }
