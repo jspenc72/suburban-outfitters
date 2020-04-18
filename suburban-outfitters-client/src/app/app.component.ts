@@ -23,10 +23,9 @@ export class AppComponent {
     });
 
     if(!this.authService.currentUser && cookieService.check('user_token')){
-      this.authService.setToken(cookieService.get('user_token'))
       this.authService.getUserProfile().subscribe((data: any) => {
         console.log("did load profile with cookie", data);
-      })   
+      })
     }
 
   }

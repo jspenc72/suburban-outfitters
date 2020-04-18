@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
@@ -31,7 +30,6 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
-  { path: 'password-reset', component: PasswordResetComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
   { path: 'product-detail', component: ProductDetailComponent, canActivate: [AuthGuard] },

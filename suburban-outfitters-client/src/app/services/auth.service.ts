@@ -10,28 +10,19 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class AuthService {
-  private ENDPOINT = "/user";
-  private LOGIN_ENDPOINT = "/api/login";
-  private REGISTER_ENDPOINT = "/api/register";
-  private PROFILE_ENDPOINT = "/api/profile";
-  private LOGOUT_ENDPOINT = "/api/logout";
+  private ENDPOINT = '/user';
+  private LOGIN_ENDPOINT = '/api/login';
+  private REGISTER_ENDPOINT = '/api/register';
+  private PROFILE_ENDPOINT = '/api/profile';
+  private LOGOUT_ENDPOINT = '/api/logout';
   private REST_API_SERVER: string;
-  public isLoggedIn: boolean = false;
+  public isLoggedIn = false;
   public currentUser: any;
   public httpOptions: any;
   public currentUserSubject = new Subject<any>();
 
-  constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) { 
+  constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) {
     this.REST_API_SERVER = configService.REST_API_SERVER;
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer '})
-    };
-  }
-
-  setToken(token: any): void{
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer '+token})
-    };
   }
 
   handleError(error: HttpErrorResponse) {
@@ -47,13 +38,13 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  public sendGetRequest(){
+  public sendGetRequest() {
     return this.httpClient.get(this.ENDPOINT).pipe(retry(3), catchError(this.handleError));
   }
-  
+
   public getUserProfile() {
-    console.log('getUserProfile')
-    return this.httpClient.get<any>(this.REST_API_SERVER+this.PROFILE_ENDPOINT, this.httpOptions).pipe(
+    console.log('getUserProfile');
+    return this.httpClient.get<any>(this.REST_API_SERVER + this.PROFILE_ENDPOINT).pipe(
       tap((res: any) => {
         console.log(res);
         this.currentUser = res;
@@ -63,12 +54,12 @@ export class AuthService {
     );
   }
 
-  public sendRegisterRequest(form: any){
-    return this.httpClient.post<any>(this.REST_API_SERVER+this.REGISTER_ENDPOINT, form, this.httpOptions).pipe(
+  public sendRegisterRequest(form: any) {
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.REGISTER_ENDPOINT, form).pipe(
       tap((res: any) => {
-        if(res.status=='success'){
+        if (res.status === 'success') {
           this.setAuth(res);
-        }else{
+        } else {
           console.error(res);
         }
 
@@ -77,18 +68,15 @@ export class AuthService {
     );
   }
   private setAuth(res): void {
-    this.cookieService.set('user_token', res.data.token)
-    this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer '+res.data.token})
-    };    
+    this.cookieService.set('user_token', res.data.token);
   }
-  public sendLoginRequest(form: any){
-    console.log(form)
-    return this.httpClient.post<any>(this.REST_API_SERVER+this.LOGIN_ENDPOINT, form, this.httpOptions).pipe(
+  public sendLoginRequest(form: any) {
+    console.log(form);
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGIN_ENDPOINT, form).pipe(
       tap((res: any) => {
-        if(res.status=='success'){
+        if (res.status === 'success') {
           this.setAuth(res);
-        }else{
+        } else {
           console.error(res);
         }
       }),
@@ -96,20 +84,19 @@ export class AuthService {
     );
   }
 
-  public sendLogoutRequest(){
+  public sendLogoutRequest() {
     this.cookieService.delete('user_token');
-    console.log("did log out")
-    this.httpOptions.headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.currentUserSubject.next({id: ''})
-    this.currentUserSubject.next(null)
-    this.currentUser = {id: ''}
+    console.log('did log out');
+    this.currentUserSubject.next({ id: '' });
+    this.currentUserSubject.next(null);
+    this.currentUser = { id: '' };
 
-    return this.httpClient.post<any>(this.REST_API_SERVER+this.LOGOUT_ENDPOINT, this.httpOptions).pipe(
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGOUT_ENDPOINT, null).pipe(
       tap((res: any) => {
-        console.log(res)
+        console.log(res);
         this.isLoggedIn = false;
         this.cookieService.delete('user_token');
-        this.currentUser = {}
+        this.currentUser = {};
       }),
       catchError(this.handleError)
     );

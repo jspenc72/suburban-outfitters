@@ -52,7 +52,6 @@ import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { SearchPipe } from './pipes/search/search.pipe';
 import { CartComponent } from './cart/cart.component';
 import { ManageCustomersComponent } from './admin-dashboard/manage-customers/manage-customers.component';
@@ -76,6 +75,7 @@ import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/crea
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dialog/return-item-dialog.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
 @NgModule({
   declarations: [
@@ -86,7 +86,6 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     ProductDetailComponent,
     CustomerDashboardComponent,
     AdminDashboardComponent,
-    PasswordResetComponent,
     SearchPipe,
     CartComponent,
     ManageCustomersComponent,
@@ -157,7 +156,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
     MatPaginatorModule,
     HttpClientModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

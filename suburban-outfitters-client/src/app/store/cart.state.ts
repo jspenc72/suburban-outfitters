@@ -166,13 +166,13 @@ export class CartState {
     { payload }: cartActions.SubmitOrderAction
   ) {
     patchState({ loading: true });
-    this.checkoutService.submitOrder(payload)
-      .pipe(
-        tap((response: number) => {
-          dispatch(new cartActions.SubmitOrderActionSuccess(response));
-        }),
-        catchError(error => dispatch(new cartActions.SubmitOrderActionFail(error)))
-      );
+    // this.checkoutService.submitOrder(payload)
+    //   .pipe(
+    //     tap((response: number) => {
+    //       dispatch(new cartActions.SubmitOrderActionSuccess(response));
+    //     }),
+    //     catchError(error => dispatch(new cartActions.SubmitOrderActionFail(error)))
+    //   );
   }
 
   @Action(cartActions.SubmitOrderActionSuccess)
