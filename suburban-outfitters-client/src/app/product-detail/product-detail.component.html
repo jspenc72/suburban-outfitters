@@ -19,8 +19,9 @@
             <mat-chip  color="primary" selected>In Stock!</mat-chip>
           </mat-chip-list>          
           <br>
-          <button mat-raised-button color="accent" (click)="addItemToCart(item)">Add to Cart</button>
-          <button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+          <share-buttons [theme]="'modern-dark'" [include]="['facebook','twitter','pinterest']" [show]="5" [url]="'https://twitter.com/'" [autoSetMeta]="false">
+          </share-buttons>
+          <button mat-raised-button color="accent" (click)="addItemToCart(item)">Add to Cart
             <mat-icon>favorite</mat-icon>
           </button>
       </div>
