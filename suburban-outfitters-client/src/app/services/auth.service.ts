@@ -14,12 +14,15 @@ export class AuthService {
   private LOGIN_ENDPOINT = '/api/login';
   private REGISTER_ENDPOINT = '/api/register';
   private PROFILE_ENDPOINT = '/api/profile';
+  private CUSTOMER_ENDPOINT = '/api/customer';
   private LOGOUT_ENDPOINT = '/api/logout';
   private REST_API_SERVER: string;
   public isLoggedIn = false;
   public currentUser: any;
   public httpOptions: any;
   public currentUserSubject = new Subject<any>();
+  public currentCustomer: any;
+  public currentCustomerSubject = new Subject<any>();
 
   constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) {
     this.REST_API_SERVER = configService.REST_API_SERVER;
@@ -49,6 +52,18 @@ export class AuthService {
         console.log(res);
         this.currentUser = res;
         this.currentUserSubject.next(res);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  public getUserCustomer() {
+    console.log('getUserCustomer');
+    return this.httpClient.get<any>(this.REST_API_SERVER + this.CUSTOMER_ENDPOINT).pipe(
+      tap((res: any) => {
+        console.log(res);
+        this.currentCustomer = res[0];
+        this.currentCustomerSubject.next(res[0]);
       }),
       catchError(this.handleError)
     );

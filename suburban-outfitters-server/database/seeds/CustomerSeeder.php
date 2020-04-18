@@ -17,7 +17,7 @@ class CustomerSeeder extends Seeder
         for ($x = 0; $x <= 100; $x++) {
             DB::table('customers')->insert([
                 'name' => $faker->company(),
-                'user_id' => $faker->randomDigit(),
+                'user_id' => $x,
                 'address' => $faker->address(),
                 'phone' => $faker->phoneNumber()
             ]);

@@ -42,7 +42,7 @@ class User extends Authenticatable
     public function getCustomer()
     {
 
-      $customer = Customer::where('user_id', $this.id)->get();
+      $customer = Customer::where('user_id', $this->id)->get();
   
       return $customer;
     }

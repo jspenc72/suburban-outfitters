@@ -20,6 +20,12 @@ Route::post('register', 'API\AuthController@register');
 Route::middleware('auth:api')->get('/profile', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth:api')->get('/customer', function (Request $request) {
+    $currentUser = $request->user();
+    $customer = $currentUser->getCustomer();
+    return $customer;
+});
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });

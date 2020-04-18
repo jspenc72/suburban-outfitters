@@ -4,6 +4,7 @@ import { ChangeAddressDialogComponent } from './change-address-dialog/change-add
 import { ChangeEmailDialogComponent } from './change-email-dialog/change-email-dialog.component';
 import { ChangePaymentDialogComponent } from './change-payment-dialog/change-payment-dialog.component';
 import { ReturnItemDialogComponent } from './return-item-dialog/return-item-dialog.component';
+import { CustomerService } from '../services/customer.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -39,16 +40,30 @@ export class CustomerDashboardComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private authService: AuthService
+    public authService: AuthService,
+    private customerService: CustomerService
   ) { }
+
+  loadCustomer(){
+    this.authService.getUserCustomer().subscribe((data: any) => {
+        console.log(data)
+    })
+  }
+
+  loadOrders() {
+
+  }
 
   clickedDeleteMyAccount() {
       console.log("clickedDeleteMyAccount");
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.loadCustomer();
 
-  onChangeShippingAddress() {
+  }
+
+  onChangeShippingAddress() { 
     const dialogRef = this.dialog.open(ChangeAddressDialogComponent, {
       data: { address: this.customer.address }
     });
@@ -58,6 +73,7 @@ export class CustomerDashboardComponent implements OnInit {
       if (result && result !== '') {
         this.customer.address = result;
       }
+
     });
   }
 

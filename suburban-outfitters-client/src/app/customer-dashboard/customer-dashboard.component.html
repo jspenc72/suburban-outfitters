@@ -9,12 +9,12 @@
         </h2>
         Name: {{authService.currentUser.firstName}} {{authService.currentUser.lastName}}
         <br>
-        Address: {{customer.address}}
+        Address: {{authService.currentCustomer.address}}
         <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeShippingAddress()">Change Shipping Address</button>
         <br>
-        Email Address: {{customer.email}}
+        Email Address: {{authService.currentUser.email}}
         <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeEmailAddress()">Change Email
@@ -27,7 +27,7 @@
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
         <h2>
             My Payment Methods
-        </h2>
+        </h2>auathService.currentUser
         <br>
         Last 4 of Credit Card: {{customer.creditcard}}
         <br>
