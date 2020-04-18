@@ -23,7 +23,8 @@ import { EditProductComponent } from './admin-dashboard/manage-products/edit-pro
 import { CreateSupplierComponent } from './admin-dashboard/manage-suppliers/create-supplier/create-supplier.component';
 import { EditSupplierComponent } from './admin-dashboard/manage-suppliers/edit-supplier/edit-supplier.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import  { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'manage-customers', component: ManageCustomersComponent, canActivate: [AuthGuard] },
   { path: 'manage-products', component: ManageProductsComponent, canActivate: [AuthGuard] },
   { path: 'manage-inventory', component: ManageInventoryComponent, canActivate: [AuthGuard] },
-  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard, AdminGuard],
     children: [
       {
         path:  'manage-customers',
