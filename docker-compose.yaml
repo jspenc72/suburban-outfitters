@@ -20,7 +20,7 @@ services:
         MYSQL_DATABASE: suburbanoutfitters
     volumes:
       - ./dbdata/:/var/lib/mysql/
-  #Nginx Service
+  # Nginx Service
   # webserver:
   #   image: nginx:alpine
   #   container_name: webserver
@@ -33,7 +33,7 @@ services:
   #   volumes:
   #     - ./suburban-outfitters-server/:/var/www
   #     - ./suburban-outfitters-server/nginx/conf.d/:/etc/nginx/conf.d/
-  #PHP Service
+  # PHP Service
   # app:
   #   build:
   #     context: ./suburban-outfitters-server
