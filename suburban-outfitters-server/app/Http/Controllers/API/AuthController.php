@@ -58,4 +58,29 @@ class AuthController extends Controller
       'data' => $success,
     ]); 
   }
+
+  /** 
+   * UpdatePassword API 
+   * 
+   * @return \Illuminate\Http\Response 
+   */ 
+  public function updatepassword(Request $request) 
+  { 
+    $validator = Validator::make($request->all(), [ 
+      'password' => 'required', 
+      'c_password' => 'required|same:password', 
+    ]);
+    if ($validator->fails()) { 
+      return response()->json(['error'=>$validator->errors()]);
+    }
+    $postArray = $request->all(); 
+    $postArray['password'] = bcrypt($postArray['password']);    
+    $updateduser = $request->user()->update($postArray);
+
+    return response()->json([
+      'status' => 'success',
+      'data' => $updateduser,
+    ]); 
+  }
+
 }

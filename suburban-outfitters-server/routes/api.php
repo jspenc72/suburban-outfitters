@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', 'API\AuthController@login');
 Route::post('register', 'API\AuthController@register');
+Route::middleware('auth:api')->post('updatepassword', 'API\AuthController@updatepassword');
 Route::middleware('auth:api')->get('/profile', function (Request $request) {
     return $request->user();
 });
@@ -31,7 +32,7 @@ Route::middleware('auth:api')->get('/customer', function (Request $request) {
 // });
 
 Route::resources([
-    'users' => 'UserController',
+    'users' => 'UsersController',
     'credit-card' => 'CreditCardController',
     'customers' => 'CustomerController',
     'orders' => 'OrderController',

@@ -4,6 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { ICustomer } from '../models/customer.model';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,9 @@ import { ICustomer } from '../models/customer.model';
 export class CustomerService {
   private ENDPOINT = '/customers';
   private REST_API_SERVER = 'http://localhost:8000/api';
-  constructor(private http: HttpClient, private store: Store) { }
+  constructor(private http: HttpClient, private store: Store, private configService: ConfigService) { 
+    this.REST_API_SERVER = configService.REST_API_SERVER;
+  }
 
   public GetCustomer(customerId: number): Observable<any> {
     return this.http.get<any>(`localhost:8000/api/customers/${customerId}`);

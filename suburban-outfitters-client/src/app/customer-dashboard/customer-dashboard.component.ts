@@ -6,6 +6,8 @@ import { ChangePaymentDialogComponent } from './change-payment-dialog/change-pay
 import { ReturnItemDialogComponent } from './return-item-dialog/return-item-dialog.component';
 import { CustomerService } from '../services/customer.service';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
+import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -41,7 +43,9 @@ export class CustomerDashboardComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public authService: AuthService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private userService: UserService
+    
   ) { }
 
   loadCustomer(){
@@ -60,7 +64,6 @@ export class CustomerDashboardComponent implements OnInit {
 
   ngOnInit(): void { 
     this.loadCustomer();
-
   }
 
   onChangeShippingAddress() { 
@@ -72,6 +75,10 @@ export class CustomerDashboardComponent implements OnInit {
       // TODO: Add database update for address
       if (result && result !== '') {
         this.customer.address = result;
+        this.authService.currentCustomer.address = result;
+        this.customerService.update(this.authService.currentCustomer).subscribe((data: any) => {
+          console.log(data)
+        })
       }
 
     });
@@ -79,13 +86,48 @@ export class CustomerDashboardComponent implements OnInit {
 
   onChangeEmailAddress() {
     const dialogRef = this.dialog.open(ChangeEmailDialogComponent, {
-      data: { email: this.customer.email }
+      data: { email: this.authService.currentUser.email }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO: Add database update for address
       if (result && result !== '') {
         this.customer.email = result;
+        this.authService.currentUser.email = result;
+        this.userService.update(this.authService.currentUser).subscribe((data: any) => {
+          console.log(data)
+        })
+
+ 
+      }
+    });
+  }
+
+  onChangePassword() {
+    const dialogRef = this.dialog.open(ChangePasswordDialogComponent, {
+      data: { password: this.authService.currentUser.password }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO: Add database update for password
+      if (result && result !== '') {
+        console.log(result)
+        if(result.password == result.c_password){
+          // Update user in db
+          this.authService.sendUpdatePasswordRequest(result).subscribe((data: any) => {
+            console.log(data)
+            this.authService.currentUser.password = data.data.password;
+          })
+        }else{
+          window.alert("The passwords entered do not match.");
+        }
+        // this.authService.currentUser.password = result;
+
+        // this.userService.update(this.authService.currentUser).subscribe((data: any) => {
+        //   console.log(data)
+        // })
+
+ 
       }
     });
   }

@@ -77,6 +77,7 @@ import { ReturnItemDialogComponent } from './customer-dashboard/return-item-dial
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { ChangePasswordDialogComponent } from './customer-dashboard/change-password-dialog/change-password-dialog.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
     CreateSupplierComponent,
     EditSupplierComponent,
     ReturnItemDialogComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    ChangePasswordDialogComponent
   ],
   imports: [
     CommonModule,

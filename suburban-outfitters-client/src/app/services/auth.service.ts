@@ -16,6 +16,8 @@ export class AuthService {
   private PROFILE_ENDPOINT = '/api/profile';
   private CUSTOMER_ENDPOINT = '/api/customer';
   private LOGOUT_ENDPOINT = '/api/logout';
+  private UPDATE_PASSWORD_ENDPOINT = '/api/updatepassword';
+  
   private REST_API_SERVER: string;
   public isLoggedIn = false;
   public currentUser: any;
@@ -112,6 +114,21 @@ export class AuthService {
         this.isLoggedIn = false;
         this.cookieService.delete('user_token');
         this.currentUser = {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+  public sendUpdatePasswordRequest(form: any) {
+    console.log(form);
+    // merge new password with this.currentUser
+    
+    return this.httpClient.post<any>(this.REST_API_SERVER + this.UPDATE_PASSWORD_ENDPOINT, form).pipe(
+      tap((res: any) => {
+        if (res.status === 'success') {
+          this.setAuth(res);
+        } else {
+          console.error(res);
+        }
       }),
       catchError(this.handleError)
     );
