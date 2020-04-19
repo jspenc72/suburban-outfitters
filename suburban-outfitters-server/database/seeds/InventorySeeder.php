@@ -14,9 +14,9 @@ class InventorySeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        for ($x = 0; $x <= 100; $x++) {
+        for ($x = 0; $x <= 20; $x++) {
             DB::table('inventories')->insert([
-                'product_id' => $faker->randomDigit(),
+                'product_id' => $x,
                 'quantity' => $faker->randomDigit()
             ]);
         }

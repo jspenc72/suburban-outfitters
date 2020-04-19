@@ -47,7 +47,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $p = Product::with('suppliers')->find($product->id);
+        $p = Product::with('suppliers', 'inventory')->find($product->id);
         return $p;
     }
 

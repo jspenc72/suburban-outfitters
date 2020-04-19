@@ -18,7 +18,7 @@ class OrderSeeder extends Seeder
             DB::table('orders')->insert([
                 'customer_id' => $faker->randomDigit(),
                 'order_status_id' => $faker->randomDigit(),
-                'order_total' => $faker->random_int(),
+                'order_total' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100),
                 'order_date' => $faker->dateTime($max = 'now', $timezone = null),
                 'departure_date' => $faker->dateTime($max = 'now', $timezone = null),
                 'delivery_date' => $faker->dateTime($max = 'now', $timezone = null),

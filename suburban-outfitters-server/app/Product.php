@@ -15,4 +15,9 @@ class Product extends Model
         return $this->belongsTo('App\Supplier');
     }
 
+    public function inventory()
+    {
+        return $this->hasOne('App\Inventory');
+    }
+
 }
