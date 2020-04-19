@@ -11,6 +11,7 @@ import { CustomerService } from '../services/customer.service';
 import { IOrder } from '../models/order.model';
 import { AuthService } from '../services/auth.service';
 import { IOrderLineItem } from '../models/order-line-item';
+import { RouterModule, Router } from '@angular/router';
 
 export interface CartStateModel {
   loading: boolean;
@@ -66,6 +67,7 @@ export class CartState {
     private snackbar: MatSnackBar,
     private customerService: CustomerService,
     private checkoutService: CheckoutService,
+    private router: Router,
     private authService: AuthService
   ) { }
 
@@ -229,6 +231,9 @@ export class CartState {
       duration: 3000,
       verticalPosition: 'bottom'
     });
+
+    // navigate to the customer dashboard
+    this.router.navigate(['/customer-dashboard']);
   }
 
   @Action(cartActions.SubmitOrderActionFail)
