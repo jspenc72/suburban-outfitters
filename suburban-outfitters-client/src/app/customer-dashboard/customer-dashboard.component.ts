@@ -45,28 +45,23 @@ export class CustomerDashboardComponent implements OnInit {
     public authService: AuthService,
     private customerService: CustomerService,
     private userService: UserService
-    
   ) { }
 
-  loadCustomer(){
+  loadCustomer() {
     this.authService.getUserCustomer().subscribe((data: any) => {
-        console.log(data)
-    })
+        console.log(data);
+    });
   }
 
   loadOrders() {
 
   }
 
-  clickedDeleteMyAccount() {
-      console.log("clickedDeleteMyAccount");
-  }
-
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.loadCustomer();
   }
 
-  onChangeShippingAddress() { 
+  onChangeShippingAddress() {
     const dialogRef = this.dialog.open(ChangeAddressDialogComponent, {
       data: { address: this.customer.address }
     });
@@ -77,8 +72,8 @@ export class CustomerDashboardComponent implements OnInit {
         this.customer.address = result;
         this.authService.currentCustomer.address = result;
         this.customerService.update(this.authService.currentCustomer).subscribe((data: any) => {
-          console.log(data)
-        })
+          console.log(data);
+        });
       }
 
     });
@@ -95,8 +90,8 @@ export class CustomerDashboardComponent implements OnInit {
         this.customer.email = result;
         this.authService.currentUser.email = result;
         this.userService.update(this.authService.currentUser).subscribe((data: any) => {
-          console.log(data)
-        })
+          console.log(data);
+        });
 
  
       }
@@ -111,15 +106,15 @@ export class CustomerDashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // TODO: Add database update for password
       if (result && result !== '') {
-        console.log(result)
-        if(result.password == result.c_password){
+        console.log(result);
+        if (result.password == result.c_password) {
           // Update user in db
           this.authService.sendUpdatePasswordRequest(result).subscribe((data: any) => {
-            console.log(data)
+            console.log(data);
             this.authService.currentUser.password = data.data.password;
-          })
-        }else{
-          window.alert("The passwords entered do not match.");
+          });
+        } else {
+          window.alert('The passwords entered do not match.');
         }
         // this.authService.currentUser.password = result;
 
@@ -130,6 +125,16 @@ export class CustomerDashboardComponent implements OnInit {
  
       }
     });
+  }
+
+  onDeleteAccount(): void {
+    if (window.confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+      this.authService.deleteAccount().subscribe(() => {
+        this.authService.sendLogoutRequest();
+      });
+    } else {
+      return;
+    }
   }
 
   onChangePayment() {

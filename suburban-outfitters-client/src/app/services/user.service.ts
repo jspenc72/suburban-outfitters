@@ -11,7 +11,7 @@ import { ConfigService } from './config.service';
 export class UserService {
   private ENDPOINT = '/api/users';
   private REST_API_SERVER = 'http://localhost:8000/api';
-  constructor(private http: HttpClient, private store: Store, private configService: ConfigService) { 
+  constructor(private http: HttpClient, private store: Store, private configService: ConfigService) {
     this.REST_API_SERVER = configService.REST_API_SERVER;
   }
 

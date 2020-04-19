@@ -47,6 +47,10 @@ export class AuthService {
     return this.httpClient.get(this.ENDPOINT).pipe(retry(3), catchError(this.handleError));
   }
 
+  public deleteAccount() {
+    return this.httpClient.delete(this.ENDPOINT + '/' + this.currentUser.id).pipe(retry(3), catchError(this.handleError));
+  }
+
   public getUserProfile() {
     console.log('getUserProfile');
     return this.httpClient.get<any>(this.REST_API_SERVER + this.PROFILE_ENDPOINT).pipe(
@@ -79,7 +83,6 @@ export class AuthService {
         } else {
           console.error(res);
         }
-
       }),
       catchError(this.handleError)
     );
@@ -121,7 +124,6 @@ export class AuthService {
   public sendUpdatePasswordRequest(form: any) {
     console.log(form);
     // merge new password with this.currentUser
-    
     return this.httpClient.post<any>(this.REST_API_SERVER + this.UPDATE_PASSWORD_ENDPOINT, form).pipe(
       tap((res: any) => {
         if (res.status === 'success') {
