@@ -20,11 +20,9 @@
         <button mat-raised-button color="warn" (click)="onDeleteAccount()">Delete Account</button>
     </div>
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
-        <h2>
-            My Payment Methods
-        </h2>auathService.currentUser
+        <h2>My Payment Methods</h2>
         <br>
-        <p>Last 4 of Credit Card: {{customer.creditcard}}</p>
+        <p>Credit Card: {{customer.creditcard}}</p>
         <br>
         <button mat-raised-button color="primary" (click)="onChangePayment()">Change Credit Card on File</button>
     </div>
