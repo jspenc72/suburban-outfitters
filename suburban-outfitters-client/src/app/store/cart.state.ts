@@ -207,7 +207,9 @@ export class CartState {
         order_id: payload,
         product_id: cartItem.product_id,
         inventory_id: cartItem.inventory_id,
+        name: cartItem.name,
         quantity: cartItem.quantity,
+        price: cartItem.price,
         created_at: new Date(),
         updated_at: null
       };
