@@ -93,12 +93,13 @@ const routes: Routes = [
       {
         path:  'my-orders',
         component:  MyOrdersComponent,
-      },
-      {
-        path:  'order-detail/:id',
-        component:  OrderDetailComponent
       }
+
   ]},
+  {
+    path:  'order-detail/:id',
+    component:  OrderDetailComponent
+  },
   { path: '**', component: ProductsComponent }
 ];
 
