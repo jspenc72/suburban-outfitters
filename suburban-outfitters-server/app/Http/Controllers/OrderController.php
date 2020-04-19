@@ -49,8 +49,8 @@ class OrderController extends Controller
      */
     public function show(Request $request, Order $order)
     {        
-        $order = Order::with('orderlineitems')->find(1);
-        return $order;
+        $o = Order::with('orderlineitems', 'orderstatus')->find($order->id);
+        return $o;
     }
 
     /**
@@ -94,7 +94,7 @@ class OrderController extends Controller
         $key = $request->input('order');
         Log::channel('stderr')->info($request->input('order'));
 
-        Order::with('orderlineitems')->find(1);
+        Order::with('orderlineitems', 'orderstatus')->find(1);
         return $order;
         
     }
