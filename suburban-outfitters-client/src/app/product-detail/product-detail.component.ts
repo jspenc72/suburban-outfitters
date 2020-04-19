@@ -18,7 +18,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductDetailComponent implements OnInit {
   faFacebookF = faFacebookF;
-  item: IProduct;
+  item: any;
   inventory: IInventory;
   state$: any;
   product: any;

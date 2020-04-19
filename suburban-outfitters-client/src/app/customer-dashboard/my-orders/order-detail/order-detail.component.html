@@ -10,16 +10,21 @@
           <th>Product</th>
           <th>Quanitity</th>
           <th>Price</th>
+          <th></th>
         </tr>
         <tr *ngFor="let item of order.orderlineitems">
           <th>{{item.name}}</th>
           <th>{{item.quantity}}</th>
           <th>{{item.price}}</th>
+          <th>
+            <button mat-button color="primary" (click)="onReturnItem(item)">Return item</button>
+          </th>
         </tr>
         <tr>
           <th></th>
           <th></th>
           <th>TOTAL {{order.order_total | currency}}</th>
+          <th></th>
         </tr>
       </table>
       <h2>Shipping Information</h2>
@@ -30,8 +35,5 @@
       <p>Credit Card: {{authService.currentUserPaymentMethods.card_number}}</p>
       <p>Billing Address: Same as Shipping Address</p>
     </div>
-
-    <button mat-raised-button color="primary" (click)="onReturnOrder()">Return this order</button>
-    
   </div>
 </div>

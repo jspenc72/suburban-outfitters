@@ -210,6 +210,7 @@ export class CartState {
         name: cartItem.name,
         quantity: cartItem.quantity,
         price: cartItem.price,
+        is_returned: false,
         created_at: new Date(),
         updated_at: null
       };
