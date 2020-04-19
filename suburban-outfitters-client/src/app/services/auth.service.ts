@@ -12,6 +12,7 @@ import { IUser } from '../models/user.model';
 export class AuthService {
   private ENDPOINT = '/user';
   private LOGIN_ENDPOINT = '/api/login';
+  private MY_ORDERS_ENDPOINT = '/api/myOrders'
   private REGISTER_ENDPOINT = '/api/register';
   private PROFILE_ENDPOINT = '/api/profile';
   private CUSTOMER_ENDPOINT = '/api/customer';
@@ -26,6 +27,8 @@ export class AuthService {
   public currentCustomerSubject = new Subject<any>();
   public currentUserPaymentMethods: any;
   public currentUserPaymentMethodsSubject = new Subject<any>();
+  public currentUserOrders: any;
+  public currentUserOrdersSubject = new Subject<any>();
 
   constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) {
     this.REST_API_SERVER = configService.REST_API_SERVER;
@@ -51,6 +54,18 @@ export class AuthService {
   public deleteAccount(): Observable<any> {
     return this.httpClient.delete(this.ENDPOINT + '/' + this.currentUser.id).pipe(retry(3), catchError(this.handleError));
   }
+  public getUserOrders() {
+    console.log('getUserOrders');
+    return this.httpClient.get<any>(this.REST_API_SERVER + this.MY_ORDERS_ENDPOINT).pipe(
+      tap((res: any) => {
+        console.log(res);
+        this.currentUserOrders = res[0];
+        this.currentUserOrdersSubject.next(res[0]);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
 
   public getUserPaymentMethods() {
     console.log('getUserPaymentMethods');
