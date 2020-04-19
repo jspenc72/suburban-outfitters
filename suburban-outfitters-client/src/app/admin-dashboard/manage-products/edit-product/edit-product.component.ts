@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from "../../../services/product.service";
 import { IProduct } from "../../../models/product.model";
+import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,9 +13,14 @@ import { IProduct } from "../../../models/product.model";
 })
 export class EditProductComponent implements OnInit {
   editFormGroup: FormGroup;
-  state$: any
+  productQuantityFormGroup: FormGroup;
+  state$: any;
+  product: any;
 
-  constructor(private productService: ProductService, public route: ActivatedRoute, private _formBuilder: FormBuilder, private location: Location, private router: Router) { }
+  constructor(private productService: ProductService, 
+              private inventoryService: InventoryService,
+                  public route: ActivatedRoute,
+                   private _formBuilder: FormBuilder, private location: Location, private router: Router) { }
 
   ngOnInit(): void {
     this.editFormGroup = this._formBuilder.group({
@@ -27,6 +33,9 @@ export class EditProductComponent implements OnInit {
       cardImageUrl: ['', Validators.required],
       id: ['', Validators.required]
     });
+    this.productQuantityFormGroup = this._formBuilder.group({
+      quantity: ['', Validators.required]
+    });
     this.load()
   }
 
@@ -36,6 +45,7 @@ export class EditProductComponent implements OnInit {
     if(this.route.snapshot.paramMap.get('id')){
       this.productService.getBy(parseInt(id)).subscribe((data: any)=>{
         console.log(data)
+        this.product = data;
         this.editFormGroup = this._formBuilder.group({
           name: [data.name, Validators.required],
           price: [data.price, Validators.required],
@@ -46,7 +56,12 @@ export class EditProductComponent implements OnInit {
           cardImageUrl: [data.cardImageUrl, Validators.required],
           id: [data.id, Validators.required]
         });
+
+        this.productQuantityFormGroup = this._formBuilder.group({
+          quantity: [data.inventory.quantity, Validators.required]
+        });
       })  
+      this
     }else{
 
     }
@@ -58,6 +73,16 @@ export class EditProductComponent implements OnInit {
     const product: IProduct = this.editFormGroup.value
     this.productService.update(product).subscribe((data: any)=>{
       this.router.navigateByUrl('/admin-dashboard/manage-products', { state: { item: data  } });
+    })
+  }
+
+  updateQuantity(): void {
+    console.log(this.productQuantityFormGroup.value);
+    this.product.inventory.quantity = this.productQuantityFormGroup.value.quantity;
+    this.inventoryService.update(this.product.inventory).subscribe((data: any)=>{
+      
+      console.log(data)
+      this.load()
     })
   }
 }

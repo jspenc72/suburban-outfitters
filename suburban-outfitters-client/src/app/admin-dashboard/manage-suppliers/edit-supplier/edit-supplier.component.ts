@@ -13,6 +13,7 @@ import { ISupplier } from "../../../models/supplier.model";
 export class EditSupplierComponent implements OnInit {
   editFormGroup: FormGroup;
   state$: any
+  inventory_units: any;
   constructor(private supplierService: SupplierService, public route: ActivatedRoute, private _formBuilder: FormBuilder, private location: Location, private router: Router) { }
 
   ngOnInit(): void {
