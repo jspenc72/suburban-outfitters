@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { AddItemAction } from '../store/cart.actions';
 import { ICartItem } from '../models/cart-item.model';
 import { IProduct } from '../models/product.model';
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,6 +14,7 @@ import { IProduct } from '../models/product.model';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
+  faFacebookF = faFacebookF;
   item: IProduct;
   state$: any
   sub: any

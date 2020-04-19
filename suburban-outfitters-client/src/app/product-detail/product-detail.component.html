@@ -1,28 +1,25 @@
 <br>
-<div class="container"
-     fxLayout="row wrap"
-     fxLayout.xs="column"
-     fxLayoutAlign="center"
-     fxLayoutGap="16px grid"
-     fxLayoutGap.xs="0">
-     <div class="item" fxFlex="40%" >
-        <mat-card>
-          <img mat-card-image [src]="item.image_url" alt="Product Image" routerData="item" >
-        </mat-card>
-      </div>
-      <div class="item" fxFlex="20%" >
-          <h2>Name: {{item.name}}</h2>
-          <p>{{item.description}}</p>
-          <h2>Price: ${{item.price}}</h2>
-          <br>
-          <mat-chip-list>
-            <mat-chip  color="primary" selected>In Stock!</mat-chip>
-          </mat-chip-list>          
-          <br>
-          <share-buttons [theme]="'modern-dark'" [include]="['facebook','twitter','pinterest']" [show]="5" [url]="'https://twitter.com/'" [autoSetMeta]="false">
-          </share-buttons>
-          <button mat-raised-button color="accent" (click)="addItemToCart(item)">Add to Cart
-            <mat-icon>favorite</mat-icon>
-          </button>
-      </div>
+<div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="16px grid"
+  fxLayoutGap.xs="0">
+  <div class="item" fxFlex="40%">
+    <mat-card>
+      <img mat-card-image [src]="item.image_url" alt="Product Image" routerData="item">
+    </mat-card>
+  </div>
+  <div class="item" fxFlex="20%">
+    <h2>Name: {{item.name}}</h2>
+    <p>{{item.description}}</p>
+    <h2>Price: ${{item.price}}</h2>
+    <br />
+    <mat-chip-list>
+      <mat-chip color="primary" selected>In Stock!</mat-chip>
+    </mat-chip-list>
+    <br />
+    <button mat-button shareButton="facebook" style="color: #FFFFFF; background-color: #3b5998;">
+      <fa-icon [icon]="faFacebookF" size="lg"></fa-icon>
+    </button>
+    <br />
+    <br />
+    <button mat-raised-button color="primary" (click)="addItemToCart(item)">Add to Cart</button>
+  </div>
 </div>
