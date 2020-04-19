@@ -6,7 +6,7 @@ import { ICartItem } from '../models/cart-item.model';
 import { tap } from 'rxjs/internal/operators/tap';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { IOrder } from '../models/order.model';
+import { IOrderRequest } from '../models/order.model';
 import { IOrderLineItem } from '../models/order-line-item';
 
 @Injectable({
@@ -19,9 +19,9 @@ export class CheckoutService {
 
   constructor(private http: HttpClient, private store: Store) { }
 
-  public AddOrder(order: IOrder): Observable<IOrder> {
+  public AddOrder(order: IOrderRequest): Observable<IOrderRequest> {
     console.log("AddOrder", order)
-    return this.http.post<IOrder>(`${this.REST_API_SERVER}${this.ENDPOINT}`, order);
+    return this.http.post<IOrderRequest>(`${this.REST_API_SERVER}${this.ENDPOINT}`, order);
   }
 
   public AddOrderLineItems(lineItems: IOrderLineItem[]): Observable<IOrderLineItem[]> {

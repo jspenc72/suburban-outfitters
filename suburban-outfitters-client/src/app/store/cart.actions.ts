@@ -25,7 +25,6 @@ export class GetCustomerInfoActionFail {
   constructor(public payload: any) { }
 }
 
-
 export class SubmitOrderAction {
   static readonly type = '[CartState] Submit Order';
 }

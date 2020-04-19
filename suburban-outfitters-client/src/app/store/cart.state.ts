@@ -2,16 +2,16 @@ import { State, Selector, Action, StateContext, Store } from '@ngxs/store';
 import { patch, append, updateItem, removeItem } from '@ngxs/store/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ICartItem } from '../models/cart-item.model';
-import * as cartActions from './cart.actions';
 import { Injectable } from '@angular/core';
 import { CheckoutService } from '../services/checkout.service';
 import { tap } from 'rxjs/internal/operators/tap';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { CustomerService } from '../services/customer.service';
-import { IOrder } from '../models/order.model';
+import { IOrderRequest, IOrderResponse } from '../models/order.model';
 import { AuthService } from '../services/auth.service';
 import { IOrderLineItem } from '../models/order-line-item';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import * as cartActions from './cart.actions';
 
 export interface CartStateModel {
   loading: boolean;
@@ -87,6 +87,7 @@ export class CartState {
     } else {
       ctx.setState(
         patch({
+          // tslint:disable-next-line: max-line-length
           items: updateItem(item => item.product_id === payload.product_id, patch({ quantity: (existingCartItem.quantity + payload.quantity) }))
         })
       );
@@ -170,9 +171,11 @@ export class CartState {
   async SubmitOrderAction(
     ctx: StateContext<CartStateModel>
   ) {
+    console.log('submit order: ' + JSON.stringify(this.authService.currentCustomer));
+
     ctx.patchState({ loading: true });
-    const newOrder: IOrder = {
-      customer_id: this.authService.currentCustomer.customer_id,
+    const newOrder: IOrderRequest = {
+      customer_id: this.authService.currentCustomer.id,
       order_status_id: 1,
       order_date: new Date(),
       departure_date: null,
@@ -185,8 +188,8 @@ export class CartState {
 
     this.checkoutService.AddOrder(newOrder)
       .pipe(
-        tap((response: any) => {
-          ctx.dispatch(new cartActions.AddOrderLineItemsAction(response));
+        tap((response: IOrderResponse) => {
+          ctx.dispatch(new cartActions.AddOrderLineItemsAction(response.id));
         }),
         catchError(error => ctx.dispatch(new cartActions.SubmitOrderActionFail(error)))
       ).subscribe();
@@ -199,7 +202,7 @@ export class CartState {
   ) {
     ctx.patchState({ loading: false });
     const currentState = ctx.getState();
-    let orderLineItems: IOrderLineItem[] = [];
+    const orderLineItems: IOrderLineItem[] = [];
     currentState.items.forEach(cartItem => {
       const newOrderLineItem: IOrderLineItem = {
         order_id: payload,
@@ -242,7 +245,7 @@ export class CartState {
     { payload }: cartActions.SubmitOrderActionFail
   ) {
 
-    console.log("Payload",payload)
+    console.log('Payload', payload);
     patchState({ loading: false });
     this.snackbar.open(`Error Completing Order: ${payload}`, null, {
       duration: 3000,
