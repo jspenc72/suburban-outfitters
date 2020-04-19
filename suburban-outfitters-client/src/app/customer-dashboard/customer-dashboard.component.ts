@@ -190,17 +190,4 @@ export class CustomerDashboardComponent implements OnInit {
       }
     });
   }
-
-  onReturnItem() {
-    const dialogRef = this.dialog.open(ReturnItemDialogComponent, {
-      //data: { creditcard: this.customer.creditcard }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // TODO: Add database update for order returns
-      if (result && result !== '') {
-        // this.customer.creditcard = result;
-      }
-    });
-  }
 }

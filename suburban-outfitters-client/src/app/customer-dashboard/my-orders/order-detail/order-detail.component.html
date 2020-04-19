@@ -1,4 +1,19 @@
-<p>order-detail works!</p>
+<div class="row">
+  <div class="column" fxLayout="column" fxLayoutAlign="center center">
+    <h1>ORDER #{{order.customer_id}}</h1>
 
-{{order | json}}
+    <div>
+      <h3>Order Details</h3>
+      <p>Order Total: {{order.order_total | currency}}</p>
+      <!-- <h2>Shipping Information</h2>
+  <p>Customer Name: {{shippingForm.get("firstName").value}} {{shippingForm.get("lastName").value}}</p>
+  <p>Shipping Address: {{shippingForm.get("address").value}}</p>
+  <h2>Payment Information</h2>
+  <p>Card Holder Name: {{paymentForm.get("firstName").value}} {{paymentForm.get("lastName").value}}</p>
+  <p>Credit Card: {{paymentForm.get("cardNumber").value}}</p>
+  <p>Billing Address: Same as Shipping Address</p> -->
+    </div>
 
+    <button mat-raised-button color="primary" (click)="onReturnOrder()">Return this order</button>
+  </div>
+</div>

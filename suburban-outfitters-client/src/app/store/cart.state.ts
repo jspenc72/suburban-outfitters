@@ -171,12 +171,13 @@ export class CartState {
   async SubmitOrderAction(
     ctx: StateContext<CartStateModel>
   ) {
-    console.log('submit order: ' + JSON.stringify(this.authService.currentCustomer));
-
+    const currentState = ctx.getState();
+    const total = currentState.items.reduce((a, b) => a + ((b.price * b.quantity) || 0), 0);
     ctx.patchState({ loading: true });
     const newOrder: IOrderRequest = {
       customer_id: this.authService.currentCustomer.id,
       order_status_id: 1,
+      order_total: total,
       order_date: new Date(),
       departure_date: null,
       delivery_date: null,

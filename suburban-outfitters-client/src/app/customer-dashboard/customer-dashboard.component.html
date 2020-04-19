@@ -34,6 +34,7 @@
                 </mat-list-item>
               </mat-list>           
         </mat-card>
+        <br>
         <button mat-raised-button color="primary" (click)="onChangePayment()">Change Credit Card on File</button>
     </div>
 </div>
@@ -42,7 +43,6 @@
         <h2>
             My Orders
         </h2>
-        <button mat-raised-button color="primary" (click)="onReturnItem()">Return an Item</button>
         <app-my-orders [orders]="orders"></app-my-orders>
     </div>
 </div>
