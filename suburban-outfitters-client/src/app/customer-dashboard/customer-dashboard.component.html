@@ -4,18 +4,13 @@
 </h1>
 <div class="row">
     <div class="column" fxLayout="column" fxLayoutAlign="center center">
-        <h2>
-            My Profile
-        </h2>
+        <h2>My Profile</h2>
         <p>Name: {{authService.currentUser.firstName}} {{authService.currentUser.lastName}}</p>
-        <br>
         <p>Address: {{authService.currentCustomer.address}}</p>
-        <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeShippingAddress()">Change Shipping Address</button>
         <br>
         <p>Email Address: {{authService.currentUser.email}}</p>
-        <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangeEmailAddress()">Change Email
             Address</button>
@@ -30,7 +25,6 @@
         </h2>auathService.currentUser
         <br>
         <p>Last 4 of Credit Card: {{customer.creditcard}}</p>
-        <br>
         <br>
         <button mat-raised-button color="primary" (click)="onChangePayment()">Change Credit Card on File</button>
     </div>
