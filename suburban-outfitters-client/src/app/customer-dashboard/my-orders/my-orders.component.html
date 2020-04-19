@@ -1,6 +1,6 @@
 <mat-list role="list">
   <mat-list-item role="listitem" *ngFor="let order of orders">
-        <div mat-line>Order #{{order.orderNumber}} ({{order.price | currency}})</div>
-        <div mat-line>Status: {{order.status}}</div>
+        <div mat-line>Order #{{order.id}} {{order.created_at | date}}</div>
+        <div mat-line>Status: {{order.order_status_id}}</div>
   </mat-list-item>
 </mat-list>

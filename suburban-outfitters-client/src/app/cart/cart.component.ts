@@ -51,15 +51,15 @@ export class CartComponent implements OnInit {
           address: this.authService.currentCustomer.address
         }
       }));
-      // this.store.dispatch(new UpdateFormValue({
-      //   path: 'cartState.paymentForm',
-      //   value: {
-      //     firstName: this.authService.currentUserPaymentMethods.first_name,
-      //     lastName: this.authService.currentUserPaymentMethods.last_name,
-      //     cardNumber: this.authService.currentUserPaymentMethods.card_number,
-      //     expiration: this.authService.currentUserPaymentMethods.expiration
-      //   }
-      // }));
+      this.store.dispatch(new UpdateFormValue({
+        path: 'cartState.paymentForm',
+        value: {
+          firstName: this.authService.currentUserPaymentMethods.first_name,
+          lastName: this.authService.currentUserPaymentMethods.last_name,
+          cardNumber: this.authService.currentUserPaymentMethods.card_number,
+          expiration: this.authService.currentUserPaymentMethods.expiration
+        }
+      }));
       //TODO: GET CREDIT CARD
       //this.custService.getCustomerCreditCard(this.authService.currentCustomer.id).subscribe();
     }

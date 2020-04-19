@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 use App\OrderLineItem;
 
 class OrderLineItemController extends Controller
@@ -35,7 +37,9 @@ class OrderLineItemController extends Controller
      */
     public function store(Request $request)
     {
+        Log::channel('stderr')->info('new request!');
         $orderlineitem = OrderLineItem::create($request->all());
+
         return response()->json($orderlineitem, 201);
     }
 
