@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Customer; 
 use App\CreditCard; 
+use App\Order; 
 
 class User extends Authenticatable
 {
@@ -53,6 +54,13 @@ class User extends Authenticatable
       $customers = Customer::where('user_id', $this->id)->get();
       $cards = CreditCard::where('customer_id', $customers[0]->id)->get();
       return $cards;
+    }
+
+    public function getOrders()
+    {
+      $customer = Customer::where('user_id', $this->id)->get()->first();
+      $orders = Order::where('customer_id', $customer->id)->get();
+      return $orders;
     }
     
 

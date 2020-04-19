@@ -21,6 +21,13 @@ Route::middleware('auth:api')->post('updatepassword', 'API\AuthController@update
 Route::middleware('auth:api')->get('/profile', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->get('/myOrders', function (Request $request) {
+    $currentUser = $request->user();
+    $orders = $currentUser->getOrders();
+    return $orders;
+});
+
 Route::middleware('auth:api')->get('/customer', function (Request $request) {
     $currentUser = $request->user();
     $customer = $currentUser->getCustomer();
@@ -48,7 +55,6 @@ Route::resources([
     'order-line-item' => 'OrderLineItemController',
     'order-status' => 'OrderStatusController',    
 ]);
-
 
 
 // Route::resource('supplier', 'TransactionController');

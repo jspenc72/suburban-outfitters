@@ -62,11 +62,20 @@ export class CustomerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loadCustomer();
     this.loadPaymentMethods()
+    this.loadCustomerOrders()
   }
 
   loadCustomer() {
     this.authService.getUserCustomer().subscribe((data: any) => {
         console.log(data);
+    });
+  }
+
+
+  loadCustomerOrders() {
+    this.authService.getUserOrders().subscribe((data: any) => {
+        console.log(data);
+        this.orders = data;
     });
   }
 
