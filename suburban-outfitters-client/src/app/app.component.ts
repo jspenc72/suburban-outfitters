@@ -19,25 +19,25 @@ export class AppComponent {
 
   constructor(private store: Store, private cookieService: CookieService, private router: Router, public authService: AuthService) {
     this.authService.currentUserSubject.subscribe((data) => {
-      console.log("authService.currentUser >>>>> ", data);
-      this.authService.getUserCustomer().subscribe((data) => {
-        console.log("authService.currentCustomer >>>>> ", data);
-      });      
+      console.log('authService.currentUser >>>>> ', data);
+      this.authService.getUserCustomer().subscribe((data: any) => {
+        console.log('authService.currentCustomer >>>>> ', data);
+      });
     });
 
-    if(!this.authService.currentUser && cookieService.check('user_token')){
+    if (!this.authService.currentUser && cookieService.check('user_token')) {
       this.authService.getUserProfile().subscribe((data: any) => {
-        console.log("did load profile with cookie", data);
-        
-      })
-    }
-  }
-  ngOnInit() {
+        console.log('did load profile with cookie', data);
+      });
 
+      this.authService.getUserCustomer().subscribe((data: any) => {
+        console.log('did load customer data');
+      });
+    }
   }
 
   logout() {
-    console.log("logout")
+    console.log('logout');
     this.router.navigateByUrl('/login');
     this.authService.sendLogoutRequest();
   }

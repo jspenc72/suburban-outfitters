@@ -4,11 +4,11 @@ import { Observable, of, throwError, Subject } from 'rxjs';
 import { retry, catchError, tap, map } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { CookieService } from 'ngx-cookie-service';
+import { IUser } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   private ENDPOINT = '/user';
   private LOGIN_ENDPOINT = '/api/login';
@@ -19,9 +19,7 @@ export class AuthService {
   private UPDATE_PASSWORD_ENDPOINT = '/api/updatepassword';
   
   private REST_API_SERVER: string;
-  public isLoggedIn = false;
-  public currentUser: any;
-  public httpOptions: any;
+  public currentUser?: IUser;
   public currentUserSubject = new Subject<any>();
   public currentCustomer: any;
   public currentCustomerSubject = new Subject<any>();
@@ -47,7 +45,7 @@ export class AuthService {
     return this.httpClient.get(this.ENDPOINT).pipe(retry(3), catchError(this.handleError));
   }
 
-  public deleteAccount() {
+  public deleteAccount(): Observable<any> {
     return this.httpClient.delete(this.ENDPOINT + '/' + this.currentUser.id).pipe(retry(3), catchError(this.handleError));
   }
 
@@ -105,18 +103,13 @@ export class AuthService {
   }
 
   public sendLogoutRequest() {
-    this.cookieService.delete('user_token');
     console.log('did log out');
-    this.currentUserSubject.next({ id: '' });
-    this.currentUserSubject.next(null);
-    this.currentUser = { id: '' };
-
     return this.httpClient.post<any>(this.REST_API_SERVER + this.LOGOUT_ENDPOINT, null).pipe(
       tap((res: any) => {
         console.log(res);
-        this.isLoggedIn = false;
         this.cookieService.delete('user_token');
-        this.currentUser = {};
+        this.currentUser = null;
+        this.currentUserSubject.next(null);
       }),
       catchError(this.handleError)
     );
