@@ -9,6 +9,8 @@ import { CustomerService } from '../services/customer.service';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
+import { CreditCardService } from '../services/credit-card.service';
+
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -16,6 +18,14 @@ import { ChangePasswordDialogComponent } from './change-password-dialog/change-p
   styleUrls: ['./customer-dashboard.component.scss']
 })
 export class CustomerDashboardComponent implements OnInit {
+  credit_cards: any[] = [
+    {
+      first_name: 'Jesse',
+      last_name: 'Spencer',
+      card_number: '1111222233334444',
+      expiration: new Date('1/1/20'),
+    }
+  ];
 
   customer = {
     name: 'John Smith',
@@ -45,9 +55,14 @@ export class CustomerDashboardComponent implements OnInit {
     public dialog: MatDialog,
     public authService: AuthService,
     private customerService: CustomerService,
+    private creditCardService: CreditCardService,
     private userService: UserService,
     private router: Router
   ) { }
+  ngOnInit(): void {
+    this.loadCustomer();
+    this.loadPaymentMethods()
+  }
 
   loadCustomer() {
     this.authService.getUserCustomer().subscribe((data: any) => {
@@ -59,9 +74,16 @@ export class CustomerDashboardComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.loadCustomer();
+
+  loadPaymentMethods() {
+    this.authService.getUserPaymentMethods().subscribe((data: any) => {
+      console.log('loadPaymentMethods', data);   
+      console.log(data)
+      this.credit_cards = data
+    });
   }
+
+
 
   onChangeShippingAddress() {
     const dialogRef = this.dialog.open(ChangeAddressDialogComponent, {
@@ -142,14 +164,20 @@ export class CustomerDashboardComponent implements OnInit {
   }
 
   onChangePayment() {
+    console.log(this.credit_cards[0])
     const dialogRef = this.dialog.open(ChangePaymentDialogComponent, {
-      data: { creditcard: this.customer.creditcard }
+      data: this.credit_cards[0]
     });
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO: Add database update for address
       if (result && result !== '') {
-        this.customer.creditcard = result;
+        console.log(result)
+      
+        this.creditCardService.update(result).subscribe(() => {
+          this.authService.getUserPaymentMethods()
+        });
+        // Send payment method to database.
       }
     });
   }

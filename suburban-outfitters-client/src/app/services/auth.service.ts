@@ -17,12 +17,15 @@ export class AuthService {
   private CUSTOMER_ENDPOINT = '/api/customer';
   private LOGOUT_ENDPOINT = '/api/logout';
   private UPDATE_PASSWORD_ENDPOINT = '/api/updatepassword';
+  private PAYMENT_METHODS_ENDPOINT = '/api/mypaymentmethods';
   
   private REST_API_SERVER: string;
   public currentUser?: IUser;
   public currentUserSubject = new Subject<any>();
   public currentCustomer: any;
   public currentCustomerSubject = new Subject<any>();
+  public currentUserPaymentMethods: any;
+  public currentUserPaymentMethodsSubject = new Subject<any>();
 
   constructor(private cookieService: CookieService, private httpClient: HttpClient, private configService: ConfigService) {
     this.REST_API_SERVER = configService.REST_API_SERVER;
@@ -47,6 +50,18 @@ export class AuthService {
 
   public deleteAccount(): Observable<any> {
     return this.httpClient.delete(this.ENDPOINT + '/' + this.currentUser.id).pipe(retry(3), catchError(this.handleError));
+  }
+
+  public getUserPaymentMethods() {
+    console.log('getUserPaymentMethods');
+    return this.httpClient.get<any>(this.REST_API_SERVER + this.PAYMENT_METHODS_ENDPOINT).pipe(
+      tap((res: any) => {
+        console.log(res);
+        this.currentUserPaymentMethods = res[0];
+        this.currentUserPaymentMethodsSubject.next(res[0]);
+      }),
+      catchError(this.handleError)
+    );
   }
 
   public getUserProfile() {

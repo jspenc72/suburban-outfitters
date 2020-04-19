@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\CreditCard;
 
 class CreditCardController extends Controller
@@ -71,7 +72,22 @@ class CreditCardController extends Controller
     public function update(Request $request, CreditCard $creditcard)
     {
         //
+        Log::channel('stderr')->info('new request!');
+        
+        Log::channel('stderr')->info($request->all());
+
+        $card = CreditCard::where('id', $request->all()["id"])->get()->first();
+        Log::channel('stderr')->info($card);
+        $card->first_name = $request->all()["first_name"];
+        $card->last_name = $request->all()["last_name"];
+        $card->card_number = $request->all()["card_number"];
+        $card->expiration = $request->all()["expiration"];
+        $card->save();
+
+        Log::channel('stderr')->info($card);
+
         $creditcard->update($request->all());
+        Log::channel('stderr')->info($creditcard);
         return response()->json($creditcard, 200);
     }
 

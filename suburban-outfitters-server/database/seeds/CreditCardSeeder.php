@@ -14,13 +14,13 @@ class CreditCardSeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        for ($x = 0; $x <= 10; $x++) {
+        for ($x = 0; $x <= 100; $x++) {
             DB::table('credit_cards')->insert([
                 'first_name' => $faker->firstName(),
                 'last_name' => $faker->lastName(),
                 'card_number' => $faker->creditCardNumber(),
-                'expiration' => $faker->creditCardExpirationDate(),
-                'customer_id' => $faker->randomDigit()
+                'expiration' => "04/22",
+                'customer_id' => $x
             ]);
         } 
     }
