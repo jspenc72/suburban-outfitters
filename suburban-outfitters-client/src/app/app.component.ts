@@ -33,6 +33,10 @@ export class AppComponent {
       this.authService.getUserCustomer().subscribe((data: any) => {
         console.log('did load customer data');
       });
+
+      this.authService.getUserPaymentMethods().subscribe((data: any) => {
+        console.log('did load payment method data');
+      });
     }
   }
 
