@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeAddressDialogComponent } from './change-address-dialog/change-address-dialog.component';
 import { ChangeEmailDialogComponent } from './change-email-dialog/change-email-dialog.component';
@@ -44,7 +45,8 @@ export class CustomerDashboardComponent implements OnInit {
     public dialog: MatDialog,
     public authService: AuthService,
     private customerService: CustomerService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   loadCustomer() {
@@ -129,9 +131,11 @@ export class CustomerDashboardComponent implements OnInit {
 
   onDeleteAccount(): void {
     if (window.confirm('Are you sure you want to delete your account? This cannot be undone.')) {
-      this.authService.deleteAccount().subscribe(() => {
-        this.authService.sendLogoutRequest();
+      this.userService.delete(this.authService.currentUser).subscribe(() => {
+        this.router.navigateByUrl('/register');
+
       });
+      this.authService.sendLogoutRequest();
     } else {
       return;
     }

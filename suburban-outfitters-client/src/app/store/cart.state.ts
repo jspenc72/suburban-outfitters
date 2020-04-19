@@ -241,6 +241,8 @@ export class CartState {
     { patchState }: StateContext<CartStateModel>,
     { payload }: cartActions.SubmitOrderActionFail
   ) {
+
+    console.log("Payload",payload)
     patchState({ loading: false });
     this.snackbar.open(`Error Completing Order: ${payload}`, null, {
       duration: 3000,

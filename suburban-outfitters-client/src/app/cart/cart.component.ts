@@ -51,7 +51,13 @@ export class CartComponent implements OnInit {
           address: this.authService.currentCustomer.address
         }
       }));
-
+      this.store.dispatch(new UpdateFormValue({
+        path: 'cartState.paymentForm',
+        value: {
+          firstName: this.authService.currentUser.firstName,
+          lastName: this.authService.currentUser.lastName
+        }
+      }));
       //TODO: GET CREDIT CARD
       //this.custService.getCustomerCreditCard(this.authService.currentCustomer.id).subscribe();
     }
