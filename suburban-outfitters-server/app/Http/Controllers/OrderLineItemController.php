@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+
 use App\OrderLineItem;
+use App\Inventory;
 
 class OrderLineItemController extends Controller
 {
@@ -39,6 +41,15 @@ class OrderLineItemController extends Controller
     {
         Log::channel('stderr')->info('new request!');
         $orderlineitem = OrderLineItem::create($request->all());
+
+        $inv = Inventory::where('product_id', $orderlineitem->product_id)->get()->first();
+        Log::channel('stderr')->info($inv);
+        //Deduct the quantity from the quantity in stock.
+        $uinv = $inv->deductQuantity($orderlineitem->quantity);
+        Log::channel('stderr')->info($inv);
+
+        // $inventory->quantity = $inventory->quantity-$orderlineitem->quantity;
+        // Log::channel('stderr')->info($inventory);
 
         return response()->json($orderlineitem, 201);
     }

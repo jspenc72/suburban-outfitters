@@ -1,5 +1,6 @@
 <div class="row">
   <div class="column" fxLayout="column" fxLayoutAlign="center center">
+    <button mat-raised-button color="accent" routerLink="/customer-dashboard/" routerLinkActive="active" >Back to My Orders</button>
     <h1>ORDER #{{order.customer_id}}</h1>
 
     <div>
@@ -15,5 +16,6 @@
     </div>
 
     <button mat-raised-button color="primary" (click)="onReturnOrder()">Return this order</button>
+    
   </div>
 </div>

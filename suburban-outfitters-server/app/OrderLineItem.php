@@ -13,4 +13,14 @@ class OrderLineItem extends Model
     {
         return $this->belongsTo('App\Order');
     }
+
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
+
+    public function inventory()
+    {
+        return $this->belongsTo('App\Inventory');
+    }
 }
