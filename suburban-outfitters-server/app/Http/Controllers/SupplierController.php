@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 use App\Supplier;
+use App\Product;
 
 class SupplierController extends Controller
 {
@@ -36,6 +39,8 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         $supplier = Supplier::create($request->all());
+
+
         return response()->json($supplier, 201);
     }
 
@@ -47,7 +52,17 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        return $supplier;
+
+        $s = Supplier::with('inventory')->find($supplier->id);
+        Log::channel('stderr')->info($s);
+
+        // $inv = Product::where('product_id', $orderlineitem->product_id)->get()->first();
+        // $p = Product::find($s->inventory['product_id'])->get();
+        // Log::channel('stderr')->info($p);
+        // $s->inventory['products'] = $p;
+
+
+        return $s;        
     }
 
     /**

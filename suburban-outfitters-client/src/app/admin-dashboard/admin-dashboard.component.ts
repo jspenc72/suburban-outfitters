@@ -17,10 +17,6 @@ export class AdminDashboardComponent implements OnInit {
           link: '/admin-dashboard/manage-customers',
           index: 0
       },{
-          label: 'Manage Inventory',
-          link: '/admin-dashboard/manage-inventory',
-          index: 1
-      },{
           label: 'Manage Products',
           link: '/admin-dashboard/manage-products',
           index: 2

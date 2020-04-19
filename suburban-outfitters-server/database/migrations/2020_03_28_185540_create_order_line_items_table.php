@@ -18,6 +18,7 @@ class CreateOrderLineItemsTable extends Migration
             $table->integer('order_id');
             $table->integer('product_id');
             $table->integer('inventory_id');
+            $table->boolean('is_returned')->default(false);
             $table->string('name');
             $table->integer('quantity');
             $table->double('price', 8, 2);
