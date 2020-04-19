@@ -38,8 +38,13 @@ export class SignUpComponent implements OnInit {
     this.registerFormGroup.value.username = this.registerFormGroup.value.email
     this.authService.sendRegisterRequest(this.registerFormGroup.value).subscribe((data: any) => {
       console.log("data", data);
-      if(!data.error){
-        this.router.navigateByUrl('/card-list');
+      if(data.status=='success'){
+        this.authService.getUserProfile().subscribe((data: any) => {
+          this.router.navigateByUrl('/home');
+        })
+      }else{
+        console.log("not authenticated.");
+        window.alert("The passwords entered do not match.");
       }
     }, err => console.log(err),)
   }

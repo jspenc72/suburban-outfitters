@@ -11,9 +11,9 @@ import { ICreditCard } from '../models/credit-card.model';
   providedIn: 'root'
 })
 export class CustomerService {
-  private ENDPOINT = '/customers';
+  private ENDPOINT = '/api/customers';
   private CREDIT_CARD_ENDPOINT = '/credit-card';
-  private REST_API_SERVER = 'http://localhost:8000/api';
+  private REST_API_SERVER = '';
   constructor(private http: HttpClient, private store: Store, private configService: ConfigService) { 
     this.REST_API_SERVER = configService.REST_API_SERVER;
   }
