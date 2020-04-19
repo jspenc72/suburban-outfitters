@@ -7,6 +7,8 @@ import { AddItemAction } from '../store/cart.actions';
 import { ICartItem } from '../models/cart-item.model';
 import { IProduct } from '../models/product.model';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
+import { InventoryService } from '../services/inventory.service';
+import { IInventory } from '../models/inventory.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,15 +18,15 @@ import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 export class ProductDetailComponent implements OnInit {
   faFacebookF = faFacebookF;
   item: IProduct;
+  inventory: IInventory;
   state$: any
   sub: any
   constructor(
     private location: Location,
     private router: Router,
     public activatedRoute: ActivatedRoute,
-    private store: Store) {
-    // this.item = { title: "card1", type: "", value: 100, image: "https://d2e70e9yced57e.cloudfront.net/wallethub/posts/68808/best-gift-cards.png", description: "Chick Fila-A $10 Gift Card", points: 10}
-  }
+    private store: Store,
+    private inventoryService: InventoryService) { }
 
   ngOnInit(): void {
     console.log(this.location.getState());
@@ -34,6 +36,9 @@ export class ProductDetailComponent implements OnInit {
         this.router.navigateByUrl('/products');
     } else {
       this.item = this.state$.item;
+      this.inventoryService.getBy(this.item.id).subscribe((data: IInventory) => {
+        this.inventory = data;
+      });
     }
   }
 
