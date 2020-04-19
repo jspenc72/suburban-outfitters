@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 use App\Order;
 
 class OrderController extends Controller
@@ -45,8 +47,9 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
-    {
+    public function show(Request $request, Order $order)
+    {        
+        $order = Order::with('orderlineitems')->find(1);
         return $order;
     }
 
@@ -85,5 +88,14 @@ class OrderController extends Controller
     {
         $order->delete();
         return response()->json(null, 204);
+    }
+
+    public function getOrderLineItems(Request $request, Order $order){
+        $key = $request->input('order');
+        Log::channel('stderr')->info($request->input('order'));
+
+        Order::with('orderlineitems')->find(1);
+        return $order;
+        
     }
 }

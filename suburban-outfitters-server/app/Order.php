@@ -8,4 +8,10 @@ class Order extends Model
 {
     //
     protected $fillable = ['customer_id', 'order_status_id', 'order_date', 'departure_date', 'delivery_date', 'purchase_date', 'return_date'];
+
+
+    public function orderlineitems()
+    {
+        return $this->hasMany('App\OrderLineItem');
+    }
 }

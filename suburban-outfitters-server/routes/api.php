@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Custom Methods
 
 Route::post('login', 'API\AuthController@login');
 Route::post('register', 'API\AuthController@register');
@@ -21,6 +22,8 @@ Route::middleware('auth:api')->post('updatepassword', 'API\AuthController@update
 Route::middleware('auth:api')->get('/profile', function (Request $request) {
     return $request->user();
 });
+
+
 
 Route::middleware('auth:api')->get('/myOrders', function (Request $request) {
     $currentUser = $request->user();
@@ -48,7 +51,7 @@ Route::resources([
     'users' => 'UsersController',
     'credit-cards' => 'CreditCardController',
     'customers' => 'CustomerController',
-    'orders' => 'OrderController',
+    // 'orders' => 'OrderController',
     'products' => 'ProductController',
     'suppliers' => 'SupplierController',
     'inventory' => 'InventoryController',   
@@ -56,10 +59,18 @@ Route::resources([
     'order-status' => 'OrderStatusController',    
 ]);
 
+Route::get('orders', 'OrderController@index');
+Route::get('orders/{order}', 'OrderController@show');
+Route::post('orders', 'OrderController@store');
+Route::put('orders/{order}', 'OrderController@update');
+Route::delete('orders/{order}', 'OrderController@destroy');
+Route::get('orders/{order}/order-line-items', 'OrderController@getOrderLineItems');
+
+
+// Route::get('customers/{customers}', 'CustomerController@show');
 
 // Route::resource('supplier', 'TransactionController');
 
-// Route::get('customers', 'CustomerController@index');
 // Route::get('customers/{customers}', 'CustomerController@show');
 // Route::post('customers', 'CustomerController@store');
 // Route::put('customers/{customers}', 'CustomerController@update');
