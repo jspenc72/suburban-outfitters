@@ -22,7 +22,7 @@ class OrderLineItemSeeder extends Seeder
                 'inventory_id' => $faker->randomDigit(),
                 'name' => $faker->randomElement($products),
                 'quantity' => $faker->randomDigit(),
-                'price' => $faker->randomFloat()
+                'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 100)
             ]);
         }
     }
