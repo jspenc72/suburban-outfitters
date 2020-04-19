@@ -31,7 +31,7 @@ export class SubmitOrderAction {
 
 export class SubmitOrderActionSuccess {
   static readonly type = '[CartState] Submit Order Success';
-  constructor(public payload: any) { }
+  constructor(public payload: number) { }
 }
 
 export class SubmitOrderActionFail {

@@ -218,7 +218,7 @@ export class CartState {
       this.checkoutService.AddOrderLineItems(lineItem)
         .pipe(
           tap((response: any) => {
-            ctx.dispatch(new cartActions.SubmitOrderActionSuccess(response));
+            ctx.dispatch(new cartActions.SubmitOrderActionSuccess(payload));
           }),
           catchError(error => ctx.dispatch(new cartActions.SubmitOrderActionFail(error)))
         ).subscribe();
@@ -235,9 +235,6 @@ export class CartState {
       duration: 3000,
       verticalPosition: 'bottom'
     });
-
-    // navigate to the customer dashboard
-    this.router.navigate(['/customer-dashboard']);
   }
 
   @Action(cartActions.SubmitOrderActionFail)

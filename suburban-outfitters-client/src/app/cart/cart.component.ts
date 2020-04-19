@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Select, Store } from '@ngxs/store';
+import { Select, Store, Actions, ofActionSuccessful } from '@ngxs/store';
 import { CartState } from '../store/cart.state';
 import { ICartItem } from '../models/cart-item.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { removeItem } from '@ngxs/store/operators';
-import { RemoveItemAction, SubmitOrderAction } from '../store/cart.actions';
+import { RemoveItemAction, SubmitOrderAction, SubmitOrderActionSuccess } from '../store/cart.actions';
 import { IProduct } from '../models/product.model';
 import { AuthService } from '../services/auth.service';
 import { UpdateFormValue } from '@ngxs/form-plugin';
 import { CustomerService } from '../services/customer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -38,8 +39,13 @@ export class CartComponent implements OnInit {
     private store: Store,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private custService: CustomerService
-  ) { }
+    private custService: CustomerService,
+    private actions$: Actions,
+    private router: Router
+  ) {
+    this.actions$.pipe(ofActionSuccessful(SubmitOrderActionSuccess))
+      .subscribe(() => this.router.navigate(['/customer-dashboard']));
+  }
 
   ngOnInit() {
     if (this.authService.currentUser) {
