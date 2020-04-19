@@ -16,12 +16,14 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="text-center">
-            <button mat-raised-button color="warn" class="btn-padding-top" (click)="onRemoveItemFromCart(item)">Remove Item</button>
+            <button mat-raised-button color="warn" class="btn-padding-top" (click)="onRemoveItemFromCart(item)">Remove
+              Item</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
       <div>
-        <button mat-raised-button matStepperNext color="primary" class="btn-padding-top" [disabled]="(cartItemCount$ | async) === 0">Checkout</button>
+        <button mat-raised-button matStepperNext color="primary" class="btn-padding-top"
+          [disabled]="(cartItemCount$ | async) === 0">Checkout</button>
       </div>
     </div>
   </mat-step>
@@ -32,15 +34,15 @@
         <ng-template matStepLabel>Shipping Info</ng-template>
         <mat-form-field fxFlex="50%">
           <mat-label>First Name</mat-label>
-          <input matInput formControlName="firstName" placeholder="First Name" required>
+          <input matInput formControlName="firstName" required>
         </mat-form-field>
         <mat-form-field fxFlex="50%">
           <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" placeholder="Last Name" required>
+          <input matInput formControlName="lastName" required>
         </mat-form-field>
         <mat-form-field fxFlex="50%">
           <mat-label>Address</mat-label>
-          <input matInput formControlName="address" placeholder="Address" required>
+          <input matInput formControlName="address" required>
         </mat-form-field>
 
         <div>
@@ -56,8 +58,20 @@
         fxLayoutGap.xs="200px">
         <ng-template matStepLabel>Payment Info</ng-template>
         <mat-form-field fxFlex="50%">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="50%">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="50%">
           <mat-label>Credit Card #</mat-label>
           <input matInput formControlName="cardNumber" placeholder="5555 5555 5555 5555" required>
+        </mat-form-field>
+        <mat-form-field fxFlex="50%">
+          <mat-label>Expiration Date</mat-label>
+          <input matInput formControlName="expiration" placeholder="0723" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -86,14 +100,14 @@
           <th></th>
           <th>TOTAL {{total$ | async | currency}}</th>
         </tr>
-        </table>
+      </table>
       <h2>Shipping Information</h2>
       <p>Customer Name: {{shippingForm.get("firstName").value}} {{shippingForm.get("lastName").value}}</p>
       <p>Shipping Address: {{shippingForm.get("address").value}}</p>
       <h2>Payment Information</h2>
+      <p>Card Holder Name: {{paymentForm.get("firstName").value}} {{paymentForm.get("lastName").value}}</p>
       <p>Credit Card: {{paymentForm.get("cardNumber").value}}</p>
-      <p>Card Holder Name: {{shippingForm.get("firstName").value}} {{shippingForm.get("lastName").value}}</p>
-      <p>Billing Address: {{shippingForm.get("address").value}}</p>
+      <p>Billing Address: Same as Shipping Address</p>
     </div>
     <div class="text-center">
       <button mat-button matStepperPrevious>Back</button>

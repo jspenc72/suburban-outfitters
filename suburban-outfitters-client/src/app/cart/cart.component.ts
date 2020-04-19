@@ -9,6 +9,7 @@ import { RemoveItemAction, SubmitOrderAction } from '../store/cart.actions';
 import { IProduct } from '../models/product.model';
 import { AuthService } from '../services/auth.service';
 import { UpdateFormValue } from '@ngxs/form-plugin';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-cart',
@@ -27,18 +28,21 @@ export class CartComponent implements OnInit {
   });
 
   paymentForm = this.formBuilder.group({
-    cardNumber: ['', Validators.required]
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    cardNumber: ['', Validators.required],
+    expiration: ['', Validators.required],
   });
 
   constructor(
     private store: Store,
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private custService: CustomerService
   ) { }
 
   ngOnInit() {
     if (this.authService.currentUser) {
-
       this.store.dispatch(new UpdateFormValue({
         path: 'cartState.shippingForm',
         value: {
@@ -47,6 +51,9 @@ export class CartComponent implements OnInit {
           address: this.authService.currentCustomer.address
         }
       }));
+
+      //TODO: GET CREDIT CARD
+      //this.custService.getCustomerCreditCard(this.authService.currentCustomer.id).subscribe();
     }
   }
 

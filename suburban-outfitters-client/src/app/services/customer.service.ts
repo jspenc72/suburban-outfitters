@@ -5,12 +5,14 @@ import { retry, catchError, tap, map } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import { ICustomer } from '../models/customer.model';
 import { ConfigService } from './config.service';
+import { ICreditCard } from '../models/credit-card.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
   private ENDPOINT = '/customers';
+  private CREDIT_CARD_ENDPOINT = '/credit-card';
   private REST_API_SERVER = 'http://localhost:8000/api';
   constructor(private http: HttpClient, private store: Store, private configService: ConfigService) { 
     this.REST_API_SERVER = configService.REST_API_SERVER;
@@ -79,6 +81,13 @@ export class CustomerService {
   public getBy(id: number): Observable<ICustomer> {
     return this.http.get<ICustomer>(this.REST_API_SERVER + this.ENDPOINT + '/' + id).pipe(
       tap((c: ICustomer) => console.log(`got card ${c}`)),
+      catchError(this.handleError)
+    );
+  }
+
+  public getCustomerCreditCard(id: number): Observable<ICreditCard> {
+    return this.http.get<ICreditCard>(this.REST_API_SERVER + this.CREDIT_CARD_ENDPOINT + '/' + id).pipe(
+      tap((c: ICreditCard) => console.log(`got card ${c}`)),
       catchError(this.handleError)
     );
   }
