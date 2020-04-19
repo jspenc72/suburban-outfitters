@@ -181,9 +181,7 @@ export class CartState {
       departure_date: null,
       delivery_date: null,
       purchase_date: null,
-      return_date: null,
-      created_at: new Date(),
-      updated_at: null
+      return_date: null
     };
 
     this.checkoutService.AddOrder(newOrder)
@@ -215,13 +213,16 @@ export class CartState {
       orderLineItems.push(newOrderLineItem);
     });
 
-    this.checkoutService.AddOrderLineItems(orderLineItems)
-      .pipe(
-        tap((response: any) => {
-          ctx.dispatch(new cartActions.SubmitOrderActionSuccess(response));
-        }),
-        catchError(error => ctx.dispatch(new cartActions.SubmitOrderActionFail(error)))
-      ).subscribe();
+    // submit line items one at a time
+    orderLineItems.forEach(lineItem => {
+      this.checkoutService.AddOrderLineItems(lineItem)
+        .pipe(
+          tap((response: any) => {
+            ctx.dispatch(new cartActions.SubmitOrderActionSuccess(response));
+          }),
+          catchError(error => ctx.dispatch(new cartActions.SubmitOrderActionFail(error)))
+        ).subscribe();
+    });
   }
 
   @Action(cartActions.SubmitOrderActionSuccess)

@@ -20,11 +20,10 @@ export class CheckoutService {
   constructor(private http: HttpClient, private store: Store) { }
 
   public AddOrder(order: IOrderRequest): Observable<IOrderRequest> {
-    console.log("AddOrder", order)
     return this.http.post<IOrderRequest>(`${this.REST_API_SERVER}${this.ENDPOINT}`, order);
   }
 
-  public AddOrderLineItems(lineItems: IOrderLineItem[]): Observable<IOrderLineItem[]> {
-    return this.http.post<IOrderLineItem[]>(`${this.REST_API_SERVER}${this.LI_ENDPOINT}`, lineItems);
+  public AddOrderLineItems(lineItems: IOrderLineItem): Observable<IOrderLineItem> {
+    return this.http.post<IOrderLineItem>(`${this.REST_API_SERVER}${this.LI_ENDPOINT}`, lineItems);
   }
 }

@@ -6,8 +6,6 @@ export interface IOrderRequest {
   delivery_date?: Date;
   purchase_date?: Date;
   return_date?: Date;
-  created_at: Date;
-  updated_at?: Date;
 }
 
 export interface IOrderResponse {
@@ -19,6 +17,4 @@ export interface IOrderResponse {
   delivery_date?: Date;
   purchase_date?: Date;
   return_date?: Date;
-  created_at: Date;
-  updated_at?: Date;
 }
