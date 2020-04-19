@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
-import { RouterModule, Routes, Router, RouterState, NavigationStart, ActivatedRoute } from '@angular/router';
+import { RouterModule, Routes, Router, RouterState, NavigationStart, ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Store } from '@ngxs/store';
 import { AddItemAction } from '../store/cart.actions';
@@ -9,6 +9,7 @@ import { IProduct } from '../models/product.model';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { InventoryService } from '../services/inventory.service';
 import { IInventory } from '../models/inventory.model';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,16 +20,37 @@ export class ProductDetailComponent implements OnInit {
   faFacebookF = faFacebookF;
   item: IProduct;
   inventory: IInventory;
-  state$: any
-  sub: any
+  state$: any;
+  product: any;
+  sub: any;
   constructor(
     private location: Location,
+    private route: ActivatedRoute,
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private store: Store,
+    private productService: ProductService,
     private inventoryService: InventoryService) { }
 
+  loadProductDetails(id: any) {
+    this.productService.getBy(id).subscribe((data: any) => {
+      console.log(data)
+      console.log('loadProductDetails')
+      this.item = data;
+    })
+  }
+
+
   ngOnInit(): void {
+    
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          console.log(params['id'])
+          this.loadProductDetails(params['id'])
+        }
+      );
+
     console.log(this.location.getState());
     this.state$ = this.location.getState();
 

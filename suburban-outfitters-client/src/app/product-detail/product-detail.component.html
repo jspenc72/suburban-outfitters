@@ -16,16 +16,17 @@
     <h2>Price: ${{item.price}}</h2>
     <br />
     <mat-chip-list>
-      <mat-chip *ngIf="inventory.quantity > 0" color="primary" selected>{{inventory.quantity}} left in stock!</mat-chip>
-      <mat-chip *ngIf="inventory.quantity === 0" color="accent" selected>Out of stock!</mat-chip>
+      <mat-chip *ngIf="item.inventory && item.inventory.quantity > 0" color="primary" selected>{{item.inventory.quantity}} left in stock!</mat-chip>
+      <mat-chip *ngIf="item.inventory && item.inventory.quantity === 0" color="accent" selected>Out of stock!</mat-chip>
     </mat-chip-list>
     <br />
     <button mat-button shareButton="facebook" style="color: #FFFFFF; background-color: #3b5998;">
+      Share 
       <fa-icon [icon]="faFacebookF" size="lg"></fa-icon>
     </button>
     <br />
     <br />
-    <button mat-raised-button color="primary" (click)="addItemToCart(item)" [disabled]="inventory.quantity === 0">Add to Cart</button>
+    <button mat-raised-button color="primary" (click)="addItemToCart(item)" [disabled]="item.inventory.quantity === 0">Add to Cart</button>
     <br>
     <br>
     <br>

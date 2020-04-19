@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
   displayProductDetail(item): void {
     console.log('displayProductDetail');
     console.log(item);
-    this.router.navigateByUrl('/product-detail', { state: { item } });
+    this.router.navigateByUrl('/product-detail/'+item.id, { state: { item } });
   }
 
   loadProductsFromAPI(): void {

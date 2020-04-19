@@ -54,7 +54,7 @@ export class CreditCardService {
     return this.http.get<any[]>(`${this.REST_API_SERVER + this.ENDPOINT}`)
       .pipe(
         tap(cards => {
-          console.log('fetched cases');
+          // console.log('fetched cards');
         }),
         catchError(this.handleError)
       );
@@ -62,7 +62,7 @@ export class CreditCardService {
 
   public getBy(id: number): Observable<any> {
     return this.http.get<any>(this.REST_API_SERVER + this.ENDPOINT + '/' + id).pipe(
-      tap((c: any) => console.log(`got card ${c}`)),
+      tap((c: any) => console.log(`${c}`)),
       catchError(this.handleError)
     );
   }

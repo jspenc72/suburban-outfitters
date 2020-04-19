@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'products', component: ProductsComponent, canActivate: [AuthGuard] },
-  { path: 'product-detail', component: ProductDetailComponent, canActivate: [AuthGuard] },
+  { path: 'product-detail/:id', component: ProductDetailComponent, canActivate: [AuthGuard] },
   { path: 'manage-suppliers', component: ManageSuppliersComponent, canActivate: [AuthGuard] },
   { path: 'manage-customers', component: ManageCustomersComponent, canActivate: [AuthGuard] },
   { path: 'manage-products', component: ManageProductsComponent, canActivate: [AuthGuard] },
