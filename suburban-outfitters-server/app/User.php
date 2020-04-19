@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Customer; 
+use App\CreditCard; 
 
 class User extends Authenticatable
 {
@@ -47,5 +48,12 @@ class User extends Authenticatable
       return $customer;
     }
 
+    public function getPaymentMethods()
+    {
+      $customers = Customer::where('user_id', $this->id)->get();
+      $cards = CreditCard::where('customer_id', $customers[0]->id)->get();
+      return $cards;
+    }
+    
 
 }

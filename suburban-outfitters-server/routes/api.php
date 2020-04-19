@@ -27,13 +27,19 @@ Route::middleware('auth:api')->get('/customer', function (Request $request) {
     return $customer;
 });
 
+Route::middleware('auth:api')->get('/mypaymentmethods', function (Request $request) {
+    $currentUser = $request->user();
+    $paymentmethods = $currentUser->getPaymentMethods();
+    return $paymentmethods;
+});
+
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
 Route::resources([
     'users' => 'UsersController',
-    'credit-card' => 'CreditCardController',
+    'credit-cards' => 'CreditCardController',
     'customers' => 'CustomerController',
     'orders' => 'OrderController',
     'products' => 'ProductController',
