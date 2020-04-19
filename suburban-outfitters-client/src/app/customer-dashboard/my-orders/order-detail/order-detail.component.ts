@@ -16,7 +16,7 @@ export class OrderDetailComponent implements OnInit {
   order: IOrderDetial;
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private authService: AuthService,
+    public authService: AuthService,
     private ordersService: OrdersService,
     private orderlineItemService: OrderLineItemService
   ) { }
