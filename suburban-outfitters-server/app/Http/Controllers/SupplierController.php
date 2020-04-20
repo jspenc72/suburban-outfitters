@@ -57,7 +57,6 @@ class SupplierController extends Controller
         Log::channel('stderr')->info($s);
 
         // $inv = Product::where('product_id', $orderlineitem->product_id)->get()->first();
-        // $p = Product::find($s->inventory['product_id'])->get();
         // Log::channel('stderr')->info($p);
         // $s->inventory['products'] = $p;
 

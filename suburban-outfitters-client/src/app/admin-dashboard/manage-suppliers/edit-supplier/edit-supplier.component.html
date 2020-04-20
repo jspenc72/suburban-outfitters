@@ -34,12 +34,11 @@
   <mat-list>
     <div mat-subheader>Units</div>
     
-    <mat-list-item *ngFor="let card of inventory_units">
-      <mat-icon mat-list-icon>credit_card</mat-icon>
-      <div mat-line>{{card.first_name}}</div>
-      <div mat-line>{{card.last_name}}</div>
-      <div mat-line>{{card.card_number}}</div>
-      <div mat-line> {{card.expiration}} </div>
+    <mat-list-item *ngFor="let inventoryitem of inventory_units">
+      <mat-icon mat-list-icon>open_with</mat-icon>
+      <div mat-line>{{inventoryitem.product ? inventoryitem.product.name : ''}}</div>
+      <div mat-line>{{inventoryitem.product ? inventoryitem.product.description : ''}}</div>
+      <div mat-line>Current In Stock Inventory: {{inventoryitem.quantity}}</div>
     </mat-list-item>
   </mat-list>      
 
