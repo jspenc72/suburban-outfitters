@@ -62,6 +62,9 @@ class OrderLineItemController extends Controller
      */
     public function show(OrderLineItem $orderlineitem)
     {
+        Log::channel('stderr')->info($orderlineitem);
+        $p = OrderLineItem::with('product', 'inventory')->find($orderlineitem->id);
+        Log::channel('stderr')->info('test');
         return $orderlineitem;
     }
 

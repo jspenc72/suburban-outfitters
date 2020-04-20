@@ -27,6 +27,7 @@ export class OrderDetailComponent implements OnInit {
   loadOrderDetails(id: any) {
     this.ordersService.getBy(id).subscribe((data: any) => {
       this.order = data;
+      console.log(data)
     });
   }
 
@@ -48,10 +49,10 @@ export class OrderDetailComponent implements OnInit {
       let itemInventory = data.inventory;
       itemInventory.quantity += lineItem.quantity;
       this.inventoryService.update(itemInventory).subscribe((data: any) => {
-        lineItem.is_returned = true;
+        lineItem.is_returned = 1;
         this.orderLineItemService.update(lineItem).subscribe((data: IOrderLineItem) => {
           const index = this.order.orderlineitems.findIndex(item => item.product_id === lineItem.product_id);
-          this.order.orderlineitems[index].is_returned = true;
+          this.order.orderlineitems[index].is_returned = 1;
         });
       });
     });

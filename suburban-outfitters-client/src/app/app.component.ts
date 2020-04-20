@@ -43,6 +43,7 @@ export class AppComponent {
   logout() {
     console.log('logout');
     this.router.navigateByUrl('/login');
+    this.cookieService.delete('user_token');
     this.authService.sendLogoutRequest();
   }
 }

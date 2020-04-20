@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
 import { CreditCardService } from '../services/credit-card.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -55,6 +56,7 @@ export class CustomerDashboardComponent implements OnInit {
     public dialog: MatDialog,
     public authService: AuthService,
     private customerService: CustomerService,
+    private cookieService: CookieService,
     private creditCardService: CreditCardService,
     private userService: UserService,
     private router: Router
@@ -162,9 +164,10 @@ export class CustomerDashboardComponent implements OnInit {
 
   onDeleteAccount(): void {
     if (window.confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+      
       this.userService.delete(this.authService.currentUser).subscribe(() => {
         this.router.navigateByUrl('/register');
-
+        this.cookieService.delete('user_token');
       });
       this.authService.sendLogoutRequest();
     } else {

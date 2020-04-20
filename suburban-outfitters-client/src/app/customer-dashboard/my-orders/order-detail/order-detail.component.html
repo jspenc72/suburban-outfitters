@@ -17,8 +17,8 @@
           <th>{{item.quantity}}</th>
           <th>{{item.price}}</th>
           <th>
-            <span mat-button *ngIf="item.is_returned === true">Item has been returned.</span>
-            <button mat-button *ngIf="item.is_returned === false" color="primary" (click)="onReturnItem(item)">Return item</button>
+            <span mat-button *ngIf="item.is_returned === 1">Item has been returned.</span>
+            <button mat-button *ngIf="item.is_returned === 0" color="primary" (click)="onReturnItem(item)">Return item</button>
           </th>
         </tr>
         <tr>

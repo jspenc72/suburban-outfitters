@@ -5,7 +5,7 @@ export interface IOrderLineItem {
   name: string;
   quantity: number;
   price: number;
-  is_returned: boolean;
+  is_returned: number;
   created_at: Date;
   updated_at?: Date;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Routes, Router, RouterState } from '@angular/router';
 import { IProduct } from '../models/product.model';
 import {ProductService } from '../services/product.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit {
   categories: any;
   searchValue: string;
 
-  constructor(private router: Router, private productService: ProductService) {
+  constructor(private router: Router, private authService: AuthService, private productService: ProductService) {
     this.searchValue = '';
 
     this.categories = ['Womens', 'Mens', 'Kids', 'Accessories'];
@@ -66,6 +67,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProductsFromAPI()
+    this.authService.getUserPaymentMethods().subscribe((data: any) => {
+      console.log('did load payment method data');
+    });
   }
 
 }
