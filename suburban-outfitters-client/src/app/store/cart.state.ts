@@ -234,7 +234,23 @@ export class CartState {
     { patchState }: StateContext<CartStateModel>,
     { payload }: cartActions.SubmitOrderActionSuccess
   ) {
-    patchState({ loading: false });
+    patchState({
+      loading: false,
+      items: [],
+      shippingForm: {
+        model: undefined,
+        dirty: false,
+        status: '',
+        errors: {}
+      },
+      paymentForm: {
+        model: undefined,
+        dirty: false,
+        status: '',
+        errors: {}
+      }
+    });
+
     this.snackbar.open(`Order Complete: #${payload}`, null, {
       duration: 3000,
       verticalPosition: 'bottom'
