@@ -5,6 +5,8 @@ import { OrdersService } from '../../../services/orders.service';
 import { OrderLineItemService } from '../../../services/order-line-item.service';
 import { IOrderResponse, IOrderDetial } from 'src/app/models/order.model';
 import { IOrderLineItem } from 'src/app/models/order-line-item';
+import { ProductService } from 'src/app/services/product.service';
+import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -12,13 +14,14 @@ import { IOrderLineItem } from 'src/app/models/order-line-item';
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-  order_id: number;
   order: IOrderDetial;
   constructor(private router: Router,
     private route: ActivatedRoute,
     public authService: AuthService,
     private ordersService: OrdersService,
-    private orderlineItemService: OrderLineItemService
+    private productService: ProductService,
+    private orderLineItemService: OrderLineItemService,
+    private inventoryService: InventoryService
   ) { }
 
   loadOrderDetails(id: any) {
@@ -40,8 +43,18 @@ export class OrderDetailComponent implements OnInit {
   }
 
 
-  onReturnOrder() {
-
+  onReturnItem(lineItem: IOrderLineItem) {
+    this.productService.getBy(lineItem.product_id).subscribe((data: any) => {
+      let itemInventory = data.inventory;
+      itemInventory.quantity += lineItem.quantity;
+      this.inventoryService.update(itemInventory).subscribe((data: any) => {
+        lineItem.is_returned = true;
+        this.orderLineItemService.update(lineItem).subscribe((data: IOrderLineItem) => {
+          const index = this.order.orderlineitems.findIndex(item => item.product_id === lineItem.product_id);
+          this.order.orderlineitems[index].is_returned = true;
+        });
+      });
+    });
   }
 
 }
